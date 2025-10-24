@@ -14,9 +14,9 @@
 Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI primitives ready for production.
 
 Currently includes:
-- ✅ [**Button**](./docs/Button.md) — customizable, themeable, and fully typed.
-- ✅ [**Input**](./docs/Input.md) — customizable, themeable, and fully typed.
-- ✅ [**Design Tokens**](./docs/TOKENS.md) — colors, sizes, shadows, transitions.
+- ✅ [**Button**](./docs/components/Button.md) — customizable, themeable, and fully typed.
+- ✅ [**Input**](./docs/components/Input.md) — customizable, themeable, and fully typed.
+- ✅ [**Design Tokens**](./docs/Tokens.md) — colors, sizes, shadows, transitions.
 
 > 🚀 Coming soon: `Label`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
 
@@ -78,13 +78,13 @@ export default function App() {
 
 ## 📚 Documentation
 
-Each component has its own Markdown documentation file inside the /docs
+Each component has its own Markdown documentation file inside the /docs/components/
  folder:
 | Component | Description                                             | Link                       |
 | --------- | ------------------------------------------------------- | -------------------------- |
-| 🎨 Tokens | Base design tokens: colors, shadows, sizes, transitions | [View →](./docs/TOKENS.md) |
-| 🔘 Button | Configurable button component                           | [View →](./docs/Button.md) |
-| ⌨️ Input  | Themed input field with validation props                | [View →](./docs/Input.md)  |
+| 🎨 Tokens | Base design tokens: colors, shadows, sizes, transitions | [View →](./docs/components/Tokens.md) |
+| 🔘 Button | Configurable button component                           | [View →](./docs/components/Button.md) |
+| ⌨️ Input  | Themed input field with validation props                | [View →](./docs/components/Input.md)  |
 
 
 ## 🤝 Contribution & Community
