@@ -1,8 +1,8 @@
 # 🧩 Kovax UI — React Component Library
 
 ![npm](https://img.shields.io/npm/v/@kovax/react?color=3b82f6&label=npm%20version)
-![build](https://img.shields.io/github/actions/workflow/status/yourusername/kovax-ui/build.yml)
-![license](https://img.shields.io/github/license/yourusername/kovax-ui)
+![build](https://img.shields.io/github/actions/workflow/status/mr_kamura/kovax-ui/build.yml)
+![license](https://img.shields.io/github/license/mr_kamura/kovax-ui)
 ![size](https://img.shields.io/bundlephobia/minzip/@kovax/react?label=size&color=10b981)
 
 ---
@@ -23,6 +23,6 @@ Currently includes:
 
 ### 1️⃣ From npm
 ```bash
-npm install kovax
+npm install kovax-react
 # or
-yarn add kovax
+yarn add kovax-react

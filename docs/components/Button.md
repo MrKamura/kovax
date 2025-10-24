@@ -51,7 +51,7 @@ import { Button } from "kovax";
 | `lg` | `10px 20px` | `16px`    |
 
 Example:
-```tsx
+
 <Button label="Small" size="sm" />
 <Button label="Medium" size="md" />
 <Button label="Large" size="lg" />
@@ -60,7 +60,7 @@ Example:
 🧩 Customization
 
 You can override default visuals using props:
-```tsx
+
 <Button
   label="Custom Button"
   bg="#111827"
@@ -75,7 +75,7 @@ You can override default visuals using props:
 
 When loading is true, the button shows a spinner and becomes disabled by default.
 The loader position can be set via loadingPosition.
-```tsx
+
 <Button
   label="Save"
   loading
@@ -88,7 +88,7 @@ The loader position can be set via loadingPosition.
 🧱 Icons (icon)
 
 You can insert any icon or JSX element before the text:
-```tsx
+
 import { FaCheck, FaTrash } from "react-icons/fa";
 <Button label="Confirm" icon={<FaCheck />} variant="success" />
 <Button label="Delete" icon={<FaTrash />} variant="danger" />
@@ -102,7 +102,7 @@ Disables interaction and dims the button.
 🧠 Combinations & Examples
 
 🔹 Primary + icon + loader
-```tsx
+
 <Button
   label="Done"
   variant="success"
@@ -112,7 +112,7 @@ Disables interaction and dims the button.
 
 
 🔹 Success + custom width
-```tsx
+
 <Button
   label="Done"
   variant="success"
@@ -122,7 +122,7 @@ Disables interaction and dims the button.
 
 
 🔹 Danger + custom background
-```tsx
+
 <Button
   label="Delete"
   bg="#991b1b"
@@ -135,7 +135,7 @@ Disables interaction and dims the button.
 🎨 Styling (with CSS or Tailwind)
 
 The component uses inline styles but supports a className prop for external styling:
-```tsx
+
 <Button
   label="Styled with Tailwind"
   className="shadow-md hover:shadow-lg transition-all"
@@ -179,7 +179,7 @@ or
 /docs/BUTTON.md
 
 🧾 Example Button Preview
-```tsx
+
 <div style={{ display: "flex", gap: 16 }}>
   <Button loading color="primary" size="sm">Primary</Button>
   <Button variant="secondary">Secondary</Button>

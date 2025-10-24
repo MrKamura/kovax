@@ -1,6 +1,9 @@
 {
-  "name": "kovax",
-  "version": "0.0.2",
+  "name": "kovax-react",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.3",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -26,15 +29,17 @@
   "keywords": [
     "react",
     "ui",
-    "library",
-    "components"
+    "components",
+    "react-library",
+    "kovax",
+    "frontend",
+    "typescript"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "author": "Aleksei Alekseev",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrKamura/kovax-ui.git"
+    "url": "git+https://github.com/MrKamura/kovax.git"
   },
   "peerDependencies": {
     "react": ">=16.0.0 <20.0.0",
