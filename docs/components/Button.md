@@ -105,20 +105,9 @@ Disables interaction and dims the button.
 <Button label="Disabled" disabled />
 ```
 
-* 🧠 Combinations & Examples
+## 🧠 Combinations & Examples
 
-* 🔹 Primary + icon + loader
-
-```tsx
-<Button
-  label="Done"
-  variant="success"
-  w="100%"
-  h={42}
-/>
-```
-
-* 🔹 Success + custom width
+## 🔹 Primary + icon + loader
 
 ```tsx
 <Button
@@ -129,7 +118,18 @@ Disables interaction and dims the button.
 />
 ```
 
-* 🔹 Danger + custom background
+## 🔹 Success + custom width
+
+```tsx
+<Button
+  label="Done"
+  variant="success"
+  w="100%"
+  h={42}
+/>
+```
+
+## 🔹 Danger + custom background
 
 ```tsx
 <Button
@@ -141,7 +141,7 @@ Disables interaction and dims the button.
 ```
 
 
-* 🎨 Styling (with CSS or Tailwind)
+## 🎨 Styling (with CSS or Tailwind)
 
 The component uses inline styles but supports a className prop for external styling:
 
@@ -152,21 +152,21 @@ The component uses inline styles but supports a className prop for external styl
 />
 ```
 
-* 💡 Usage Tips
+## 💡 Usage Tips
 
-Prefer variant for consistent design system integration.
+* Prefer variant for consistent design system integration.
 
-bg and textColor override default variant colors.
+* bg and textColor override default variant colors.
 
-Use loadingText to avoid empty space when loading.
+* Use loadingText to avoid empty space when loading.
 
-w and h accept both number (px) and string ("100%", "10rem").
+* w and h accept both number (px) and string ("100%", "10rem").
 
-For fully rounded buttons, set radius="50%" or a large numeric value.
+* For fully rounded buttons, set radius="50%" or a large numeric value.
 
-* 🧰 Future Improvements (Recommended)
+## 🧰 Future Improvements (Recommended)
 
-Planned or suggested enhancements:
+## Planned or suggested enhancements:
 
 * ✅ Additional variants (outline, ghost, link)
 
@@ -189,7 +189,7 @@ or
 
 /docs/BUTTON.md
 
-* 🧾 Example Button Preview
+## 🧾 Example Button Preview
 
 ```tsx
 <div style={{ display: "flex", gap: 16 }}>
