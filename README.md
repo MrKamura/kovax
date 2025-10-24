@@ -14,9 +14,12 @@
 Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI primitives ready for production.
 
 Currently includes:
-- ✅ **Button** — customizable, themeable, and fully typed.
+- ✅ [**Button**](./docs/Button.md) — customizable, themeable, and fully typed.
+- ✅ [**Input**](./docs/Input.md) — customizable, themeable, and fully typed.
+- ✅ [**Design Tokens**](./docs/TOKENS.md) — colors, sizes, shadows, transitions.
 
-> 🚀 Coming soon: `Input`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
+> 🚀 Coming soon: `Label`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
+
 
 ---
 
@@ -47,17 +50,19 @@ export default function App() {
 
 ## 🧠 Features
 
-## 🌈 Full TypeScript support
+* 🌈 Full TypeScript support
 
-## 🎨 Easy theming and customization
+* 🎨 Easy theming and customization
 
-## ⚙️ Minimal dependencies
+* ⚙️ Minimal dependencies
 
-## 🧱 Production-ready base UI components
+* 🧱 Production-ready base UI components
 
-## 🚀 Built with Vite + Tsup for speed
+* 🚀 Built with Vite + Tsup for speed
 
-## 📘 Well-structured documentation in Markdown
+* 📘 Well-structured documentation in Markdown
+
+
 
 ## 🛠 Tech Stack
 
@@ -70,6 +75,17 @@ export default function App() {
 * Tsup for builds
 
 * TailwindCSS (for styles and examples)
+
+## 📚 Documentation
+
+Each component has its own Markdown documentation file inside the /docs
+ folder:
+| Component | Description                                             | Link                       |
+| --------- | ------------------------------------------------------- | -------------------------- |
+| 🎨 Tokens | Base design tokens: colors, shadows, sizes, transitions | [View →](./docs/TOKENS.md) |
+| 🔘 Button | Configurable button component                           | [View →](./docs/Button.md) |
+| ⌨️ Input  | Themed input field with validation props                | [View →](./docs/Input.md)  |
+
 
 ## 🤝 Contribution & Community
 

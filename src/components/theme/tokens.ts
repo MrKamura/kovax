@@ -1,4 +1,3 @@
-// Цветовая палитра
 export const colors = {
   primary: {
     50: '#eff6ff',
@@ -62,7 +61,6 @@ export const colors = {
   },
 } as const;
 
-// Размеры
 export const sizes = {
   text: {
     xs: '0.75rem',
@@ -86,7 +84,6 @@ export const sizes = {
   },
 } as const;
 
-// Тени
 export const shadows = {
   none: 'none',
   sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
@@ -95,13 +92,12 @@ export const shadows = {
   xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
 } as const;
 
-// Анимации
 export const transitions = {
   default: 'all 0.2s ease-in-out',
   fast: 'all 0.1s ease-in-out',
   slow: 'all 0.3s ease-in-out',
 } as const;
 
-// Типы для TypeScript
+// TypeScript
 export type ColorName = keyof typeof colors;
-export type ColorShade = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+export type ColorShade = keyof typeof colors.primary;

@@ -1,5 +1,6 @@
 import React from "react";
-import { colors, sizes, shadows } from "../../tokens";
+import { colors, shadows, sizes } from "../theme/tokens";
+
 
 export type VariantKey = "solid" | "outline" | "ghost" | "link";
 export type ColorKey = keyof typeof colors;
