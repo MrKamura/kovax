@@ -42,23 +42,24 @@ export default function App() {
     </div>
   );
 }
-```
+tsx```
 
-##🧠 Features
 
-##🌈 Full TypeScript support
+## 🧠 Features
 
-##🎨 Easy theming and customization
+## 🌈 Full TypeScript support
 
-##⚙️ Minimal dependencies
+## 🎨 Easy theming and customization
 
-##🧱 Production-ready base UI components
+## ⚙️ Minimal dependencies
 
-##🚀 Built with Vite + Tsup for speed
+## 🧱 Production-ready base UI components
 
-##📘 Well-structured documentation in Markdown
+## 🚀 Built with Vite + Tsup for speed
 
-##🛠 Tech Stack
+## 📘 Well-structured documentation in Markdown
+
+## 🛠 Tech Stack
 
 React 18+
 
@@ -70,7 +71,7 @@ Tsup for builds
 
 TailwindCSS (for styles and examples)
 
-🤝 Contribution & Community
+##🤝 Contribution & Community
 
 We welcome developers from all over the world to contribute to Kovax UI 💡
 There are plenty of exciting ideas and upcoming features, including:
@@ -93,10 +94,10 @@ Commit your changes
 
 Open a Pull Request
 
-Your contribution will be reviewed and merged after discussion.
+## Your contribution will be reviewed and merged after discussion.
 All contributors will be featured in the Contributors list ❤️
 
-🚀 Development
+## 🚀 Development
 Run in development mode:
 ```bash
 npm install
@@ -113,7 +114,7 @@ Publish a new version:
 npm run release
 ```
 
-📄 License
+##📄 License
 
 MIT License — free to use, modify, and distribute.
 
