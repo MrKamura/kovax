@@ -114,15 +114,11 @@ Publish a new version:
 npm run release
 ```
 
-##📄 License
+## 📄 License
 
 MIT License — free to use, modify, and distribute.
 
-🌟 Stay tuned
+## 🌟 Stay tuned
 
 Kovax UI is actively maintained and constantly evolving.
 New components, better design systems, and advanced tools are coming soon!
-
-⭐ Support the project on GitHub
-
-📦 Follow updates on npm
