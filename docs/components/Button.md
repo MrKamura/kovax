@@ -12,6 +12,7 @@ It’s designed for any modern React application, written in TypeScript, and dep
 
 ```tsx
 import { Button } from "kovax";
+```
 
 ⚙️ Props
 
@@ -50,17 +51,19 @@ import { Button } from "kovax";
 | `md` | `8px 16px`  | `15px`    |
 | `lg` | `10px 20px` | `16px`    |
 
-Example:
 
+## Example:
+
+```tsx
 <Button label="Small" size="sm" />
 <Button label="Medium" size="md" />
 <Button label="Large" size="lg" />
+```
 
-
-🧩 Customization
+## 🧩 Customization
 
 You can override default visuals using props:
-
+```tsx
 <Button
   label="Custom Button"
   bg="#111827"
@@ -69,79 +72,87 @@ You can override default visuals using props:
   w={200}
   h={48}
 />
+```
 
-
-⏳ Loading State (loading)
+## ⏳ Loading State (loading)
 
 When loading is true, the button shows a spinner and becomes disabled by default.
 The loader position can be set via loadingPosition.
-
+```tsx
 <Button
   label="Save"
   loading
   loadingText="Saving..."
   loadingPosition="left"
 />
+```
 
-💡 You can replace the default loader with your own spinner component via the loader prop.
+## 💡 You can replace the default loader with your own spinner component via the loader prop.
 
-🧱 Icons (icon)
+## 🧱 Icons (icon)
 
 You can insert any icon or JSX element before the text:
-
+```tsx
 import { FaCheck, FaTrash } from "react-icons/fa";
 <Button label="Confirm" icon={<FaCheck />} variant="success" />
 <Button label="Delete" icon={<FaTrash />} variant="danger" />
+```
 
-🚫 Disabled State (disabled)
+## 🚫 Disabled State (disabled)
 
 Disables interaction and dims the button.
+```tsx
 <Button label="Disabled" disabled />
+```
 
+* 🧠 Combinations & Examples
 
-🧠 Combinations & Examples
+* 🔹 Primary + icon + loader
 
-🔹 Primary + icon + loader
-
+```tsx
 <Button
   label="Done"
   variant="success"
   w="100%"
   h={42}
 />
+```
 
+* 🔹 Success + custom width
 
-🔹 Success + custom width
-
+```tsx
 <Button
   label="Done"
   variant="success"
   w="100%"
   h={42}
 />
+```
 
+* 🔹 Danger + custom background
 
-🔹 Danger + custom background
-
+```tsx
 <Button
   label="Delete"
   bg="#991b1b"
   textColor="#fff"
   radius={6}
 />
+```
 
 
-
-🎨 Styling (with CSS or Tailwind)
+* 🎨 Styling (with CSS or Tailwind)
 
 The component uses inline styles but supports a className prop for external styling:
 
+```tsx
 <Button
   label="Styled with Tailwind"
   className="shadow-md hover:shadow-lg transition-all"
 />
+```
 
-💡 Usage Tips
+* 💡 Usage Tips
 
 Prefer variant for consistent design system integration.
 
@@ -153,21 +164,21 @@ w and h accept both number (px) and string ("100%", "10rem").
 
 For fully rounded buttons, set radius="50%" or a large numeric value.
 
-🧰 Future Improvements (Recommended)
+* 🧰 Future Improvements (Recommended)
 
 Planned or suggested enhancements:
 
-✅ Additional variants (outline, ghost, link)
+* ✅ Additional variants (outline, ghost, link)
 
-🌙 Dark mode support
+* 🌙 Dark mode support
 
-🎨 Gradients & shadows via props
+* 🎨 Gradients & shadows via props
 
-🔄 as prop for polymorphic rendering (<Link> or <a>)
+* 🔄 as prop for polymorphic rendering (<Link> or <a>)
 
-♿️ Accessibility (aria-*, keyboard navigation)
+* ♿️ Accessibility (aria-*, keyboard navigation)
 
-🗂 File Placement
+* 🗂 File Placement
 
 Place this documentation file in one of these locations:
 
@@ -178,8 +189,9 @@ or
 
 /docs/BUTTON.md
 
-🧾 Example Button Preview
+* 🧾 Example Button Preview
 
+```tsx
 <div style={{ display: "flex", gap: 16 }}>
   <Button loading color="primary" size="sm">Primary</Button>
   <Button variant="secondary">Secondary</Button>
@@ -187,7 +199,7 @@ or
   <Button variant="warning">Warning</Button>
   <Button variant="danger" loading loadingPosition="center">Danger</Button>
 </div>
-
+```
 
 © 2025 — Kovax UI Components
 Version: 0.0.3
