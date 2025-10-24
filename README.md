@@ -14,9 +14,9 @@
 Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI primitives ready for production.
 
 Currently includes:
-- ✅ [**Button**](./docs/components/Button.md) — customizable, themeable, and fully typed.
-- ✅ [**Input**](./docs/components/Input.md) — customizable, themeable, and fully typed.
-- ✅ [**Design Tokens**](./docs/Tokens.md) — colors, sizes, shadows, transitions.
+- ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
+- ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
+- ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
 
 > 🚀 Coming soon: `Label`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
 
@@ -78,15 +78,17 @@ export default function App() {
 
 ## 📚 Documentation
 
-Each component has its own Markdown documentation file inside the /docs/components/
- folder:
-| Component | Description                                             | Link                       |
-| --------- | ------------------------------------------------------- | -------------------------- |
-| 🎨 Tokens | Base design tokens: colors, shadows, sizes, transitions | [View →](./docs/components/Tokens.md) |
-| 🔘 Button | Configurable button component                           | [View →](./docs/components/Button.md) |
-| ⌨️ Input  | Themed input field with validation props                | [View →](./docs/components/Input.md)  |
 
+| Component | Description | Link |
+|-----------|-------------|------|
+| 🎨 Tokens | Base design tokens | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
+| 🔘 Button | Configurable button | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
+| ⌨️ Input | Themed input field | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) |
 
+## 🔗 Quick Links
+- [📖 Full Documentation](./docs/)
+- [🚀 Getting Started](./docs/GETTING_STARTED.md)
+- [🎨 Design System](./docs/DESIGN_SYSTEM.md)
 ## 🤝 Contribution & Community
 
 We welcome developers from all over the world to contribute to Kovax UI 💡
