@@ -54,7 +54,7 @@ Example:
 <Button label="Small" size="sm" />
 <Button label="Medium" size="md" />
 <Button label="Large" size="lg" />
-```
+
 
 🧩 Customization
 
@@ -175,7 +175,7 @@ or
   <Button variant="warning">Warning</Button>
   <Button variant="danger" loading loadingPosition="center">Danger</Button>
 </div>
-
+```tsx
 
 © 2025 — Kovax UI Components
 Version: 0.0.3
