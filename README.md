@@ -42,7 +42,7 @@ export default function App() {
     </div>
   );
 }
-tsx```
+```
 
 
 ## 🧠 Features
