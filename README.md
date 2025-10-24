@@ -43,7 +43,7 @@ export default function App() {
   );
 }
 ```
-
+---
 
 ## 🧠 Features
 
@@ -61,38 +61,38 @@ export default function App() {
 
 ## 🛠 Tech Stack
 
-React 18+
+* React 18+
 
-TypeScript 5+
+* TypeScript 5+
 
-Vite
+* Vite
 
-Tsup for builds
+* Tsup for builds
 
-TailwindCSS (for styles and examples)
+* TailwindCSS (for styles and examples)
 
-##🤝 Contribution & Community
+## 🤝 Contribution & Community
 
 We welcome developers from all over the world to contribute to Kovax UI 💡
 There are plenty of exciting ideas and upcoming features, including:
 
-Advanced animations
+* Advanced animations
 
-Dark theme
+* Dark theme
 
-Composable components (Form, Modal, Dropdown)
+* Composable components (Form, Modal, Dropdown)
 
-Interactive documentation & live playground
+* I*nteractive documentation & live playground
 
-If you’d like to contribute:
+## If you’d like to contribute:
 
-Fork this repository
+* Fork this repository
 
-Create a new branch
+* Create a new branch
 
-Commit your changes
+* Commit your changes
 
-Open a Pull Request
+* Open a Pull Request
 
 ## Your contribution will be reviewed and merged after discussion.
 All contributors will be featured in the Contributors list ❤️
