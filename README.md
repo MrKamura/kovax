@@ -27,12 +27,12 @@ Currently includes:
 npm install kovax-react
 # or
 yarn add kovax-react
+```
 
-
-⚡ Usage Example
+## ⚡ Usage Example
 ```tsx
 import { Button } from "kovax-react";
-# or
+
 export default function App() {
   return (
     <div style={{ padding: "20px" }}>
@@ -42,22 +42,23 @@ export default function App() {
     </div>
   );
 }
+```
 
-🧠 Features
+##🧠 Features
 
-🌈 Full TypeScript support
+##🌈 Full TypeScript support
 
-🎨 Easy theming and customization
+##🎨 Easy theming and customization
 
-⚙️ Minimal dependencies
+##⚙️ Minimal dependencies
 
-🧱 Production-ready base UI components
+##🧱 Production-ready base UI components
 
-🚀 Built with Vite + Tsup for speed
+##🚀 Built with Vite + Tsup for speed
 
-📘 Well-structured documentation in Markdown
+##📘 Well-structured documentation in Markdown
 
-🛠 Tech Stack
+##🛠 Tech Stack
 
 React 18+
 
@@ -100,14 +101,17 @@ Run in development mode:
 ```bash
 npm install
 npm run dev
+```
 
 Build the library:
 ```bash
 npm run build
+```
 
 Publish a new version:
 ```bash
 npm run release
+```
 
 📄 License
 
