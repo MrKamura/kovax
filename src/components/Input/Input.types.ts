@@ -3,7 +3,6 @@ import { colors } from "../theme/tokens";
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  variant?: "default" | "outline" | "filled";
   size?: "sm" | "md" | "lg";
   colorScheme?: keyof typeof colors;
   isInvalid?: boolean;
@@ -11,5 +10,7 @@ export interface InputProps
   isDisabled?: boolean;
   isReadOnly?: boolean;
   isRequired?: boolean;
+  mask?: string;
+  maskChar?: string;
+  // Убрали variant, если он не используется
 }
-
