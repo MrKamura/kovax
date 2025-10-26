@@ -18,6 +18,9 @@ Currently includes:
 - ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
 - ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
 - ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
+- ✅ [**Box**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md) — universal layout container for building flexible UI.
+
+
 
 Form
 
@@ -82,12 +85,14 @@ export default function App() {
 ## 📚 Documentation
 
 
-| Component     | Description                                       | Link                                                                              |
-| ------------- | ------------------------------------------------- | --------------------------------------------------------------------------------- |
-| 🎨 **Tokens** | Base design tokens (colors, shadows, transitions) | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
-| 🔘 **Button** | Configurable button component                     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
-| ⌨️ **Input**  | Themed input with mask & validation               | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)  |
-| 🧾 **Form**   | Controlled form elements                          | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)   |
+| Component | Description                                       | Link                                                                              |
+| --------- | ------------------------------------------------- | --------------------------------------------------------------------------------- |
+| 🎨 Tokens | Base design tokens (colors, shadows, transitions) | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
+| 🔘 Button | Configurable button                               | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
+| ⌨️ Input  | Themed input field with masks                     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)  |
+| 📦 Box    | Layout and container component                    | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md)    |
+| 🧾 Form   | Form container and validation helpers             | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)   |
+
 
 
 
