@@ -17,8 +17,11 @@ Currently includes:
 - ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
 - ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
 - ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
+- ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
 
-> 🚀 Coming soon: `Label`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
+Form
+
+> 🚀 Coming soon: `Datepicker`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
 
 
 ---
@@ -79,11 +82,14 @@ export default function App() {
 ## 📚 Documentation
 
 
-| Component | Description | Link |
-|-----------|-------------|------|
-| 🎨 Tokens | Base design tokens | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
-| 🔘 Button | Configurable button | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
-| ⌨️ Input | Themed input field | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) |
+| Component     | Description                                       | Link                                                                              |
+| ------------- | ------------------------------------------------- | --------------------------------------------------------------------------------- |
+| 🎨 **Tokens** | Base design tokens (colors, shadows, transitions) | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
+| 🔘 **Button** | Configurable button component                     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
+| ⌨️ **Input**  | Themed input with mask & validation               | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)  |
+| 🧾 **Form**   | Controlled form elements                          | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)   |
+
+
 
 ## 🔗 Quick Links
 - [📖 Full Documentation](./docs/)
