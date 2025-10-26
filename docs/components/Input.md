@@ -1,5 +1,5 @@
 ## 🧩 Input Component
-A flexible and accessible text input field with full TypeScript support and advanced mask functionality.
+A flexible, customizable, and accessible text input component with full TypeScript support, input masking, validation states, and comprehensive spacing/layout control.
 
 ## 📦 Import
 ```tsx
@@ -186,7 +186,48 @@ import { Input } from "kovax-react";
   placeholder="#FFFFFF"
 />
 ```
+
+## 🎯 Spacing & Layout
+* Width & Height Control
+```tsx
+<Input w="300px" placeholder="Fixed width" />
+<Input w="100%" maxW="500px" placeholder="Responsive" />
+<Input h="50px" placeholder="Tall input" />
+<Input minW="200px" minH="40px" placeholder="Minimum size" />
+```
+
+* Margin & Padding
+```tsx
+<Input m={16} placeholder="With margin" />
+<Input mt={8} mb={16} ml={4} mr={4} placeholder="Individual margins" />
+<Input p={12} placeholder="With padding" />
+<Input pt={8} pb={8} pl={12} pr={12} placeholder="Custom padding" />
+```
+
+* Flexbox Layout
+```tsx
+<Input flex={1} placeholder="Takes available space" />
+<Input flex="0 1 200px" mr={8} placeholder="Flexible width" />
+<Input flexGrow={1} flexShrink={0} placeholder="Flex controlled" />
+```
+
+* Positioning
+```tsx
+<Input position="absolute" top="10px" right="10px" w="200px" placeholder="Floating input" />
+<Input position="relative" left="20px" placeholder="Offset input" />
+<Input position="fixed" bottom="20px" right="20px" w="300px" placeholder="Fixed input" />
+```
+
+* Text Alignment
+```tsx
+<Input textAlign="center" placeholder="Centered text" />
+<Input textAlign="right" placeholder="Right aligned" />
+<Input textAlign="left" placeholder="Left aligned" />
+```
+
 ## 🔧 Props
+* Core Props
+
 | Prop           | Type                                                            | Default     | Description                        |
 | -------------- | --------------------------------------------------------------- | ----------- | ---------------------------------- |
 | `variant`      | `"default" \| "outline" \| "filled"`                            | `"default"` | Visual variant                     |
@@ -199,121 +240,144 @@ import { Input } from "kovax-react";
 | `isRequired`   | `boolean`                                                       | `false`     | Mark as required                   |
 | `mask`         | `string`                                                        | `undefined` | Input mask pattern                 |
 | `maskChar`     | `string`                                                        | `"_"`       | Character for empty mask positions |
-| `value`        | `string \| number \| readonly string[]`                         | `undefined` | Input value                        |
-| `onChange`     | `(e: React.ChangeEvent<HTMLInputElement>) => void`              | —           | Change handler                     |
-| `onFocus`      | `(e: React.FocusEvent<HTMLInputElement>) => void`               | —           | Focus handler                      |
-| `onBlur`       | `(e: React.FocusEvent<HTMLInputElement>) => void`               | —           | Blur handler                       |
-| `placeholder`  | `string`                                                        | —           | Input placeholder                  |
-| `...rest`      | `HTMLInputElement`                                              | —           | All native input attributes        |
+
+## 🧱 Spacing Props
+
+| Prop                                          | Type                                                                 | Description            |
+| --------------------------------------------- | -------------------------------------------------------------------- | ---------------------- |
+| `w`, `h`, `minW`, `maxW`, `minH`, `maxH`      | `string \| number`                                                   | Width & height control |
+| `m`, `mt`, `mr`, `mb`, `ml`                   | `string \| number`                                                   | Margin control         |
+| `p`, `pt`, `pr`, `pb`, `pl`                   | `string \| number`                                                   | Padding control        |
+| `flex`, `flexGrow`, `flexShrink`, `flexBasis` | `string \| number`                                                   | Flexbox layout         |
+| `display`                                     | `"block" \| "inline" \| "flex" \| "inline-flex" \| "grid" \| "none"` | Display mode           |
+| `position`                                    | `"static" \| "relative" \| "absolute" \| "fixed" \| "sticky"`        | Position control       |
+| `top`, `right`, `bottom`, `left`              | `string \| number`                                                   | Position offsets       |
+| `textAlign`                                   | `"left" \| "center" \| "right" \| "justify"`                         | Text alignment         |
+
+
+## 🧩 Native Props
+
+| Prop          | Type                                               | Default  | Description      |
+| ------------- | -------------------------------------------------- | -------- | ---------------- |
+| `value`       | `string \| number \| readonly string[]`            | —        | Input value      |
+| `onChange`    | `(e: React.ChangeEvent<HTMLInputElement>) => void` | —        | Change handler   |
+| `onFocus`     | `(e: React.FocusEvent<HTMLInputElement>) => void`  | —        | Focus handler    |
+| `onBlur`      | `(e: React.FocusEvent<HTMLInputElement>) => void`  | —        | Blur handler     |
+| `placeholder` | `string`                                           | —        | Placeholder text |
+| `type`        | `string`                                           | `"text"` | Input type       |
+| `className`   | `string`                                           | —        | Custom CSS class |
+| `style`       | `React.CSSProperties`                              | —        | Inline styles    |
 
 
 ## 💡 Mask Patterns
-| Character | Meaning                    |
-| --------- | -------------------------- |
-| `9`       | Digit (0–9)                |
-| `a`       | Letter (A–Z, a–z)          |
-| `*`       | Any character              |
-| Other     | Static element in the mask |
+| Symbol | Meaning                 |
+| ------ | ----------------------- |
+| `9`    | Only digits (0–9)       |
+| `a`    | Only letters (A–Z, a–z) |
+| `*`    | Any character           |
+| Other  | Static characters       |
 
 
 ## 🎯 Advanced Examples
-* Contact Form
+* Search Header with Spacing
 ```tsx
-function ContactForm() {
-  const [contact, setContact] = useState({
-    phone: '',
-    email: '',
-    passport: '',
-    birthDate: ''
-  });
-
-  const handleChange = (field) => (e) => {
-    setContact(prev => ({ ...prev, [field]: e.target.value }));
-  };
-
+function SearchHeader() {
   return (
-    <div>
-      <Input
-        mask="+7 (999) 999-99-99"
-        value={contact.phone}
-        onChange={handleChange('phone')}
-        placeholder="Phone number"
-        isRequired
+    <div style={{ display: 'flex', alignItems: 'center', padding: '16px', gap: '12px' }}>
+      <Input 
+        placeholder="Search products..."
+        flex={1}
+        h="40px"
+        mr={8}
+        p={12}
       />
-      <Input
-        type="email"
-        value={contact.email}
-        onChange={handleChange('email')}
-        placeholder="Email address"
-      />
-      <Input
-        mask="99 99 999999"
-        value={contact.passport}
-        onChange={handleChange('passport')}
-        placeholder="Passport number"
-      />
-      <Input
-        mask="99.99.9999"
-        value={contact.birthDate}
-        onChange={handleChange('birthDate')}
-        placeholder="Birth date"
-      />
+      <Button size="sm">Search</Button>
     </div>
   );
 }
 ```
 
-* Payment Form
-
+* Responsive Form Layout
 ```tsx
-function PaymentForm() {
-  const [payment, setPayment] = useState({
-    cardNumber: '',
-    expiry: '',
-    cvv: ''
-  });
-
+function ResponsiveForm() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      <Input
-        mask="9999 9999 9999 9999"
-        value={payment.cardNumber}
-        onChange={(e) => setPayment(prev => ({ ...prev, cardNumber: e.target.value }))}
-        placeholder="Card number"
-        isRequired
-      />
-      <div style={{ display: 'flex', gap: '12px' }}>
-        <Input
-          mask="99/99"
-          value={payment.expiry}
-          onChange={(e) => setPayment(prev => ({ ...prev, expiry: e.target.value }))}
-          placeholder="MM/YY"
-          size="sm"
-        />
-        <Input
-          mask="999"
-          value={payment.cvv}
-          onChange={(e) => setPayment(prev => ({ ...prev, cvv: e.target.value }))}
-          placeholder="CVV"
-          size="sm"
-        />
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+      <Input w="100%" mb={16} p={12} placeholder="Full width input" />
+      
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+        <Input placeholder="First name" flex={1} />
+        <Input placeholder="Last name" flex={1} />
       </div>
+      
+      <Input 
+        mask="+7 (999) 999-99-99"
+        placeholder="Phone number"
+        w="100%"
+        textAlign="center"
+        p={16}
+        style={{ fontSize: '18px' }}
+      />
     </div>
   );
 }
 ```
-## 🎨 Customization
-The Input component uses inline styles but supports external styling through the style prop:
 
+* Floating Search Input
 ```tsx
-<Input
-  placeholder="Custom styled input"
-  style={{
+function FloatingSearch() {
+  return (
+    <div style={{ position: 'relative', height: '100px' }}>
+      <Input 
+        placeholder="Quick search..."
+        position="absolute"
+        top="20px"
+        right="20px"
+        w="300px"
+        p={12}
+        style={{
+          backgroundColor: 'white',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          zIndex: 1000,
+        }}
+      />
+    </div>
+  );
+}
+```
+
+## 🎨 Customization
+```tsx
+// Using built-in spacing props
+<Input 
+  placeholder="Custom styled"
+  w="100%"
+  h="50px"
+  p={16}
+  m={8}
+  style={{ 
     border: '2px dashed #ccc',
-    borderRadius: '20px',
-    padding: '16px'
+    borderRadius: '25px',
+    backgroundColor: '#f9f9f9'
+  }}
+/>
+
+// Using CSS class
+<Input 
+  placeholder="With custom class"
+  className="custom-input-class"
+/>
+
+// Using inline styles
+<Input 
+  placeholder="Inline styles"
+  style={{
+    border: 'none',
+    borderBottom: '2px solid blue',
+    borderRadius: '0',
+    padding: '8px 0'
   }}
 />
 ```
-Version: 0.5.0
-Features: TypeScript support, Mask functionality, Validation states, Multiple variants
+
+Version: 0.6.0
+Features: TypeScript support • Mask functionality • Validation states • Multiple variants • Comprehensive spacing & layout control
