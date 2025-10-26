@@ -13,8 +13,6 @@ export interface SpacingProps {
   mr?: string | number;
   mb?: string | number;
   ml?: string | number;
-  mx?: string | number;
-  my?: string | number;
   
   // Padding
   p?: string | number;
@@ -22,14 +20,14 @@ export interface SpacingProps {
   pr?: string | number;
   pb?: string | number;
   pl?: string | number;
-  px?: string | number;
-  py?: string | number;
   
   // Flex
   flex?: string | number;
   flexGrow?: number;
   flexShrink?: number;
   flexBasis?: string | number;
+  flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  flexWrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   
   // Display & Position
   display?: 'block' | 'inline' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'none';
@@ -41,6 +39,32 @@ export interface SpacingProps {
   
   // Text Alignment
   textAlign?: 'left' | 'center' | 'right' | 'justify';
+  
+  // CSS Grid
+  gap?: string | number;
+  gridTemplateColumns?: string;
+  gridTemplateRows?: string;
+  gridColumn?: string;
+  gridRow?: string;
+  gridArea?: string;
+  
+  // Flexbox Alignment
+  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  alignContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'stretch';
+  justifyItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
+  alignSelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+  justifySelf?: 'auto' | 'flex-start' | 'flex-end' | 'center' | 'stretch';
+  
+  // Additional CSS properties
+  backgroundColor?: string;
+  color?: string;
+  border?: string;
+  borderRadius?: string | number;
+  boxShadow?: string;
+  cursor?: string;
+  opacity?: number;
+  zIndex?: number;
   
   // Additional
   className?: string;

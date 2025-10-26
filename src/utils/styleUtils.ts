@@ -1,7 +1,7 @@
 import { SpacingProps } from '../types/spacing';
 
 /**
- * Converts spacing props to CSS styles (no shorthand conflicts)
+ * Converts spacing props to CSS styles
  */
 export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
   const {
@@ -15,7 +15,7 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
     p, pt, pr, pb, pl,
     
     // Flex
-    flex, flexGrow, flexShrink, flexBasis,
+    flex, flexGrow, flexShrink, flexBasis, flexDirection, flexWrap,
     
     // Display & Position
     display, position, top, right, bottom, left,
@@ -23,7 +23,16 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
     // Text Alignment
     textAlign,
     
-    // Exclude these
+    // CSS Grid
+    gap, gridTemplateColumns, gridTemplateRows, gridColumn, gridRow, gridArea,
+    
+    // Flexbox Alignment
+    alignItems, justifyContent, alignContent, justifyItems, alignSelf, justifySelf,
+    
+    // Additional CSS
+    backgroundColor, color, border, borderRadius, boxShadow, cursor, opacity, zIndex,
+    
+    // Exclude these from styles object
     className,
     style,
     ...restStyles
@@ -57,6 +66,8 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
     flexGrow,
     flexShrink,
     flexBasis,
+    flexDirection,
+    flexWrap,
     
     // Display & Position
     display,
@@ -68,6 +79,32 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
     
     // Text Alignment
     textAlign,
+    
+    // CSS Grid
+    gap,
+    gridTemplateColumns,
+    gridTemplateRows,
+    gridColumn,
+    gridRow,
+    gridArea,
+    
+    // Flexbox Alignment
+    alignItems,
+    justifyContent,
+    alignContent,
+    justifyItems,
+    alignSelf,
+    justifySelf,
+    
+    // Additional CSS
+    backgroundColor,
+    color,
+    border,
+    borderRadius,
+    boxShadow,
+    cursor,
+    opacity,
+    zIndex,
     
     // Additional styles
     ...restStyles,
