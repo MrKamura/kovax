@@ -1,0 +1,10 @@
+# .npmignore
+src/
+__tests__/
+*.test.*
+*.spec.*
+*.stories.*
+examples/
+demo/
+jest.config.js
+tsconfig.json

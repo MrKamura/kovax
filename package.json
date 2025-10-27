@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.6",
+  "version": "0.1.2",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -27,14 +27,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src --format esm,cjs --dts --out-dir dist --sourcemap",
-    "dev": "tsup src --format esm,cjs --dts --out-dir dist --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:button": "jest src/components/Button/__tests__/Button.test.tsx"
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "react",

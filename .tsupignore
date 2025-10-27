@@ -1,0 +1,4 @@
+# .tsupignore
+**/__tests__/**
+**/*.test.*
+**/*.spec.*

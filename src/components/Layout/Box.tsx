@@ -23,7 +23,6 @@ export const Box: React.FC<BoxProps> = (props) => {
 
   const spacingStyles = getSpacingStyles(spacingProps as BaseBoxProps);
   
-  // Создаем элемент с правильными пропсами
   const elementProps: any = {
     className,
     style: { ...spacingStyles, ...style },
@@ -36,7 +35,6 @@ export const Box: React.FC<BoxProps> = (props) => {
     tabIndex,
   };
 
-  // Добавляем специфичные атрибуты в зависимости от типа элемента
   if (as === 'a') {
     elementProps.href = (props as any).href;
     elementProps.target = (props as any).target;
@@ -82,3 +80,6 @@ export const Box: React.FC<BoxProps> = (props) => {
 };
 
 export default Box;
+
+// Re-export types for convenience
+export type { BoxProps, BaseBoxProps, BoxAsProp } from './Box.types';

@@ -311,6 +311,7 @@ function ResponsiveLayout() {
 
 
 * Styling Props
+
 | Prop                                  | Type     | Description |                    |            |                |
 | ------------------------------------- | -------- | ----------- | ------------------ | ---------- | -------------- |
 | `backgroundColor`, `color`            | `string` | Colors      |                    |            |                |
