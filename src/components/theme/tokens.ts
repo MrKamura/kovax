@@ -101,3 +101,5 @@ export const transitions = {
 // TypeScript
 export type ColorName = keyof typeof colors;
 export type ColorShade = keyof typeof colors.primary;
+export type ShadowKey = keyof typeof shadows;
+export type SizeKey = keyof typeof sizes.spacing;

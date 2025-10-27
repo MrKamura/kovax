@@ -1,22 +1,13 @@
-import React from "react";
-import { colors, shadows, sizes } from "../theme/tokens";
+import { BaseProps, InteractiveProps } from '../../core/types/common';
+import { ColorName, ShadowKey, SizeKey } from '../theme/tokens';
 
-
-export type VariantKey = "solid" | "outline" | "ghost" | "link";
-export type ColorKey = keyof typeof colors;
-export type ShadowKey = keyof typeof shadows;
-export type SizeKey = keyof typeof sizes.spacing;
+export type ButtonVariant = "solid" | "outline" | "ghost" | "link";
 export type LoaderPosition = "left" | "right" | "center";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: VariantKey;
-  color?: ColorKey;
+export interface ButtonStyleProps {
+  variant?: ButtonVariant;
+  color?: ColorName;
   size?: SizeKey | string | number;
-  isLoading?: boolean;
-  loaderPosition?: LoaderPosition;
-  loader?: React.ReactNode;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
   shadow?: ShadowKey;
   w?: string | number;
   h?: string | number;
@@ -26,3 +17,23 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   borderColor?: string;
 }
 
+export interface ButtonContentProps {
+  isLoading?: boolean;
+  loaderPosition?: LoaderPosition;
+  loader?: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+}
+
+export interface ButtonProps 
+  extends BaseProps,
+    InteractiveProps,
+    ButtonStyleProps,
+    ButtonContentProps,
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 
+      'color' | 
+      'style' | 
+      'onClick' | 'onMouseEnter' | 'onMouseLeave' | 'onFocus' | 'onBlur' 
+    > {
+  children: React.ReactNode;
+}

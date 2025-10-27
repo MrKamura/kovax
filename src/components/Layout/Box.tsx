@@ -1,71 +1,6 @@
 import React from 'react';
-import { SpacingProps } from '../../types/spacing';
+import { BoxProps, BaseBoxProps } from './Box.types';
 import { getSpacingStyles } from '../../utils/styleUtils';
-
-// Базовые пропсы, общие для всех элементов
-interface BaseBoxProps extends SpacingProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: React.MouseEventHandler<any>;
-  onMouseEnter?: React.MouseEventHandler<any>;
-  onMouseLeave?: React.MouseEventHandler<any>;
-  id?: string;
-  title?: string;
-  role?: string;
-  tabIndex?: number;
-}
-
-// Условные типы для разных HTML элементов
-export type BoxProps = BaseBoxProps & {
-  as?: 'div';
-} | BaseBoxProps & {
-  as: 'a';
-  href?: string;
-  target?: string;
-  rel?: string;
-  download?: string;
-} | BaseBoxProps & {
-  as: 'button';
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
-  form?: string;
-} | BaseBoxProps & {
-  as: 'input';
-  type?: string;
-  value?: string;
-  placeholder?: string;
-  required?: boolean;
-  readOnly?: boolean;
-} | BaseBoxProps & {
-  as: 'form';
-  action?: string;
-  method?: string;
-  encType?: string;
-} | BaseBoxProps & {
-  as: 'label';
-  htmlFor?: string;
-} | BaseBoxProps & {
-  as: 'img';
-  src?: string;
-  alt?: string;
-  width?: number | string;
-  height?: number | string;
-} | BaseBoxProps & {
-  as: 'textarea';
-  rows?: number;
-  cols?: number;
-  placeholder?: string;
-  value?: string;
-} | BaseBoxProps & {
-  as: 'select';
-  value?: string;
-  multiple?: boolean;
-} | BaseBoxProps & {
-  as: 'option';
-  value?: string;
-  selected?: boolean;
-};
 
 /**
  * Box - foundational layout component with full spacing control
@@ -86,12 +21,12 @@ export const Box: React.FC<BoxProps> = (props) => {
     ...spacingProps
   } = props;
 
-  const spacingStyles = getSpacingStyles(spacingProps as SpacingProps);
+  const spacingStyles = getSpacingStyles(spacingProps as BaseBoxProps);
   
   // Создаем элемент с правильными пропсами
   const elementProps: any = {
     className,
-    style: spacingStyles,
+    style: { ...spacingStyles, ...style },
     onClick,
     onMouseEnter,
     onMouseLeave,

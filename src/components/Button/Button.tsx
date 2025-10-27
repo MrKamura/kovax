@@ -1,80 +1,120 @@
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "../../utils/classNames";
 import { ButtonProps } from "./Button.types";
 import { DefaultLoader } from "./Button.loader";
 import { createButtonStyles } from "./Button.styles";
+import { ButtonContent } from "./Button.content";
+import { useInteractiveState } from "../../core/hooks/useInteractiveState";
+import { extractStyleProps } from "../../utils/propUtils";
 
-/**
- * Kovax Button v0.4
- */
-export const Button: React.FC<ButtonProps> = ({
-  isLoading = false,
-  loader,
-  loaderPosition,
-  leftIcon,
-  rightIcon,
-  children,
-  className,
-  disabled,
-  ...props
-}) => {
-  const loaderPos = loaderPosition ?? "left";
+export const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    // Content props
+    isLoading = false,
+    loader,
+    loaderPosition = "left",
+    leftIcon,
+    rightIcon,
+    children,
+    
+    // Style props
+    className,
+    disabled,
+    
+    // Interactive props
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
+    onFocus,
+    onBlur,
+    
+    // HTML attributes
+    type = "button", // Добавляем значение по умолчанию
+    'data-testid': dataTestId,
+    
+    // Rest props
+    ...restProps
+  } = props;
+
   const finalLoader = loader ?? <DefaultLoader />;
+  const styleProps = extractStyleProps(props);
+  
+  const [interactiveState, { 
+    handleMouseEnter, 
+    handleMouseLeave, 
+    handleMouseDown, 
+    handleMouseUp, 
+    handleFocus, 
+    handleBlur 
+  }] = useInteractiveState();
+  
+  const baseStyles = createButtonStyles(styleProps);
+  
+  const dynamicStyles: React.CSSProperties = {
+    ...baseStyles,
+    backgroundColor: interactiveState.isActive
+      ? (baseStyles as any)["--active-bg"]
+      : interactiveState.isHover
+      ? (baseStyles as any)["--hover-bg"]
+      : baseStyles.backgroundColor,
+    cursor: disabled || isLoading ? "not-allowed" : "pointer",
+    opacity: disabled || isLoading ? 0.6 : 1,
+  };
 
-  const [isHover, setIsHover] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+  // Обработчики событий
+  const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleMouseEnter();
+    onMouseEnter?.(e);
+  };
 
-  const styles = createButtonStyles(props);
+  const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleMouseLeave();
+    onMouseLeave?.(e);
+  };
 
-  const hoverBg = (styles as any)["--hover-bg"];
-  const activeBg = (styles as any)["--active-bg"];
+  const handleButtonMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleMouseDown();
+  };
 
-  const dynamicStyle: React.CSSProperties = {
-    ...styles,
-    backgroundColor: isActive
-      ? activeBg
-      : isHover
-        ? hoverBg
-        : styles.backgroundColor,
+  const handleButtonMouseUp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    handleMouseUp();
+  };
+
+  const handleButtonFocus = (e: React.FocusEvent<HTMLButtonElement>) => {
+    handleFocus();
+    onFocus?.(e);
+  };
+
+  const handleButtonBlur = (e: React.FocusEvent<HTMLButtonElement>) => {
+    handleBlur();
+    onBlur?.(e);
   };
 
   return (
     <button
       className={cn("kv-button", className)}
-      style={dynamicStyle}
+      style={dynamicStyles}
       disabled={disabled || isLoading}
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => {
-        setIsHover(false);
-        setIsActive(false);
-      }}
-      onMouseDown={() => setIsActive(true)}
-      onMouseUp={() => setIsActive(false)}
-      {...props}
+      onClick={onClick}
+      onMouseEnter={handleButtonMouseEnter}
+      onMouseLeave={handleButtonMouseLeave}
+      onMouseDown={handleButtonMouseDown}
+      onMouseUp={handleButtonMouseUp}
+      onFocus={handleButtonFocus}
+      onBlur={handleButtonBlur}
+      type={type} 
+      data-testid={dataTestId} 
+      {...restProps}
     >
-      {/* left loader or icon */}
-      {isLoading && loaderPos === "left" && finalLoader}
-      {!isLoading && leftIcon}
-
-      {/* text or centered loader */}
-      {loaderPos !== "center" ? (
-        <span>{children}</span>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-          }}
-        >
-          {isLoading ? finalLoader : <span>{children}</span>}
-        </div>
-      )}
-
-      {/* right loader or icon */}
-      {!isLoading && rightIcon}
-      {isLoading && loaderPos === "right" && finalLoader}
+      <ButtonContent
+        isLoading={isLoading}
+        loaderPosition={loaderPosition}
+        finalLoader={finalLoader}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+      >
+        {children}
+      </ButtonContent>
     </button>
   );
 };

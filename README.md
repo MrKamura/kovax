@@ -145,7 +145,11 @@ npm run release
 
 ## 📄 License
 
-MIT License — free to use, modify, and distribute.
+This project is licensed under the **MIT License** — free to use, modify, and distribute for personal and commercial purposes.  
+By contributing to this repository, you agree that your contributions will be licensed under the same MIT License.
+
+📘 **License file:** [LICENSE](./LICENSE)
+
 
 ## 🌟 Stay tuned
 

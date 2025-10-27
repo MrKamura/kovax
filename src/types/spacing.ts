@@ -13,6 +13,8 @@ export interface SpacingProps {
   mr?: string | number;
   mb?: string | number;
   ml?: string | number;
+  mx?: string | number;
+  my?: string | number;
   
   // Padding
   p?: string | number;
@@ -20,6 +22,8 @@ export interface SpacingProps {
   pr?: string | number;
   pb?: string | number;
   pl?: string | number;
+  px?: string | number;
+  py?: string | number;
   
   // Flex
   flex?: string | number;

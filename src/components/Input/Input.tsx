@@ -4,7 +4,7 @@ import { InputProps } from "./Input.types";
 import { getSpacingStyles } from "../../utils/styleUtils";
 
 /**
- * Kovax Input v0.6 - with spacing support
+ * Kovax Input v1.0.0 - improved mask and accessibility
  */
 export const Input: React.FC<InputProps> = (props) => {
   const {
@@ -21,8 +21,9 @@ export const Input: React.FC<InputProps> = (props) => {
     // Input props
     size = "md",
     colorScheme = "primary",
-    isDisabled,
     isInvalid,
+    errorMessage,
+    isDisabled,
     isReadOnly,
     isRequired,
     mask,
@@ -32,8 +33,11 @@ export const Input: React.FC<InputProps> = (props) => {
     onFocus,
     onBlur,
     placeholder,
-    errorMessage,
 
+    // HTML attributes
+    'aria-invalid': ariaInvalid,
+    'aria-describedby': ariaDescribedBy,
+    
     // Rest props (native input attributes)
     ...restProps
   } = props;
@@ -52,8 +56,11 @@ export const Input: React.FC<InputProps> = (props) => {
     style,
   });
 
+  // Generate unique ID for error message
+  const errorId = React.useId();
+
   /**
-   * Simple mask implementation
+   * Improved mask implementation
    */
   const applyMask = useCallback((inputValue: string): string => {
     if (!mask || typeof mask !== 'string') return inputValue;
@@ -61,8 +68,13 @@ export const Input: React.FC<InputProps> = (props) => {
     let result = '';
     let valueIndex = 0;
 
-    for (let i = 0; i < mask.length && valueIndex < inputValue.length; i++) {
+    for (let i = 0; i < mask.length; i++) {
       const maskPattern = mask[i];
+      
+      if (valueIndex >= inputValue.length) {
+        break; // No more input characters
+      }
+
       const valueChar = inputValue[valueIndex];
 
       if (maskPattern === '9') {
@@ -71,12 +83,12 @@ export const Input: React.FC<InputProps> = (props) => {
           result += valueChar;
           valueIndex++;
         } else {
-          valueIndex++; // Skip invalid
+          valueIndex++; // Skip invalid character
         }
-      } else if (maskPattern === 'a') {
+      } else if (maskPattern === 'a' || maskPattern === 'A') {
         // Only letters
         if (/[a-zA-Z]/.test(valueChar)) {
-          result += valueChar;
+          result += maskPattern === 'a' ? valueChar.toLowerCase() : valueChar.toUpperCase();
           valueIndex++;
         } else {
           valueIndex++;
@@ -88,6 +100,7 @@ export const Input: React.FC<InputProps> = (props) => {
       } else {
         // Static mask character
         result += maskPattern;
+        // Only advance if input matches mask character
         if (valueChar === maskPattern) {
           valueIndex++;
         }
@@ -101,6 +114,9 @@ export const Input: React.FC<InputProps> = (props) => {
    * Handle input change
    */
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    // Если input disabled, не обрабатываем изменения
+    if (isDisabled) return;
+
     const inputValue = e.target.value;
     let processedValue = inputValue;
 
@@ -112,24 +128,28 @@ export const Input: React.FC<InputProps> = (props) => {
     setDisplayValue(processedValue);
 
     if (onChange) {
-      const rawValue = processedValue.replace(new RegExp(`[^0-9a-zA-Z]`, 'g'), '');
+      // For mask, pass the processed value, for normal input pass raw value
+      const valueToPass = mask ? processedValue : inputValue;
       onChange({
         ...e,
         target: {
           ...e.target,
-          value: rawValue,
+          value: valueToPass,
         },
       } as React.ChangeEvent<HTMLInputElement>);
     }
-  }, [mask, applyMask, onChange]);
+  }, [mask, applyMask, onChange, isDisabled]);
 
   /**
    * Handle focus
    */
   const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
+    // Если input disabled, не обрабатываем фокус
+    if (isDisabled) return;
+    
     setIsFocused(true);
     onFocus?.(e);
-  }, [onFocus]);
+  }, [onFocus, isDisabled]);
 
   /**
    * Handle blur
@@ -185,6 +205,13 @@ export const Input: React.FC<InputProps> = (props) => {
   const background = isDisabled ? colors.secondary[100] : "white";
   const opacity = isDisabled ? 0.6 : 1;
 
+  // Accessibility attributes with correct types
+  const accessibilityProps = {
+    'aria-invalid': isInvalid ? true : undefined,
+    'aria-describedby': errorMessage ? errorId : undefined,
+    'aria-required': isRequired ? true : undefined,
+  };
+
   // Combined styles
   const inputStyle = {
     ...sizeStyles[size],
@@ -204,6 +231,7 @@ export const Input: React.FC<InputProps> = (props) => {
     <div style={{ position: "relative", width: "100%" }}>
       <input
         {...restProps}
+        {...accessibilityProps}
         style={inputStyle}
         disabled={isDisabled}
         readOnly={isReadOnly}
@@ -216,11 +244,14 @@ export const Input: React.FC<InputProps> = (props) => {
       />
 
       {isInvalid && errorMessage && (
-        <div style={{ 
-          color: colors.error[500], 
-          fontSize: sizes.text.sm, 
-          marginTop: sizes.spacing.xs 
-        }}>
+        <div 
+          id={errorId}
+          style={{ 
+            color: colors.error[500], 
+            fontSize: sizes.text.sm, 
+            marginTop: sizes.spacing.xs 
+          }}
+        >
           {errorMessage}
         </div>
       )}

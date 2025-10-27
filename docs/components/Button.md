@@ -2,9 +2,9 @@
 
 ## 📄 Overview
 
-The **`<Button />`** component is a universal, customizable React button with support for multiple styles (`variant`), sizes (`size`), loading states (`loading`), icons, and full design customization through props such as `bg`, `textColor`, `radius`, `w`, and `h`.
+The **`<Button />`** component is a universal, customizable React button with support for multiple styles (`variant`), colors (`color`), sizes (`size`), loading states (`isLoading`), icons, and full design customization.
 
-It’s designed for any modern React application, written in TypeScript, and dependency-free.
+Built with SOLID principles and TypeScript.
 
 ---
 
@@ -14,195 +14,216 @@ It’s designed for any modern React application, written in TypeScript, and dep
 import { Button } from "kovax";
 ```
 
-⚙️ Props
+## ⚙️ Props
 
 | Prop                  | Type                                                             | Description                                                    | Default         |
 | --------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- | --------------- |
-| **`label`**           | `string`                                                         | Button text                                                    | `""`            |
-| **`variant`**         | `"primary" \| "secondary" \| "success" \| "warning" \| "danger"` | Defines the color theme of the button                          | `"primary"`     |
-| **`size`**            | `"sm" \| "md" \| "lg"`                                           | Sets button size (affects padding and font)                    | `"md"`          |
-| **`bg`**              | `string`                                                         | Custom background color (e.g. `"#111827"`)                     | —               |
+| **`children`**        | `React.ReactNode`                                                | Button content                                                 | `—`             |
+| **`variant`**         | `"solid" \| "outline" \| "ghost" \| "link"`                      | Button style variant                                           | `"solid"`       |
+| **`size`**            | `"xs" \| "sm" \| "md" \| "lg"\| "xl"`                            | Button size                                                    | `"md"`          |
+| **`bg`**              | `string`                                                         | Custom background color (e.g. `"#111827"`)                   | —               |
 | **`textColor`**       | `string`                                                         | Custom text color                                              | —               |
-| **`radius`**          | `string \| number`                                               | Border radius (e.g. `4`, `"10px"`)                             | `8px`           |
+| **`borderRadius`**    | `string \| number`                                               | Border radius (e.g. `4`, `"10px"`)                             | `8px`           |
 | **`w`**               | `string \| number`                                               | Width (e.g. `"100%"`, `200`)                                   | —               |
 | **`h`**               | `string \| number`                                               | Height                                                         | —               |
-| **`loading`**         | `boolean`                                                        | Enables loading state                                          | `false`         |
-| **`loadingText`**     | `string`                                                         | Text to display while loading                                  | `"Loading..."`  |
-| **`loadingPosition`** | `"left" \| "right" \| "center"`                                  | Loader position relative to the text                           | `"left"`        |
+| **`isLoading`**       | `boolean`                                                        | Enables loading state                                          | `false`         |
+| **`color`**           | `"primary" \| "secondary" \| "success" \| "warning"`             | Color theme                                                    | `"primary"`     |
 | **`loader`**          | `React.ReactNode`                                                | Custom loader component                                        | Default spinner |
+| **`loaderPosition`**  | `"left" \| "right" \| "center"`                                  | Loader position                                                | `"left"`        |
+| **`leftIcon`**        | `React.ReactNode`                                                | Icon on the left side                                          | —               |
+| **`rightIcon`**       | `React.ReactNode`                                                | Icon on the left side                                          | —               |
+| **`shadow`**          | `"none" \| "sm" \| "md" \| "lg"\| "xl"`                          | Shadow size                                                    | `"none"`        |
 | **`disabled`**        | `boolean`                                                        | Disables the button                                            | `false`         |
-| **`icon`**            | `React.ReactNode`                                                | Icon element (rendered on the left)                            | —               |
-| **`onClick`**         | `() => void`                                                     | Click event handler                                            | —               |
+| **`borderColor`**     | `string`                                                         | Border color                                                   | —               |
 | **`...rest`**         | `HTMLButtonElement`                                              | All native button attributes (`type`, `title`, `aria-*`, etc.) | —               |
 
-🎨 Variants (variant)
-| Variant     | Color  | Example   |
-| ----------- | ------ | --------- |
-| `primary`   | Blue   | `#3b82f6` |
-| `secondary` | Gray   | `#64748b` |
-| `success`   | Green  | `#10b981` |
-| `warning`   | Orange | `#f59e0b` |
-| `danger`    | Red    | `#ef4444` |
+## 🎨 Variants (variant)
+| Variant     | Description                 |
+| ----------- | --------------------------- |
+| `solid`     | Filled background (default) | 
+| `outline`   | Transparent with border     |
+| `ghost`     | Transparent, no border      | 
+| `link`      | Text-only, underlined       | 
 
-📏 Sizes (size)
-| Size | Padding     | Font size |
-| ---- | ----------- | --------- |
-| `sm` | `6px 12px`  | `14px`    |
-| `md` | `8px 16px`  | `15px`    |
-| `lg` | `10px 20px` | `16px`    |
+## 🎯 Colors
+| Color     | Usage                           |
+| --------- | ------------------------------- |
+| primary   | Primary actions (Blue)          |
+| secondary | Secondary actions (Gray)        |
+| success   | Success states (Green)          |
+| warning   | Warning states (Orange)         |
+| error     | Error/destructive actions (Red) |
 
+## 📏 Sizes 
+| Size | Height | Font Size | Padding   |
+| ---- | ------ | --------- | --------- |
+| xs   | 28px   | 12px      | 8px 12px  |
+| sm   | 32px   | 14px      | 12px 16px |
+| md   | 38px   | 16px      | 12px 24px |
+| lg   | 44px   | 18px      | 16px 24px |
+| xl   | 50px   | 20px      | 24px 32px |
 
-## Example:
-
+## 📋 Basic Usage
 ```tsx
-<Button label="Small" size="sm" />
-<Button label="Medium" size="md" />
-<Button label="Large" size="lg" />
+// Basic buttons
+<Button>Default</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+
+// Different sizes
+<Button size="xs">Extra Small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">Extra Large</Button>
+
+// Different colors
+<Button color="primary">Primary</Button>
+<Button color="success">Success</Button>
+<Button color="warning">Warning</Button>
+<Button color="error">Error</Button>
 ```
-
 ## 🧩 Customization
-
-You can override default visuals using props:
 ```tsx
 <Button
-  label="Custom Button"
   bg="#111827"
   textColor="#fff"
-  radius={12}
+  borderRadius={12}
   w={200}
   h={48}
-/>
+>
+  Custom Button
+</Button>
+```
+## ⏳ Loading States
+```tsx
+// Basic loading
+<Button isLoading>Loading...</Button>
+
+// Different loader positions
+<Button isLoading loaderPosition="left">
+  Saving...
+</Button>
+
+<Button isLoading loaderPosition="center">
+  Processing
+</Button>
+
+<Button isLoading loaderPosition="right">
+  Submitting
+</Button>
+
+// Custom loader
+<Button 
+  isLoading 
+  loader={<CustomSpinner />}
+>
+  Custom Loader
+</Button>
+```
+## 🧱 Icons
+```tsx
+import { FaCheck, FaArrowRight, FaTrash } from "react-icons/fa";
+
+// Left icon
+<Button leftIcon={<FaCheck />}>
+  Confirm
+</Button>
+
+// Right icon  
+<Button rightIcon={<FaArrowRight />}>
+  Continue
+</Button>
+
+// Both icons
+<Button 
+  leftIcon={<FaTrash />}
+  rightIcon={<FaArrowRight />}
+  color="error"
+>
+  Delete & Continue
+</Button>
+```
+## 🎨 Shadows
+```tsx
+<Button shadow="sm">Small Shadow</Button>
+<Button shadow="md">Medium Shadow</Button>
+<Button shadow="lg">Large Shadow</Button>
+<Button shadow="xl">Extra Large Shadow</Button>
 ```
 
-## ⏳ Loading State (loading)
-
-When loading is true, the button shows a spinner and becomes disabled by default.
-The loader position can be set via loadingPosition.
+## 🧠 Advanced Examples
 ```tsx
+// Full width loading button
 <Button
-  label="Save"
-  loading
-  loadingText="Saving..."
-  loadingPosition="left"
-/>
-```
-
-## 💡 You can replace the default loader with your own spinner component via the loader prop.
-
-## 🧱 Icons (icon)
-
-You can insert any icon or JSX element before the text:
-```tsx
-import { FaCheck, FaTrash } from "react-icons/fa";
-<Button label="Confirm" icon={<FaCheck />} variant="success" />
-<Button label="Delete" icon={<FaTrash />} variant="danger" />
-```
-
-## 🚫 Disabled State (disabled)
-
-Disables interaction and dims the button.
-```tsx
-<Button label="Disabled" disabled />
-```
-
-## 🧠 Combinations & Examples
-
-## 🔹 Primary + icon + loader
-
-```tsx
-<Button
-  label="Done"
-  variant="success"
+  isLoading
+  loaderPosition="center"
   w="100%"
-  h={42}
+  color="success"
+>
+  Processing Payment
+</Button>
+
+// Icon button with custom styles
+<Button
+  leftIcon={<FaStar />}
+  variant="outline"
+  borderColor="#f59e0b"
+  textColor="#f59e0b"
+  borderRadius="50%"
+  w={40}
+  h={40}
 />
+
+// Danger button with confirmation
+<Button
+  leftIcon={<FaTrash />}
+  color="error"
+  variant="outline"
+  onClick={handleDelete}
+>
+  Delete Project
+</Button>
 ```
 
-## 🔹 Success + custom width
-
+## 🎨 Styling
 ```tsx
-<Button
-  label="Done"
-  variant="success"
-  w="100%"
-  h={42}
-/>
-```
+// With CSS classes
+<Button className="custom-button-class">
+  Styled Button
+</Button>
 
-## 🔹 Danger + custom background
-
-```tsx
-<Button
-  label="Delete"
-  bg="#991b1b"
-  textColor="#fff"
-  radius={6}
-/>
-```
-
-
-## 🎨 Styling (with CSS or Tailwind)
-
-The component uses inline styles but supports a className prop for external styling:
-
-```tsx
-<Button
-  label="Styled with Tailwind"
-  className="shadow-md hover:shadow-lg transition-all"
-/>
+// With inline styles
+<Button style={{ fontWeight: 'bold' }}>
+  Bold Button
+</Button>
 ```
 
 ## 💡 Usage Tips
+Use children for button text instead of label
 
-* Prefer variant for consistent design system integration.
+Combine leftIcon and rightIcon for flexible icon placement
 
-* bg and textColor override default variant colors.
+Use loaderPosition="center" for centered loading states
 
-* Use loadingText to avoid empty space when loading.
+variant="link" is perfect for text-only buttons
 
-* w and h accept both number (px) and string ("100%", "10rem").
+All spacing props accept both numbers (px) and strings
 
-* For fully rounded buttons, set radius="50%" or a large numeric value.
-
-## 🧰 Future Improvements (Recommended)
-
-## Planned or suggested enhancements:
-
-* ✅ Additional variants (outline, ghost, link)
-
-* 🌙 Dark mode support
-
-* 🎨 Gradients & shadows via props
-
-* 🔄 as prop for polymorphic rendering (<Link> or <a>)
-
-* ♿️ Accessibility (aria-*, keyboard navigation)
-
-* 🗂 File Placement
-
-Place this documentation file in one of these locations:
-
-/src/components/Button/BUTTON.md
-
-
-or
-
-/docs/BUTTON.md
-
-## 🧾 Example Button Preview
-
+## 🧾 Example Preview
 ```tsx
-<div style={{ display: "flex", gap: 16 }}>
-  <Button loading color="primary" size="sm">Primary</Button>
-  <Button variant="secondary">Secondary</Button>
-  <Button variant="success">Success</Button>
-  <Button variant="warning">Warning</Button>
-  <Button variant="danger" loading loadingPosition="center">Danger</Button>
+<div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+  <Button isLoading color="primary" size="sm">Loading</Button>
+  <Button variant="outline" color="secondary">Outline</Button>
+  <Button variant="ghost" color="success">Ghost</Button>
+  <Button variant="link" color="error">Link</Button>
+  <Button leftIcon={<FaCheck />} color="success">With Icon</Button>
+  <Button isLoading loaderPosition="center" w="100%">Full Width</Button>
 </div>
 ```
-
 © 2025 — Kovax UI Components
-Version: 0.0.3
+Version: 1.0.0 (SOLID Architecture)
 
 
 
