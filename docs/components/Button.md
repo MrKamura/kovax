@@ -1,4 +1,4 @@
-# 🚀 Button Component Documentation
+## 🚀 Button Component Documentation
 
 ## 📄 Overview
 

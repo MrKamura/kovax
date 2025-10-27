@@ -255,6 +255,7 @@ function ResponsiveLayout() {
 
 ## 🔧 Props Reference
 * Core Props
+
 | Prop           | Type                      | Default | Description            |
 | -------------- | ------------------------- | ------- | ---------------------- |
 | `as`           | `BoxAsProp`               | `'div'` | HTML element to render |
@@ -270,6 +271,7 @@ function ResponsiveLayout() {
 | `tabIndex`     | `number`                  | —       | Tab index              |
 
 * Layout & Spacing Props
+
 | Prop                                    | Type    | Description |                  |
 | --------------------------------------- | ------- | ----------- | ---------------- |
 | `w`, `h`                                | `string | number`     | Width and height |
@@ -280,6 +282,7 @@ function ResponsiveLayout() {
 
 
 * Flexbox Props
+
 | Prop                                          | Type          | Description    |                 |                   |                 |             |
 | --------------------------------------------- | ------------- | -------------- | --------------- | ----------------- | --------------- | ----------- |
 | `display`                                     | `'flex'       | 'inline-flex'` | Flex display    |                   |                 |             |
@@ -289,6 +292,7 @@ function ResponsiveLayout() {
 | `justifyContent`                              | `'flex-start' | 'center'       | 'space-between' | ...`              | Justify content |             |
 
 * Grid Props
+
 | Prop                                | Type     | Description    |              |
 | ----------------------------------- | -------- | -------------- | ------------ |
 | `display`                           | `'grid'  | 'inline-grid'` | Grid display |
@@ -299,10 +303,12 @@ function ResponsiveLayout() {
 | `gridArea`, `gridColumn`, `gridRow` | `string` | Placement      |              |
 
 * Positioning Props
+
 | Prop                             | Type      | Description |            |         |           |               |
 | -------------------------------- | --------- | ----------- | ---------- | ------- | --------- | ------------- |
 | `position`                       | `'static' | 'relative'  | 'absolute' | 'fixed' | 'sticky'` | Position type |
 | `top`, `right`, `bottom`, `left` | `string   | number`     | Offsets    |         |           |               |
+
 
 * Styling Props
 | Prop                                  | Type     | Description |                    |            |                |
