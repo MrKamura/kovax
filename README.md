@@ -14,24 +14,24 @@
 Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI primitives ready for production.
 
 Currently includes:
+
 - ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
 - ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
 - ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
 - ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
 - ✅ [**Box**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md) — universal layout container for building flexible UI.
-
-
+- ✅ [**Stack (HStack / VStack)**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) — powerful flex layout primitives.
 
 Form
 
 > 🚀 Coming soon: `Datepicker`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
-
 
 ---
 
 ## 📦 Installation
 
 ### 1️⃣ From npm
+
 ```bash
 npm install kovax-react
 # or
@@ -39,106 +39,144 @@ yarn add kovax-react
 ```
 
 ## ⚡ Usage Example
+
 ```tsx
-import { Button } from "kovax-react";
+import {
+  Box,
+  VStack,
+  HStack,
+  Button,
+  Input,
+  Form,
+  FormLabel,
+  Heading,
+  Text,
+} from "kovax-react";
 
 export default function App() {
   return (
-    <div style={{ padding: "20px" }}>
-      <Button variant="primary" size="lg">
-        Click Me
-      </Button>
-    </div>
+    <Box
+      p={32}
+      backgroundColor="#f8f9fa"
+      borderRadius={16}
+      maxW="480px"
+      m="40px auto"
+      shadow="md"
+    >
+      <VStack gap={24}>
+        <Heading size="xl">Sign In</Heading>
+
+        <Form>
+          <VStack gap={16}>
+            <FormLabel>Email</FormLabel>
+            <Input type="email" placeholder="Enter your email" />
+
+            <FormLabel>Password</FormLabel>
+            <Input type="password" placeholder="Enter password" />
+          </VStack>
+
+          <HStack justify="flex-end" gap={12} mt={24}>
+            <Button variant="outline">Cancel</Button>
+            <Button variant="primary">Login</Button>
+          </HStack>
+        </Form>
+
+        <Text align="center" color="gray.600">
+          Don’t have an account? <a href="#">Sign up</a>
+        </Text>
+      </VStack>
+    </Box>
   );
 }
 ```
+
 ---
 
 ## 🧠 Features
 
-* 🌈 Full TypeScript support
+- 🌈 Full TypeScript support
 
-* 🎨 Easy theming and customization
+- 🎨 Easy theming and customization
 
-* ⚙️ Minimal dependencies
+- ⚙️ Minimal dependencies
 
-* 🧱 Production-ready base UI components
+- 🧱 Production-ready base UI components
 
-* 🚀 Built with Vite + Tsup for speed
+- 🚀 Built with Vite + Tsup for speed
 
-* 📘 Well-structured documentation in Markdown
-
-
+- 📘 Well-structured documentation in Markdown
 
 ## 🛠 Tech Stack
 
-* React 18+
+- React 18+
 
-* TypeScript 5+
+- TypeScript 5+
 
-* Vite
+- Vite
 
-* Tsup for builds
-
-* TailwindCSS (for styles and examples)
+- Tsup for builds
 
 ## 📚 Documentation
 
-
-| Component | Description                                       | Link                                                                              |
-| --------- | ------------------------------------------------- | --------------------------------------------------------------------------------- |
-| 🎨 Tokens | Base design tokens (colors, shadows, transitions) | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) |
-| 🔘 Button | Configurable button                               | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) |
-| ⌨️ Input  | Themed input field with masks                     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)  |
-| 📦 Box    | Layout and container component                    | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md)    |
-| 🧾 Form   | Form container and validation helpers             | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)   |
-
-
-
+| Component                      | Description                                           | Link                                                                                    |
+| ------------------------------ | ----------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 🎨 **Tokens**                  | Base design tokens (colors, shadows, transitions)     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md)       |
+| 🔘 **Button**                  | Configurable, themeable button                        | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md)       |
+| ⌨️ **Input**                   | Themed input field with masks and states              | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)        |
+| 🧾 **Form**                    | Form container with consistent spacing and validation | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)         |
+| 📦 **Box**                     | Universal layout container                            | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md)   |
+| 📐 **Stack (HStack / VStack)** | Flexible layout stacks with spacing & alignment       | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) |
 
 ## 🔗 Quick Links
+
 - [📖 Full Documentation](./docs/)
 - [🚀 Getting Started](./docs/GETTING_STARTED.md)
 - [🎨 Design System](./docs/DESIGN_SYSTEM.md)
+
 ## 🤝 Contribution & Community
 
 We welcome developers from all over the world to contribute to Kovax UI 💡
 There are plenty of exciting ideas and upcoming features, including:
 
-* Advanced animations
+- Advanced animations
 
-* Dark theme
+- Dark theme
 
-* Composable components (Form, Modal, Dropdown)
+- Composable components (Form, Modal, Dropdown)
 
-* I*nteractive documentation & live playground
+- I\*nteractive documentation & live playground
 
 ## If you’d like to contribute:
 
-* Fork this repository
+- Fork this repository
 
-* Create a new branch
+- Create a new branch
 
-* Commit your changes
+- Commit your changes
 
-* Open a Pull Request
+- Open a Pull Request
 
 ## Your contribution will be reviewed and merged after discussion.
+
 All contributors will be featured in the Contributors list ❤️
 
 ## 🚀 Development
+
 Run in development mode:
+
 ```bash
 npm install
 npm run dev
 ```
 
 Build the library:
+
 ```bash
 npm run build
 ```
 
 Publish a new version:
+
 ```bash
 npm run release
 ```
@@ -149,7 +187,6 @@ This project is licensed under the **MIT License** — free to use, modify, and 
 By contributing to this repository, you agree that your contributions will be licensed under the same MIT License.
 
 📘 **License file:** [LICENSE](./LICENSE)
-
 
 ## 🌟 Stay tuned
 
