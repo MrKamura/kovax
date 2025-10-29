@@ -15,12 +15,24 @@ Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI prim
 
 Currently includes:
 
-- ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
-- ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
-- ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
-- ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
+* 🧱 Layout
+
 - ✅ [**Box**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md) — universal layout container for building flexible UI.
+- ✅ [**Flex**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Flex.md) — low-level flexbox container for precise layout control.
 - ✅ [**Stack (HStack / VStack)**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) — powerful flex layout primitives.
+
+🧾 Forms
+
+- ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
+- ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
+
+🔘 Buttons
+
+- ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
+
+🎨 Foundation
+
+- ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
 
 Form
 

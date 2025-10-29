@@ -1,4 +1,4 @@
-import { SpacingProps } from '../../types/spacing';
+import { SpacingProps } from "../../types/spacing";
 
 export interface BaseStackProps extends SpacingProps {
   children?: React.ReactNode;
@@ -13,18 +13,28 @@ export interface BaseStackProps extends SpacingProps {
   tabIndex?: number;
 }
 
+export type Direction = 'row' | 'column' | 'row-reverse' | 'column-reverse';
+export type Align = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
+export type Justify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+
 export interface HStackProps extends BaseStackProps {
-  align?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  gap?: string | number;
+  align?: Align;
+  justify?: Justify;
+  wrap?: Wrap;
   reverse?: boolean;
 }
 
 export interface VStackProps extends BaseStackProps {
-  align?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  gap?: string | number;
+  align?: Align;
+  justify?: Justify;
+  wrap?: Wrap;
   reverse?: boolean;
+}
+
+export interface StackProps extends BaseStackProps {
+  direction?: Direction;
+  align?: Align;
+  justify?: Justify;
+  wrap?: Wrap;
 }

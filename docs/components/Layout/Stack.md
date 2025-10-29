@@ -1,18 +1,18 @@
 # 📐 Stack Components
 
-The **Stack components** (`HStack` and `VStack`) provide a flexible and consistent way to arrange elements horizontally or vertically with automatic spacing, alignment, and responsive behavior.  
-Built on top of the **Box** component — with full support for all spacing and layout props.
+The **Stack components** — `Stack`, `HStack`, and `VStack` — provide a flexible and consistent way to arrange elements horizontally or vertically with automatic spacing, alignment, and responsive layout behavior.
+All Stack components are built on top of the **Box** component, inheriting its full range of layout, spacing, and style props.
 
 ---
 
 ## 📦 Import
 
 ```tsx
-import { HStack, VStack } from 'kovax-react';
+import { Stack, HStack, VStack } from 'kovax-react';
 ```
 
 ## 🚀 Quick Start
-Basic Stacks
+* Basic Stacks
 
 ```tsx
 // Horizontal stack
@@ -45,6 +45,24 @@ Basic Stacks
   </HStack>
 </VStack>
 ```
+
+## ⚙️ Stack (Universal Base)
+
+The base Stack component supports all flexbox directions:
+row, column, row-reverse, and column-reverse.
+
+```tsx
+<Stack direction="row" gap={16}>
+  <Button>Cancel</Button>
+  <Button variant="primary">Save</Button>
+</Stack>
+
+<Stack direction="column" gap={24}>
+  <Card>Card 1</Card>
+  <Card>Card 2</Card>
+</Stack>
+```
+
 
 ## ➡️ HStack (Horizontal Stack)
 Arranges children horizontally in a single row using Flexbox.
@@ -179,14 +197,16 @@ Arranges children vertically in a column with flexible alignment and spacing.
 ## 🎛️ Props Reference
 Common Stack Props
 
-| Prop          | Type            | Default                               | Description                                   |
-| ------------- | --------------- | ------------------------------------- | --------------------------------------------- |
-| `gap`         | string | number | `0px`                                 | Space between items                           |
-| `align`       | string          | `center` (HStack), `stretch` (VStack) | Cross-axis alignment                          |
-| `justify`     | string          | `flex-start`                          | Main-axis alignment                           |
-| `wrap`        | string          | `nowrap`                              | Flex wrapping behavior                        |
-| `reverse`     | boolean         | `false`                               | Reverse item order                            |
-| All Box Props | —               | —                                     | Supports margin, padding, width, height, etc. |
+| Prop          | Type                                                        | Default                               | Description                            |
+| ------------- | ----------------------------------------------------------- | ------------------------------------- | -------------------------------------- |
+| `gap`         | `number` | `string`                                         | `0`                                   | Space between child elements           |
+| `align`       | `string`                                                    | `center` (HStack), `stretch` (VStack) | Cross-axis alignment                   |
+| `justify`     | `string`                                                    | `flex-start`                          | Main-axis alignment                    |
+| `wrap`        | `string`                                                    | `nowrap`                              | Flex wrapping behavior                 |
+| `reverse`     | `boolean`                                                   | `false`                               | Reverse item order                     |
+| `direction`   | `'row'` | `'column'` | `'row-reverse'` | `'column-reverse'` | `'row'` (Stack only)                  | Layout direction                       |
+| All Box Props | —                                                           | —                                     | Full support for margin, padding, etc. |
+
 
 
 ## 🎯 Real-World Examples
