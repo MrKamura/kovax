@@ -19,7 +19,14 @@ Currently includes:
 
 - ✅ [**Box**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md) — universal layout container for building flexible UI.
 - ✅ [**Flex**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Flex.md) — low-level flexbox container for precise layout control.
+- ✅ [**Grid**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Grid.md) — CSS Grid container for two-dimensional layouts.
 - ✅ [**Stack (HStack / VStack)**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) — powerful flex layout primitives.
+- ✅ [**Center**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Center.md) — flex container for perfect content centering.
+- ✅ [**Container**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Container.md) — content wrapper with max-width constraints.
+- ✅ [**AspectRatio**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/AspectRatio.md) — responsive container for maintaining content proportions.
+- ✅ [**Separator**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Separator.md) — visual divider for content separation.
+- ✅ [**Bleed**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Bleed.md) —  layout component for breaking out of parent containers.
+
 
 🧾 Forms
 

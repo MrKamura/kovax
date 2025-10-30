@@ -43,7 +43,7 @@ export const Flex: React.FC<FlexProps> = React.memo(({
   children,
   ...rest
 }) => {
-  // Правильное вычисление flexDirection
+  // flexDirection
   let flexDirection: React.CSSProperties['flexDirection'] = direction;
   
   if (reverse) {
