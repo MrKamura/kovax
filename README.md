@@ -26,7 +26,8 @@ Currently includes:
 - ✅ [**AspectRatio**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/AspectRatio.md) — responsive container for maintaining content proportions.
 - ✅ [**Separator**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Separator.md) — visual divider for content separation.
 - ✅ [**Bleed**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Bleed.md) —  layout component for breaking out of parent containers.
-
+- ✅ [**VisuallyHidden**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/VisuallyHidden.md) —  accessibility utility for visually hiding content while keeping it available to screen readers.
+- ✅ [**Sticky**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Sticky.md) —  layout component for creating elements that stay fixed within the viewport while scrolling.
 
 🧾 Forms
 

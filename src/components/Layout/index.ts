@@ -9,6 +9,8 @@ export { Container } from './Container';
 export { Separator } from './Separator';
 export { Bleed } from './Bleed';
 export { AspectRatio } from './AspectRatio';
+export { VisuallyHidden } from './VisuallyHidden';
+export { Sticky } from './Sticky';
 
 
 // Export types
