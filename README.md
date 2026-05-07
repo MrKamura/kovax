@@ -1,64 +1,36 @@
-# 🧩 Kovax UI — React Component Library
+# Kovax UI
+
+React component library focused on layout primitives, forms, and typed design tokens.
 
 ![npm](https://img.shields.io/npm/v/kovax-react?color=3b82f6&label=version)
 ![license](https://img.shields.io/npm/l/kovax-react?color=green)
-![React](https://img.shields.io/badge/React-16+-61dafb)
-![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6)
-![module](https://img.shields.io/badge/module-ESM-blue)
+![React](https://img.shields.io/badge/React-16%2B-61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-5%2B-3178c6)
 
----
+## Overview
 
-## ✨ Overview
+- **Layout:** `Box`, `Flex`, `Grid`, `Stack` / `HStack` / `VStack`, `Center`, `Container`, `AspectRatio`, `Separator`, `Bleed`, `VisuallyHidden`, `Sticky`
+- **Forms:** `FormControl`, `FormLabel`, `FormError`, `FormHelperText`, `FormGroup`, `Input`
+- **Actions:** `Button`
+- **Theming:** exported `colors`, `sizes`, `shadows`, `transitions` and related types from [`docs/components/Tokens.md`](./docs/components/Tokens.md)
 
-**Kovax UI** is a modern, lightweight React component library designed for performance, scalability, and easy customization.  
-Built with **TypeScript**, **React**, and **Vite**, it provides flexible UI primitives ready for production.
+Public API is re-exported from the package root (`kovax-react`). See [`docs/README.md`](./docs/README.md) for links to each component.
 
-Currently includes:
+## Requirements
 
-* 🧱 Layout
+- `react` and `react-dom` **\>=16 \<20** (peer dependencies)
 
-- ✅ [**Box**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md) — universal layout container for building flexible UI.
-- ✅ [**Flex**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Flex.md) — low-level flexbox container for precise layout control.
-- ✅ [**Grid**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Grid.md) — CSS Grid container for two-dimensional layouts.
-- ✅ [**Stack (HStack / VStack)**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) — powerful flex layout primitives.
-- ✅ [**Center**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Center.md) — flex container for perfect content centering.
-- ✅ [**Container**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Container.md) — content wrapper with max-width constraints.
-- ✅ [**AspectRatio**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/AspectRatio.md) — responsive container for maintaining content proportions.
-- ✅ [**Separator**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Separator.md) — visual divider for content separation.
-- ✅ [**Bleed**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Bleed.md) —  layout component for breaking out of parent containers.
-- ✅ [**VisuallyHidden**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/VisuallyHidden.md) —  accessibility utility for visually hiding content while keeping it available to screen readers.
-- ✅ [**Sticky**](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Sticky.md) —  layout component for creating elements that stay fixed within the viewport while scrolling.
-
-🧾 Forms
-
-- ✅ [**Input**](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md) — customizable, themeable, and fully typed.
-- ✅ [**Form**](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md) — unified color, size, shadow, and transition system.
-
-🔘 Buttons
-
-- ✅ [**Button**](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md) — customizable, themeable, and fully typed.
-
-🎨 Foundation
-
-- ✅ [**Design Tokens**](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md) — colors, sizes, shadows, transitions.
-
-Form
-
-> 🚀 Coming soon: `Datepicker`, `Select`, `Modal`, `Switch`, `Tabs`, and more!
-
----
-
-## 📦 Installation
-
-### 1️⃣ From npm
+## Installation
 
 ```bash
 npm install kovax-react
-# or
+```
+
+```bash
 yarn add kovax-react
 ```
 
-## ⚡ Usage Example
+## Usage
 
 ```tsx
 import {
@@ -67,148 +39,81 @@ import {
   HStack,
   Button,
   Input,
-  Form,
+  FormControl,
   FormLabel,
-  Heading,
-  Text,
 } from "kovax-react";
 
-export default function App() {
+export function SignInExample() {
   return (
     <Box
       p={32}
       backgroundColor="#f8f9fa"
       borderRadius={16}
-      maxW="480px"
+      maxW={480}
       m="40px auto"
-      shadow="md"
+      boxShadow="0 4px 6px rgba(0,0,0,0.1)"
     >
-      <VStack gap={24}>
-        <Heading size="xl">Sign In</Heading>
+      <VStack gap={24} align="stretch">
+        <Box as="h2" style={{ fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>
+          Sign in
+        </Box>
 
-        <Form>
-          <VStack gap={16}>
-            <FormLabel>Email</FormLabel>
-            <Input type="email" placeholder="Enter your email" />
+        <FormControl>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input id="email" type="email" placeholder="you@example.com" />
+        </FormControl>
 
-            <FormLabel>Password</FormLabel>
-            <Input type="password" placeholder="Enter password" />
-          </VStack>
+        <FormControl>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input id="password" type="password" placeholder="Password" />
+        </FormControl>
 
-          <HStack justify="flex-end" gap={12} mt={24}>
-            <Button variant="outline">Cancel</Button>
-            <Button variant="primary">Login</Button>
-          </HStack>
-        </Form>
-
-        <Text align="center" color="gray.600">
-          Don’t have an account? <a href="#">Sign up</a>
-        </Text>
+        <HStack justify="flex-end" gap={12}>
+          <Button variant="outline">Cancel</Button>
+          <Button variant="solid" color="primary">
+            Log in
+          </Button>
+        </HStack>
       </VStack>
     </Box>
   );
 }
 ```
 
----
+`Box` supports `forwardRef` and forwards native attributes while spacing props are turned into CSS. `Button` and `Input` also support `ref` on their underlying DOM nodes.
 
-## 🧠 Features
+## Features
 
-- 🌈 Full TypeScript support
+- TypeScript-first props, including polymorphic `Box` with the `as` prop
+- Spacing scale aligned with `SpacingProps` (`m`, `p`, `w`, flex, grid, and more)
+- Jest tests for components under `src/components/**/__tests__`
 
-- 🎨 Easy theming and customization
+## Tech stack
 
-- ⚙️ Minimal dependencies
+- React 18 in development; library targets React 16+ via peers
+- TypeScript 5, **tsup** for builds
 
-- 🧱 Production-ready base UI components
+## Documentation
 
-- 🚀 Built with Vite + Tsup for speed
+| Topic | Link |
+| ----- | ---- |
+| Index | [docs/README.md](./docs/README.md) |
+| Getting started | [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md) |
+| Design tokens | [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) |
 
-- 📘 Well-structured documentation in Markdown
-
-## 🛠 Tech Stack
-
-- React 18+
-
-- TypeScript 5+
-
-- Vite
-
-- Tsup for builds
-
-## 📚 Documentation
-
-| Component                      | Description                                           | Link                                                                                    |
-| ------------------------------ | ----------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| 🎨 **Tokens**                  | Base design tokens (colors, shadows, transitions)     | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Tokens.md)       |
-| 🔘 **Button**                  | Configurable, themeable button                        | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Button.md)       |
-| ⌨️ **Input**                   | Themed input field with masks and states              | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Input.md)        |
-| 🧾 **Form**                    | Form container with consistent spacing and validation | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Form.md)         |
-| 📦 **Box**                     | Universal layout container                            | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Box.md)   |
-| 📐 **Stack (HStack / VStack)** | Flexible layout stacks with spacing & alignment       | [View →](https://github.com/MrKamura/kovax/blob/master/docs/components/Layout/Stack.md) |
-
-## 🔗 Quick Links
-
-- [📖 Full Documentation](./docs/)
-- [🚀 Getting Started](./docs/GETTING_STARTED.md)
-- [🎨 Design System](./docs/DESIGN_SYSTEM.md)
-
-## 🤝 Contribution & Community
-
-We welcome developers from all over the world to contribute to Kovax UI 💡
-There are plenty of exciting ideas and upcoming features, including:
-
-- Advanced animations
-
-- Dark theme
-
-- Composable components (Form, Modal, Dropdown)
-
-- I\*nteractive documentation & live playground
-
-## If you’d like to contribute:
-
-- Fork this repository
-
-- Create a new branch
-
-- Commit your changes
-
-- Open a Pull Request
-
-## Your contribution will be reviewed and merged after discussion.
-
-All contributors will be featured in the Contributors list ❤️
-
-## 🚀 Development
-
-Run in development mode:
+## Scripts (contributors)
 
 ```bash
 npm install
-npm run dev
+npm run build      # library bundle
+npm test           # Jest
+npm run type-check # tsc --noEmit
 ```
 
-Build the library:
+## Contributing
 
-```bash
-npm run build
-```
+Fork the repository, create a branch, open a pull request. Changes are expected to pass `npm test` and `npm run type-check`.
 
-Publish a new version:
+## License
 
-```bash
-npm run release
-```
-
-## 📄 License
-
-This project is licensed under the **MIT License** — free to use, modify, and distribute for personal and commercial purposes.  
-By contributing to this repository, you agree that your contributions will be licensed under the same MIT License.
-
-📘 **License file:** [LICENSE](./LICENSE)
-
-## 🌟 Stay tuned
-
-Kovax UI is actively maintained and constantly evolving.
-New components, better design systems, and advanced tools are coming soon!
+[MIT](./LICENSE)

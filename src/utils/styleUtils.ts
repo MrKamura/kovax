@@ -35,10 +35,8 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
     // Exclude these from styles object
     className,
     style: propStyle,
-    ...restStyles
   } = props;
 
-  // Функция для преобразования числовых значений в px
   const toCssValue = (value: any): string | number | undefined => {
     if (typeof value === 'number') {
       return `${value}px`;
@@ -131,10 +129,63 @@ export const getSpacingStyles = (props: SpacingProps): React.CSSProperties => {
   if (opacity !== undefined) styles.opacity = opacity;
   if (zIndex !== undefined) styles.zIndex = zIndex;
 
-  // Merge with additional styles and prop style
   return {
     ...styles,
-    ...restStyles,
     ...propStyle,
   };
 };
+
+export interface BleedSideInput {
+  all?: number | string;
+  horizontal?: number | string;
+  vertical?: number | string;
+  top?: number | string;
+  right?: number | string;
+  bottom?: number | string;
+  left?: number | string;
+}
+
+function negateCssLength(value: number | string): string {
+  if (typeof value === 'number') {
+    return `-${value}px`;
+  }
+  return value.startsWith('-') ? value : `-${value}`;
+}
+
+/**
+ * Negative margins for full-bleed layouts
+ */
+export function getBleedMarginStyles(input: BleedSideInput): React.CSSProperties {
+  const styles: React.CSSProperties = {};
+
+  if (input.all !== undefined) {
+    styles.margin = negateCssLength(input.all);
+  }
+
+  if (input.horizontal !== undefined) {
+    const value = negateCssLength(input.horizontal);
+    styles.marginLeft = value;
+    styles.marginRight = value;
+  }
+
+  if (input.vertical !== undefined) {
+    const value = negateCssLength(input.vertical);
+    styles.marginTop = value;
+    styles.marginBottom = value;
+  }
+
+  if (input.top !== undefined) {
+    styles.marginTop = negateCssLength(input.top);
+  }
+  if (input.right !== undefined) {
+    styles.marginRight = negateCssLength(input.right);
+  }
+  if (input.bottom !== undefined) {
+    styles.marginBottom = negateCssLength(input.bottom);
+  }
+  if (input.left !== undefined) {
+    styles.marginLeft = negateCssLength(input.left);
+  }
+
+  return styles;
+}

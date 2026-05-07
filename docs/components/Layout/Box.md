@@ -22,8 +22,7 @@ import { Box } from "kovax-react";
 </Box>
 ```
 
-## 🧩 Core Features
-## 🏷️ Semantic Elements
+## Core features and semantic elements
 
 Render different HTML elements using the as prop:
 
@@ -34,7 +33,7 @@ Render different HTML elements using the as prop:
 <Box as="a" href="/link">Link</Box>
 <Box as="button" onClick={handleClick}>Clickable Box</Box>
 <Box as="input" placeholder="Enter text" />
-<Box as="textarea" rows={4} placeholder="Multi-line text" />
+<Box as="textarea" rows={4} placeholder="Multi-line text" defaultValue="" />
 <Box as="select">
   <option>Option 1</option>
   <option>Option 2</option>
@@ -162,7 +161,7 @@ function Card({ title, children, ...props }) {
       boxShadow="0 2px 8px rgba(0,0,0,0.1)"
       {...props}
     >
-      <Box as="h3" mb={16} fontSize={20} fontWeight={600}>
+      <Box as="h3" mb={16} style={{ fontSize: 20, fontWeight: 600 }}>
         {title}
       </Box>
       {children}
@@ -184,7 +183,7 @@ function NavBar() {
       backgroundColor="#1a1a1a"
       color="white"
     >
-      <Box as="h1" fontSize={20} fontWeight="bold">
+      <Box as="h1" style={{ fontSize: 20, fontWeight: "bold" }}>
         MyApp
       </Box>
       <Box display="flex" gap={24}>
@@ -231,93 +230,27 @@ function Modal({ isOpen, onClose, children }) {
 }
 ```
 
-## 📱 Responsive Layout
-```tsx
-function ResponsiveLayout() {
-  return (
-    <Box display="flex" flexDirection="column" gap={16} p={16}>
-      <Box 
-        display="flex" 
-        flexDirection={{ mobile: 'column', tablet: 'row' }}
-        gap={{ mobile: 16, tablet: 24 }}
-      >
-        <Box flex={{ tablet: 1 }} p={16} backgroundColor="#f5f5f5">
-          Sidebar
-        </Box>
-        <Box flex={{ tablet: 2 }} p={16} backgroundColor="#eeeeee">
-          Main Content
-        </Box>
-      </Box>
-    </Box>
-  );
-}
-```
+## 🔧 Props reference
 
-## 🔧 Props Reference
-* Core Props
+Spacing and layout props match the library `SpacingProps` type (see `src/types/spacing.ts`). Style-related keys are applied as CSS; **all other props are forwarded to the underlying DOM element** (including `data-*`, `aria-*`, `href`, `htmlFor`, etc.). The component supports `ref`.
 
-| Prop           | Type                      | Default | Description            |
-| -------------- | ------------------------- | ------- | ---------------------- |
-| `as`           | `BoxAsProp`               | `'div'` | HTML element to render |
-| `children`     | `React.ReactNode`         | —       | Box content            |
-| `className`    | `string`                  | —       | Additional CSS classes |
-| `style`        | `React.CSSProperties`     | —       | Inline styles          |
-| `onClick`      | `React.MouseEventHandler` | —       | Click handler          |
-| `onMouseEnter` | `React.MouseEventHandler` | —       | Mouse enter handler    |
-| `onMouseLeave` | `React.MouseEventHandler` | —       | Mouse leave handler    |
-| `id`           | `string`                  | —       | Element ID             |
-| `title`        | `string`                  | —       | Tooltip text           |
-| `role`         | `string`                  | —       | ARIA role              |
-| `tabIndex`     | `number`                  | —       | Tab index              |
+The following groups summarise typical usage; see `getSpacingStyles` in `src/utils/styleUtils.ts` for how values map to CSS.
 
-* Layout & Spacing Props
+**Core presentation**
 
-| Prop                                    | Type    | Description |                  |
-| --------------------------------------- | ------- | ----------- | ---------------- |
-| `w`, `h`                                | `string | number`     | Width and height |
-| `minW`, `maxW`, `minH`, `maxH`          | `string | number`     | Min/max sizes    |
-| `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my` | `string | number`     | Margin control   |
-| `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py` | `string | number`     | Padding control  |
+- `as` — host tag (default `div`); polymorphic variants add typed attributes (`href` for `a`, `htmlFor` for `label`, etc.).
+- `children`, `className`, `style`
+- Common handlers and identifiers: `onClick`, `onMouseEnter`, `onMouseLeave`, `id`, `title`, `role`, `tabIndex`, `htmlFor`, `aria-live`, and other native attributes not in the spacing allowlist.
 
+**Layout and spacing** (non-exhaustive)
 
-
-* Flexbox Props
-
-| Prop                                          | Type          | Description    |                 |                   |                 |             |
-| --------------------------------------------- | ------------- | -------------- | --------------- | ----------------- | --------------- | ----------- |
-| `display`                                     | `'flex'       | 'inline-flex'` | Flex display    |                   |                 |             |
-| `flex`, `flexGrow`, `flexShrink`, `flexBasis` | `string       | number`        | Flex properties |                   |                 |             |
-| `flexDirection`                               | `'row'        | 'column'       | 'row-reverse'   | 'column-reverse'` | Direction       |             |
-| `alignItems`                                  | `'flex-start' | 'flex-end'     | 'center'        | 'baseline'        | 'stretch'`      | Align items |
-| `justifyContent`                              | `'flex-start' | 'center'       | 'space-between' | ...`              | Justify content |             |
-
-* Grid Props
-
-| Prop                                | Type     | Description    |              |
-| ----------------------------------- | -------- | -------------- | ------------ |
-| `display`                           | `'grid'  | 'inline-grid'` | Grid display |
-| `gap`                               | `string  | number`        | Grid gap     |
-| `gridTemplateColumns`               | `string` | Columns        |              |
-| `gridTemplateRows`                  | `string` | Rows           |              |
-| `gridTemplateAreas`                 | `string` | Areas          |              |
-| `gridArea`, `gridColumn`, `gridRow` | `string` | Placement      |              |
-
-* Positioning Props
-
-| Prop                             | Type      | Description |            |         |           |               |
-| -------------------------------- | --------- | ----------- | ---------- | ------- | --------- | ------------- |
-| `position`                       | `'static' | 'relative'  | 'absolute' | 'fixed' | 'sticky'` | Position type |
-| `top`, `right`, `bottom`, `left` | `string   | number`     | Offsets    |         |           |               |
-
-
-* Styling Props
-
-| Prop                                  | Type     | Description |                    |            |                |
-| ------------------------------------- | -------- | ----------- | ------------------ | ---------- | -------------- |
-| `backgroundColor`, `color`            | `string` | Colors      |                    |            |                |
-| `border`, `borderRadius`, `boxShadow` | `string  | number`     | Borders & shadows  |            |                |
-| `cursor`, `opacity`, `zIndex`         | `string  | number`     | Interaction styles |            |                |
-| `textAlign`                           | `'left'  | 'center'    | 'right'            | 'justify'` | Text alignment |
+- Size: `w`, `h`, `minW`, `maxW`, `minH`, `maxH`
+- Margin: `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my`
+- Padding: `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py`
+- Flex: `display`, `flex`, `flexGrow`, `flexShrink`, `flexBasis`, `flexDirection`, `flexWrap`, `alignItems`, `justifyContent`, `alignContent`, …
+- Grid: `gap`, `gridTemplateColumns`, `gridTemplateRows`, `gridColumn`, `gridRow`, `gridArea`, …
+- Position: `position`, `top`, `right`, `bottom`, `left`
+- Appearance: `backgroundColor`, `color`, `border`, `borderRadius`, `boxShadow`, `cursor`, `opacity`, `zIndex`, `textAlign`
 
 
 ## 💡 Best Practices
@@ -354,9 +287,7 @@ The Box component is fully typed, with:
 
 ✅ IntelliSense for CSS
 
-## 🧾 Meta
+## Meta
 
-Version: 1.0.0
-Features: Spacing • Flexbox • Grid • Positioning • Semantic HTML • TypeScript Support
-Status: ✅ Stable
-Test Coverage: ✅ 100% (59/59 tests passing)
+- Package version: see root `package.json`
+- Tests: `src/components/Layout/__tests__/Box.test.tsx`

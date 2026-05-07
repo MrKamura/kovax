@@ -7,61 +7,51 @@ import { ButtonContent } from "./Button.content";
 import { useInteractiveState } from "../../core/hooks/useInteractiveState";
 import { extractStyleProps } from "../../utils/propUtils";
 
-export const Button: React.FC<ButtonProps> = (props) => {
+function ButtonInner(props: ButtonProps, ref: React.Ref<HTMLButtonElement>) {
   const {
-    // Content props
     isLoading = false,
     loader,
     loaderPosition = "left",
     leftIcon,
     rightIcon,
     children,
-    
-    // Style props
     className,
     disabled,
-    
-    // Interactive props
     onClick,
     onMouseEnter,
     onMouseLeave,
     onFocus,
     onBlur,
-    
-    // HTML attributes
-    type = "button", // Добавляем значение по умолчанию
+    type = "button",
     'data-testid': dataTestId,
-    
-    // Rest props
     ...restProps
   } = props;
 
   const finalLoader = loader ?? <DefaultLoader />;
   const styleProps = extractStyleProps(props);
-  
-  const [interactiveState, { 
-    handleMouseEnter, 
-    handleMouseLeave, 
-    handleMouseDown, 
-    handleMouseUp, 
-    handleFocus, 
-    handleBlur 
+
+  const [interactiveState, {
+    handleMouseEnter,
+    handleMouseLeave,
+    handleMouseDown,
+    handleMouseUp,
+    handleFocus,
+    handleBlur
   }] = useInteractiveState();
-  
+
   const baseStyles = createButtonStyles(styleProps);
-  
+
   const dynamicStyles: React.CSSProperties = {
     ...baseStyles,
     backgroundColor: interactiveState.isActive
-      ? (baseStyles as any)["--active-bg"]
+      ? (baseStyles as Record<string, string | undefined>)["--active-bg"]
       : interactiveState.isHover
-      ? (baseStyles as any)["--hover-bg"]
+      ? (baseStyles as Record<string, string | undefined>)["--hover-bg"]
       : baseStyles.backgroundColor,
     cursor: disabled || isLoading ? "not-allowed" : "pointer",
     opacity: disabled || isLoading ? 0.6 : 1,
   };
 
-  // Обработчики событий
   const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
     handleMouseEnter();
     onMouseEnter?.(e);
@@ -72,11 +62,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
     onMouseLeave?.(e);
   };
 
-  const handleButtonMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleButtonMouseDown = (_e: React.MouseEvent<HTMLButtonElement>) => {
     handleMouseDown();
   };
 
-  const handleButtonMouseUp = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleButtonMouseUp = (_e: React.MouseEvent<HTMLButtonElement>) => {
     handleMouseUp();
   };
 
@@ -92,6 +82,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button
+      ref={ref}
       className={cn("kv-button", className)}
       style={dynamicStyles}
       disabled={disabled || isLoading}
@@ -102,8 +93,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
       onMouseUp={handleButtonMouseUp}
       onFocus={handleButtonFocus}
       onBlur={handleButtonBlur}
-      type={type} 
-      data-testid={dataTestId} 
+      type={type}
+      data-testid={dataTestId}
       {...restProps}
     >
       <ButtonContent
@@ -117,4 +108,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       </ButtonContent>
     </button>
   );
-};
+}
+
+export const Button = React.forwardRef(ButtonInner);
+Button.displayName = "Button";

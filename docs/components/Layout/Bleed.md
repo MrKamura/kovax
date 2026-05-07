@@ -1,209 +1,67 @@
-## Perfect ✅
-Here’s your Bleed component documentation, fully cleaned up and formatted to match the unified style used across your other Kovax UI docs (Box, Stack, Flex, Grid, etc.).
+# Bleed
 
-## 🎯 Bleed Component
+Applies **negative margins** so content can extend past the parent’s padding (full-bleed sections inside a padded column). Implemented with `Box` and `getBleedMarginStyles`.
 
-The Bleed component lets content extend (“bleed”) beyond its parent container’s boundaries — perfect for creating full-width or edge-to-edge sections within a constrained layout. It helps achieve visually impactful designs while maintaining responsive alignment and spacing control.
+## Import
 
-## 📦 Import
-import { Bleed } from 'kovax-react';
-
-## 🚀 Quick Start
-# Basic Usage
 ```tsx
-// Bleed on all sides
+import { Bleed } from "kovax-react";
+```
+
+## Usage
+
+```tsx
 <Bleed all={16}>
-  <Box backgroundColor="blue.500" color="white" p={4}>
-    Full-bleed section
+  <Box backgroundColor="#3b82f6" color="white" p={16}>
+    Bleeds 16px on every side
   </Box>
 </Bleed>
 
-// Horizontal bleed only
 <Bleed horizontal={24}>
-  <Box backgroundColor="gray.100" p={4}>
-    Full-width horizontally
+  <Box backgroundColor="#f1f5f9" p={16}>
+    Horizontal bleed only
   </Box>
 </Bleed>
 
-// Individual side control
-<Bleed left={32} right={32}>
-  <Box backgroundColor="green.500" color="white" p={4}>
-    Custom side bleeding
-  </Box>
+<Bleed top={8} bottom={8}>
+  <Box>Top and bottom</Box>
 </Bleed>
 ```
 
-# Inside a Container
+**Precedence:** per-side (`top`, `right`, …) overrides axis (`horizontal` / `vertical`) and `all` where margins overlap.
+
+## Props
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `all` | `number \| string` | Negative margin on all sides |
+| `horizontal` | `number \| string` | Left + right |
+| `vertical` | `number \| string` | Top + bottom |
+| `top`, `right`, `bottom`, `left` | `number \| string` | Single side |
+
+Also accepts **`w` / `h`** (or legacy **`width` / `height`** aliases) and the rest of **`Box`** props.
+
+Bleed amounts are **not** responsive objects; use one value or swap components by breakpoint in your app.
+
+## Example inside padded content
+
 ```tsx
 <Container>
-  <Box p={6}>
-    <Heading>Regular Content</Heading>
-    <Text>This content stays within the container bounds.</Text>
-
+  <Box p={24}>
+    <p>Normal width.</p>
     <Bleed horizontal={24}>
-      <Box backgroundColor="red.500" color="white" p={4} mt={4}>
-        This section bleeds outside the container horizontally
+      <Box backgroundColor="#e2e8f0" p={16}>
+        Wider than the text column
       </Box>
     </Bleed>
-
-    <Text mt={4}>Back to normal container flow.</Text>
   </Box>
 </Container>
 ```
 
-## ⚙️ Props Reference
+## Tests
 
-| Prop         | Type            | Default | Description        |
-| ------------ | --------------- | ------- | ------------------ |
-| `all`        | number | string | —       | Bleed on all sides |
-| `horizontal` | number | string | —       | Left + right bleed |
-| `vertical`   | number | string | —       | Top + bottom bleed |
-| `top`        | number | string | —       | Top bleed only     |
-| `right`      | number | string | —       | Right bleed only   |
-| `bottom`     | number | string | —       | Bottom bleed only  |
-| `left`       | number | string | —       | Left bleed only    |
+`src/components/Layout/__tests__/Bleed.test.tsx`
 
+## Meta
 
-# Priority Order:
-
-* Individual sides (top, right, bottom, left)
-
-* Axes (horizontal, vertical)
-
-* Global (all)
-
-* All Box props are inherited — including spacing, sizing, color, and style.
-
-## 🎯 Real-World Examples
-# Full-Width Hero Section
-
-```tsx
-<Bleed all={0}>
-  <Box backgroundColor="blue.600" color="white" py={20}>
-    <Container>
-      <VStack gap={6} textAlign="center">
-        <Heading size="3xl">Build Amazing Products</Heading>
-        <Text fontSize="xl">The complete platform for modern web development</Text>
-        <HStack gap={4} justify="center">
-          <Button size="lg" backgroundColor="white" color="blue.600">Get Started</Button>
-          <Button size="lg" variant="outline" borderColor="white" color="white">View Demo</Button>
-        </HStack>
-      </VStack>
-    </Container>
-  </Box>
-</Bleed>
-```
-
-# Feature Section with Bleeding Backgrounds
-```tsx
-<Container>
-  <VStack gap={16} py={16}>
-    <Bleed horizontal={32}>
-      <Box backgroundColor="blue.50" borderRadius={16} p={8}>
-        <Grid templateColumns={{ mobile: "1fr", desktop: "1fr 1fr" }} gap={8}>
-          <VStack gap={4}>
-            <Heading size="xl">Lightning Fast</Heading>
-            <Text>Optimized for sub-second load times and smooth animations.</Text>
-          </VStack>
-          <Image src="/performance-chart.svg" alt="Performance" width="100%" />
-        </Grid>
-      </Box>
-    </Bleed>
-  </VStack>
-</Container>
-```
-
-# Responsive Bleed with Breakpoints
-```tsx
-<Bleed horizontal={{ mobile: 16, tablet: 32, desktop: 48 }}>
-  <Box 
-    backgroundColor="purple.100"
-    borderRadius={{ mobile: 8, desktop: 16 }}
-    p={{ mobile: 4, desktop: 8 }}
-    textAlign="center"
-  >
-    <Heading size={{ mobile: "lg", desktop: "xl" }}>Adaptive Bleed Section</Heading>
-    <Text>This section bleeds more on larger screens.</Text>
-  </Box>
-</Bleed>
-```
-
-# Pricing Cards (Highlight with Bleed)
-```tsx
-<Box position="relative">
-  <Bleed all={4}>
-    <Card p={8} border="2px solid" borderColor="blue.500">
-      <Badge backgroundColor="blue.500" color="white">Most Popular</Badge>
-      <Heading>Pro Plan</Heading>
-      <Text>$49/mo</Text>
-      <Button width="100%" size="lg">Get Started</Button>
-    </Card>
-  </Bleed>
-</Box>
-```
-
-## 💡 Best Practices
-
-# ✅ Do
-
-* Use for emphasis and full-width visuals.
-
-* Combine with Container for structured layouts.
-
-* Use responsive values for different breakpoints.
-
-# ❌ Don’t
-
-* Overuse — only use when necessary.
-
-* Forget mobile overflow behavior.
-
-* Apply excessive bleed amounts that break layout.
-
-## 🧪 Testing
-
-# ✅ Verified behaviors include:
-
-* All-sided, axis-based, and side-specific bleed
-
-* Priority rules
-
-* Box prop inheritance
-
-* Responsive values
-
-* Negative margin handling
-
-* Test Coverage: 100% (12/12 passing)
-
-## 🔧 Technical Details
-
-| Property           | Value                               |
-| ------------------ | ----------------------------------- |
-| **Built on**       | Box component with negative margins |
-| **Performance**    | Memoized, lightweight               |
-| **Bundle Size**    | ~1.1 KB gzipped                     |
-| **Dependencies**   | React 16.8+, Box                    |
-| **TypeScript**     | Fully typed                         |
-| **Tree-shakeable** | ✅                                   |
-| **Status**         | ✅ Production Ready                  |
-
-## 🎨 Theme Integration
-```tsx
-// Using theme spacing
-<Bleed all="spacing.xl">
-  <Content />
-</Bleed>
-
-// Using responsive theme breakpoints
-<Bleed horizontal={{ mobile: "spacing.md", desktop: "spacing.xl" }}>
-  <Content />
-</Bleed>
-
-// Using theme colors
-<Bleed all={32}>
-  <Box backgroundColor="primary.50">
-    <Content />
-  </Box>
-</Bleed>
-```
+Package version: root `package.json`.

@@ -1,7 +1,7 @@
 import React from 'react';
 import { sizes } from '../theme/tokens';
 import { SpacingProps } from '../../types/spacing';
-import { getSpacingStyles } from '../../utils/styleUtils';
+import { Stack } from '../Layout/Stack';
 
 export interface FormGroupProps extends SpacingProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ export interface FormGroupProps extends SpacingProps {
 }
 
 /**
- * FormGroup - groups related form fields together
+ * FormGroup — groups related form fields together
  */
 export const FormGroup: React.FC<FormGroupProps> = ({
   children,
@@ -26,21 +26,18 @@ export const FormGroup: React.FC<FormGroupProps> = ({
     lg: sizes.spacing.lg,
   };
 
-  const spacingStyles = getSpacingStyles(spacingProps);
-
   return (
-    <div
+    <Stack
+      direction={direction === 'horizontal' ? 'row' : 'column'}
+      align="stretch"
+      justify="flex-start"
+      gap={spacingMap[spacing]}
+      w="100%"
       className={className}
-      style={{
-        display: 'flex',
-        flexDirection: direction === 'horizontal' ? 'row' : 'column',
-        gap: spacingMap[spacing],
-        width: '100%',
-        ...spacingStyles,
-      }}
+      {...spacingProps}
     >
       {children}
-    </div>
+    </Stack>
   );
 };
 

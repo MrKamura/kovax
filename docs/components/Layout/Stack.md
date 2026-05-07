@@ -1,365 +1,94 @@
-# 📐 Stack Components
+# Stack, HStack, VStack
 
-The **Stack components** — `Stack`, `HStack`, and `VStack` — provide a flexible and consistent way to arrange elements horizontally or vertically with automatic spacing, alignment, and responsive layout behavior.
-All Stack components are built on top of the **Box** component, inheriting its full range of layout, spacing, and style props.
+Flex stacks built on **`Box`**: `display: flex` with shorthand `direction` / `align` / `justify` / `wrap` (and **`gap`** from spacing). **`HStack`** and **`VStack`** fix direction and support **`reverse`**.
 
----
-
-## 📦 Import
+## Import
 
 ```tsx
-import { Stack, HStack, VStack } from 'kovax-react';
+import { Stack, HStack, VStack } from "kovax-react";
 ```
 
-## 🚀 Quick Start
-* Basic Stacks
+## Usage
 
 ```tsx
-// Horizontal stack
-<HStack gap={16}>
-  <Button>Cancel</Button>
-  <Button variant="primary">Save</Button>
+<HStack gap={16} justify="flex-end">
+  <Button variant="outline">Cancel</Button>
+  <Button variant="solid" color="primary">
+    Save
+  </Button>
 </HStack>
 
-// Vertical stack
-<VStack gap={24}>
-  <Card>Card 1</Card>
-  <Card>Card 2</Card>
-  <Card>Card 3</Card>
+<VStack gap={24} align="stretch">
+  <FormLabel htmlFor="user">Username</FormLabel>
+  <Input id="user" />
+  <FormHelperText>Choose a unique name.</FormHelperText>
 </VStack>
-```
 
-* Nested Stacks
-
-```tsx
-<VStack gap={32}>
-  <HStack gap={16} justify="space-between">
-    <Heading>Dashboard</Heading>
-    <Button>Refresh</Button>
-  </HStack>
-
-  <HStack gap={24} wrap="wrap">
-    <StatCard title="Users" value="1,234" />
-    <StatCard title="Revenue" value="$12,345" />
-    <StatCard title="Growth" value="+12%" />
-  </HStack>
-</VStack>
-```
-
-## ⚙️ Stack (Universal Base)
-
-The base Stack component supports all flexbox directions:
-row, column, row-reverse, and column-reverse.
-
-```tsx
-<Stack direction="row" gap={16}>
-  <Button>Cancel</Button>
-  <Button variant="primary">Save</Button>
+<Stack direction="row-reverse" gap={8} wrap="wrap">
+  <span>One</span>
+  <span>Two</span>
 </Stack>
 
-<Stack direction="column" gap={24}>
-  <Card>Card 1</Card>
-  <Card>Card 2</Card>
-</Stack>
-```
-
-
-## ➡️ HStack (Horizontal Stack)
-Arranges children horizontally in a single row using Flexbox.
-
-* Basic Usage
-```tsx
-<HStack gap={8}>
-  <Icon name="user" />
-  <Text>John Doe</Text>
-  <Badge>Pro</Badge>
+<HStack reverse gap={8}>
+  <span>Appears second in DOM, first visually (row-reverse)</span>
+  <span>First in DOM</span>
 </HStack>
 ```
 
-* Alignment Options
-```tsx
-// Left aligned (default)
-<HStack justify="flex-start" />
+## Props
 
-// Center aligned
-<HStack justify="center" />
+**`Stack`**
 
-// Right aligned
-<HStack justify="flex-end" />
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `direction` | `row` \| `column` \| `row-reverse` \| `column-reverse` | `row` | `flex-direction` |
+| `align` | flex `align-items` | `center` (`VStack` default is `stretch` via component) | |
+| `justify` | flex `justify-content` | `flex-start` | |
+| `wrap` | `nowrap` \| `wrap` \| `wrap-reverse` | `nowrap` | |
 
-// Space between
-<HStack justify="space-between" />
-```
+**`HStack` / `VStack`:** same as `Stack` except `direction` is fixed (`row` or `column`) and optional **`reverse`** flips to `*-reverse`. By default **`VStack`** uses `align="stretch"`; **`HStack`** uses `Stack`’s default `align="center"`.
 
-* Vertical Alignment
-```tsx
-<HStack align="flex-start">Top</HStack>
-<HStack align="center">Center</HStack>
-<HStack align="flex-end">Bottom</HStack>
-<HStack align="stretch">Stretch</HStack>
-```
+All **`BaseBoxProps`** / **`SpacingProps`**: `gap`, `m`, `p`, `w`, `flexGrow`, event handlers, `ref`, etc.
 
-* Wrapping
-```tsx
-<HStack wrap="wrap" gap={16}>
-  <Tag>React</Tag>
-  <Tag>TypeScript</Tag>
-  <Tag>CSS</Tag>
-  <Tag>Node.js</Tag>
-</HStack>
-```
+There is **no** responsive object API on these props (`gap={{ mobile: 8 }}` is not supported). Use CSS or conditional props in your app.
 
-* Reverse Order
-```tsx
-<HStack reverse>
-  <div>First (appears last)</div>
-  <div>Last (appears first)</div>
-</HStack>
-```
+## Layout patterns
 
-* With Spacing Props
-```tsx
-<HStack
-  gap={16}
-  m={24}
-  p={16}
-  w="100%"
-  maxW="800px"
-  backgroundColor="white"
-  borderRadius={8}
->
-  <div>Styled container</div>
-  <div>With full spacing support</div>
-</HStack>
-```
-
-## ⬇️ VStack (Vertical Stack)
-Arranges children vertically in a column with flexible alignment and spacing.
-
-* Basic Usage
-```tsx
-<VStack gap={16}>
-  <FormLabel>Username</FormLabel>
-  <Input placeholder="Enter username" />
-  <FormHelperText>Choose a unique username</FormHelperText>
-</VStack>
-```
-
-* Alignment Options
-```tsx
-<VStack align="flex-start">Left</VStack>
-<VStack align="center">Center</VStack>
-<VStack align="flex-end">Right</VStack>
-<VStack align="stretch">Stretch</VStack>
-```
-
-* Vertical Distribution
-```tsx
-<VStack justify="flex-start">Top</VStack>
-<VStack justify="center">Center</VStack>
-<VStack justify="flex-end">Bottom</VStack>
-<VStack justify="space-between" h="200px">
-  <div>Top</div>
-  <div>Bottom</div>
-</VStack>
-``` 
-
-* Reverse Order
-```tsx
-<VStack reverse>
-  <div>First (appears last)</div>
-  <div>Last (appears first)</div>
-</VStack>
-``` 
-
-* With Spacing Props
-```tsx
-<VStack
-  gap={20}
-  m={16}
-  p={24}
-  backgroundColor="#f8f9fa"
-  borderRadius={12}
-  border="1px solid #e9ecef"
->
-  <Heading>Settings</Heading>
-  <FormControl>
-    <FormLabel>Theme</FormLabel>
-    <Select>
-      <option>Light</option>
-      <option>Dark</option>
-      <option>System</option>
-    </Select>
-  </FormControl>
-</VStack>
-``` 
-
-## 🎛️ Props Reference
-Common Stack Props
-
-| Prop          | Type                                                        | Default                               | Description                            |
-| ------------- | ----------------------------------------------------------- | ------------------------------------- | -------------------------------------- |
-| `gap`         | `number` | `string`                                         | `0`                                   | Space between child elements           |
-| `align`       | `string`                                                    | `center` (HStack), `stretch` (VStack) | Cross-axis alignment                   |
-| `justify`     | `string`                                                    | `flex-start`                          | Main-axis alignment                    |
-| `wrap`        | `string`                                                    | `nowrap`                              | Flex wrapping behavior                 |
-| `reverse`     | `boolean`                                                   | `false`                               | Reverse item order                     |
-| `direction`   | `'row'` | `'column'` | `'row-reverse'` | `'column-reverse'` | `'row'` (Stack only)                  | Layout direction                       |
-| All Box Props | —                                                           | —                                     | Full support for margin, padding, etc. |
-
-
-
-## 🎯 Real-World Examples
-* Navigation Bar
+**Toolbar:**
 
 ```tsx
-<HStack justify="space-between" align="center" p={16} backgroundColor="white" borderBottom="1px solid #e5e7eb">
-  <HStack gap={24}>
-    <Logo size={32} />
-    <HStack gap={16}>
-      <NavLink>Home</NavLink>
-      <NavLink>About</NavLink>
-      <NavLink>Contact</NavLink>
-    </HStack>
-  </HStack>
-
+<HStack justify="space-between" align="center" p={16} w="100%">
+  <span style={{ fontWeight: 600 }}>App</span>
   <HStack gap={12}>
-    <Button variant="outline">Login</Button>
-    <Button>Sign Up</Button>
+    <a href="/docs">Docs</a>
+    <Button variant="outline" size="sm">
+      Log in
+    </Button>
   </HStack>
 </HStack>
-``` 
+```
 
-* Settings Panel
+**Form column:**
+
 ```tsx
-<VStack gap={32} maxW="600px" m="0 auto" p={24}>
-  <HStack justify="space-between" align="center">
-    <VStack gap={4}>
-      <Heading size="lg">Profile Settings</Heading>
-      <Text color="gray.600">Manage your account preferences</Text>
-    </VStack>
-    <Avatar size="lg" name="John Doe" />
-  </HStack>
-
-  <VStack gap={24}>
-    <HStack gap={16}>
-      <FormControl flex={1}>
-        <FormLabel>First Name</FormLabel>
-        <Input placeholder="John" />
-      </FormControl>
-
-      <FormControl flex={1}>
-        <FormLabel>Last Name</FormLabel>
-        <Input placeholder="Doe" />
-      </FormControl>
-    </HStack>
-
-    <FormControl>
-      <FormLabel>Email</FormLabel>
-      <Input type="email" placeholder="john@example.com" />
-    </FormControl>
-
-    <HStack gap={12} justify="flex-end">
-      <Button variant="outline">Cancel</Button>
-      <Button>Save Changes</Button>
-    </HStack>
-  </VStack>
+<VStack gap={16} align="stretch" maxW={480}>
+  <FormControl>
+    <FormLabel htmlFor="e">Email</FormLabel>
+    <Input id="e" type="email" />
+  </FormControl>
+  <Button type="submit">Submit</Button>
 </VStack>
-``` 
+```
 
-* Card Grid
-```tsx
-<VStack gap={32}>
-  <HStack justify="space-between" align="center">
-    <Heading>Projects</Heading>
-    <Button>New Project</Button>
-  </HStack>
+## Tests
 
-  <HStack gap={24} wrap="wrap">
-    <Card w="300px">
-      <VStack gap={16}>
-        <HStack justify="space-between" align="center">
-          <Heading size="md">E-commerce Site</Heading>
-          <Badge color="green">Active</Badge>
-        </HStack>
-        <Text>Online store with React and Node.js</Text>
-        <HStack gap={8} wrap="wrap">
-          <Tag>React</Tag>
-          <Tag>TypeScript</Tag>
-          <Tag>Node.js</Tag>
-        </HStack>
-      </VStack>
-    </Card>
+- `src/components/Layout/__tests__/Stack.test.tsx`
+- `src/components/Layout/__tests__/HStack.test.tsx`
+- `src/components/Layout/__tests__/VStack.test.tsx`
+- `src/components/Layout/__tests__/StackIntegration.test.tsx`
 
-    <Card w="300px">
-      <VStack gap={16}>
-        <HStack justify="space-between" align="center">
-          <Heading size="md">Mobile App</Heading>
-          <Badge color="blue">In Progress</Badge>
-        </HStack>
-        <Text>Cross-platform React Native application</Text>
-        <HStack gap={8} wrap="wrap">
-          <Tag>React Native</Tag>
-          <Tag>TypeScript</Tag>
-          <Tag>Firebase</Tag>
-        </HStack>
-      </VStack>
-    </Card>
-  </HStack>
-</VStack>
-``` 
+Run `npm test` in the repository.
 
-## 💡 Best Practices
-# ✅ Do
+## Meta
 
-* Use HStack for horizontal layouts (e.g., navbars, button groups)
-
-* Use VStack for vertical layouts (e.g., forms, cards)
-
-* Maintain consistent gap values (8, 16, 24, 32)
-
-* Use wrap="wrap" for responsive layouts
-
-* Combine with spacing props for consistent outer padding
-
-* Set justify and align for precise control
-
-# ❌ Don’t
-
-* Deeply nest multiple stacks unnecessarily
-
-* Use fixed widths where flex works better
-
-* Overuse reverse (can confuse layout)
-
-* Mix inconsistent spacing values
-
-# 🔧 Technical Details
-* Built on: Box component
-
-* Supports: All spacing, style, and event props
-
-* Performance: Lightweight, memoized, tree-shakeable
-
-* Dependencies: React 16+, Box component
-
-* Browser Support: All modern browsers
-
-# 🧪 Testing
-✅ Layout and alignment validation
-✅ Gap and spacing tests
-✅ Reverse order behavior
-✅ Props propagation
-✅ Integration with Box
-
-Test Coverage: 100% (23/23 passing)
-
-
-# 📊 Status
-
-| Property          | Value                                                           |
-| ----------------- | --------------------------------------------------------------- |
-| **Version**       | 1.0.0                                                           |
-| **Features**      | Flexbox layout, TypeScript, Box integration, Full spacing props |
-| **Test Coverage** | ✅ 100%                                                          |
-| **Status**        | ✅ Production Ready                                              |
+Package version: root `package.json`.

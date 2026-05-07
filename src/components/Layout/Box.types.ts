@@ -12,6 +12,8 @@ export interface BaseBoxProps extends SpacingProps {
   title?: string;
   role?: string;
   tabIndex?: number;
+  'aria-live'?: 'off' | 'polite' | 'assertive';
+  htmlFor?: string;
 }
 
 // Expanding the list of supported HTML elements
@@ -78,6 +80,7 @@ export type BoxProps = BaseBoxProps & {
   cols?: number;
   placeholder?: string;
   value?: string;
+  defaultValue?: string;
 } | BaseBoxProps & {
   as: 'select';
   value?: string;

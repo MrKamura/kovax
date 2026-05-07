@@ -1,40 +1,33 @@
-import { SpacingProps } from "../../types/spacing";
-
-export interface BaseStackProps extends SpacingProps {
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: React.MouseEventHandler<any>;
-  onMouseEnter?: React.MouseEventHandler<any>;
-  onMouseLeave?: React.MouseEventHandler<any>;
-  id?: string;
-  title?: string;
-  role?: string;
-  tabIndex?: number;
-}
+import type { BaseBoxProps } from './Box.types';
 
 export type Direction = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type Align = 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch';
-export type Justify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+export type Justify =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export interface HStackProps extends BaseStackProps {
-  align?: Align;
-  justify?: Justify;
-  wrap?: Wrap;
-  reverse?: boolean;
-}
-
-export interface VStackProps extends BaseStackProps {
-  align?: Align;
-  justify?: Justify;
-  wrap?: Wrap;
-  reverse?: boolean;
-}
-
-export interface StackProps extends BaseStackProps {
+type StackLayoutShorthand = {
   direction?: Direction;
   align?: Align;
   justify?: Justify;
   wrap?: Wrap;
-}
+};
+
+export type StackProps = Omit<
+  BaseBoxProps,
+  'flexDirection' | 'alignItems' | 'justifyContent' | 'flexWrap'
+> &
+  StackLayoutShorthand;
+
+export type HStackProps = Omit<StackProps, 'direction'> & {
+  reverse?: boolean;
+};
+
+export type VStackProps = Omit<StackProps, 'direction'> & {
+  reverse?: boolean;
+};

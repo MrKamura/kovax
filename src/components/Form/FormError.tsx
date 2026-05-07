@@ -2,6 +2,7 @@ import React from 'react';
 import { colors, sizes } from '../theme/tokens';
 import { SpacingProps } from '../../types/spacing';
 import { getSpacingStyles } from '../../utils/styleUtils';
+import { HStack } from '../Layout/HStack';
 
 export interface FormErrorProps extends SpacingProps {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ export interface FormErrorProps extends SpacingProps {
 }
 
 /**
- * FormError - displays error messages for form fields
+ * FormError — displays error messages for form fields
  */
 export const FormError: React.FC<FormErrorProps> = ({
   children,
@@ -19,19 +20,18 @@ export const FormError: React.FC<FormErrorProps> = ({
   const spacingStyles = getSpacingStyles(spacingProps);
 
   return (
-    <div
+    <HStack
+      align="center"
+      gap={sizes.spacing.xs}
       className={className}
+      role="alert"
+      aria-live="polite"
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: sizes.spacing.xs,
         color: colors.error[500],
         fontSize: sizes.text.sm,
         marginTop: sizes.spacing.xs,
         ...spacingStyles,
       }}
-      role="alert"
-      aria-live="polite"
     >
       <svg
         width="16"
@@ -39,11 +39,12 @@ export const FormError: React.FC<FormErrorProps> = ({
         viewBox="0 0 16 16"
         fill="currentColor"
         style={{ flexShrink: 0 }}
+        aria-hidden
       >
-        <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 12c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm1-4H7V4h2v4z"/>
+        <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 12c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm1-4H7V4h2v4z" />
       </svg>
       {children}
-    </div>
+    </HStack>
   );
 };
 

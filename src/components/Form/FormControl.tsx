@@ -1,7 +1,7 @@
 import React from "react";
 import { sizes } from "../theme/tokens";
 import { SpacingProps } from "../../types/spacing";
-import { getSpacingStyles } from "../../utils/styleUtils";
+import { VStack } from "../Layout/VStack";
 
 export interface FormControlProps extends SpacingProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export interface FormControlProps extends SpacingProps {
 }
 
 /**
- * FormControl - wrapper for form fields with label and error handling
+ * FormControl — wrapper for form fields with label and error handling
  */
 export const FormControl: React.FC<FormControlProps> = ({
   children,
@@ -21,33 +21,29 @@ export const FormControl: React.FC<FormControlProps> = ({
   isDisabled = false,
   className = "",
   ...spacingProps
-}) => {
-  const spacingStyles = getSpacingStyles(spacingProps);
-
-  return (
-    <div
-      className={className}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: sizes.spacing.xs,
-        opacity: isDisabled ? 0.6 : 1,
-        width: "100%",
-        ...spacingStyles,
-      }}
-    >
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            isInvalid,
-            isRequired,
-            isDisabled,
-          } as any);
-        }
+}) => (
+  <VStack
+    align="stretch"
+    gap={sizes.spacing.xs}
+    opacity={isDisabled ? 0.6 : 1}
+    w="100%"
+    className={className}
+    {...spacingProps}
+  >
+    {React.Children.map(children, (child) => {
+      if (!React.isValidElement(child)) {
         return child;
-      })}
-    </div>
-  );
-};
+      }
+      if (typeof child.type === 'string') {
+        return child;
+      }
+      return React.cloneElement(child, {
+        isInvalid,
+        isRequired,
+        isDisabled,
+      } as Record<string, unknown>);
+    })}
+  </VStack>
+);
 
 FormControl.displayName = "FormControl";

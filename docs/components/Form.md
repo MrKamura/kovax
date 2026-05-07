@@ -195,35 +195,51 @@ Groups related fields with consistent spacing and flexible layout.
 (Interactive example showing validation logic and state management)
 
 ```tsx
+import React, { useState } from "react";
+import {
+  FormGroup,
+  FormControl,
+  FormLabel,
+  FormError,
+  FormHelperText,
+  Input,
+} from "kovax-react";
+
 function RegistrationForm() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof typeof formData, string>>
+  >({});
 
-  const validateField = (name: string, value: string) => {
-    const newErrors = { ...errors };
-    switch (name) {
-      case 'email':
-        newErrors.email = value.includes('@') ? '' : 'Invalid email address';
-        break;
-      case 'password':
-        newErrors.password = value.length >= 8 ? '' : 'Password must be at least 8 characters';
-        break;
-      case 'firstName':
-        newErrors.firstName = value ? '' : 'First name is required';
-        break;
-    }
-    setErrors(newErrors);
+  const validateField = (name: keyof typeof formData, value: string) => {
+    setErrors((prev) => {
+      const next = { ...prev };
+      switch (name) {
+        case "email":
+          next.email = value.includes("@") ? "" : "Invalid email address";
+          break;
+        case "password":
+          next.password = value.length >= 8 ? "" : "Password must be at least 8 characters";
+          break;
+        case "firstName":
+          next.firstName = value ? "" : "First name is required";
+          break;
+      }
+      return next;
+    });
   };
 
-  const handleChange = (field: string) => (value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    validateField(field, value);
-  };
+  const handleChange =
+    (field: keyof typeof formData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setFormData((prev) => ({ ...prev, [field]: value }));
+      validateField(field, value);
+    };
 
   return (
     <FormGroup direction="vertical" spacing="lg" maxW="500px" m="0 auto" p={24}>
@@ -232,7 +248,7 @@ function RegistrationForm() {
           <FormLabel isRequired>First Name</FormLabel>
           <Input
             value={formData.firstName}
-            onChange={handleChange('firstName')}
+            onChange={handleChange("firstName")}
             placeholder="John"
           />
           {errors.firstName && <FormError>{errors.firstName}</FormError>}
@@ -242,7 +258,7 @@ function RegistrationForm() {
           <FormLabel>Last Name</FormLabel>
           <Input
             value={formData.lastName}
-            onChange={handleChange('lastName')}
+            onChange={handleChange("lastName")}
             placeholder="Doe"
           />
         </FormControl>
@@ -253,7 +269,7 @@ function RegistrationForm() {
         <Input
           type="email"
           value={formData.email}
-          onChange={handleChange('email')}
+          onChange={handleChange("email")}
           placeholder="john@example.com"
         />
         <FormHelperText>We'll never share your email with anyone else.</FormHelperText>
@@ -265,7 +281,7 @@ function RegistrationForm() {
         <Input
           type="password"
           value={formData.password}
-          onChange={handleChange('password')}
+          onChange={handleChange("password")}
           placeholder="Enter your password"
         />
         <FormHelperText isInvalid={!!errors.password}>
@@ -278,53 +294,53 @@ function RegistrationForm() {
 }
 ```
 
-## 🔧 Props Reference
+## Props reference
 
-# 🏗️ FormControl
+### FormControl
 
-| Prop             | Type      | Default | Description                             |
-| ---------------- | --------- | ------- | --------------------------------------- |
-| isInvalid        | boolean   | false   | Shows validation error state            |
-| isRequired       | boolean   | false   | Marks field as required                 |
-| isDisabled       | boolean   | false   | Disables input interactions             |
-| children         | ReactNode | –       | Nested form elements                    |
-| All SpacingProps | –         | –       | Supports margin, padding, width, height |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `isInvalid` | `boolean` | `false` | Error state styling and context for custom children |
+| `isRequired` | `boolean` | `false` | Required state passed to custom children |
+| `isDisabled` | `boolean` | `false` | Disabled styling on the wrapper |
+| `children` | `ReactNode` | — | Label, input, helper text, error |
+| — | — | — | Also accepts **SpacingProps** (`m`, `p`, `w`, …) |
 
-# 🏷️ FormLabel
+### FormLabel
 
-| Prop             | Type      | Default | Description              |
-| ---------------- | --------- | ------- | ------------------------ |
-| htmlFor          | string    | –       | Associates with input ID |
-| isInvalid        | boolean   | false   | Error styling            |
-| isRequired       | boolean   | false   | Adds required indicator  |
-| children         | ReactNode | –       | Label text               |
-| All SpacingProps | –         | –       | Supports margin/padding  |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `htmlFor` | `string` | — | For attribute linking to control `id` |
+| `isInvalid` | `boolean` | `false` | Error colors |
+| `isRequired` | `boolean` | `false` | Shows required asterisk |
+| `children` | `ReactNode` | — | Label text |
+| — | — | — | Also accepts **SpacingProps** |
 
-# ❌ FormError
+### FormError
 
-| Prop             | Type      | Default | Description             |
-| ---------------- | --------- | ------- | ----------------------- |
-| children         | ReactNode | –       | Error message text      |
-| All SpacingProps | –         | –       | Supports margin/padding |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `children` | `ReactNode` | — | Message text |
+| — | — | — | Also accepts **SpacingProps** |
 
-# 💡 FormHelperText
+### FormHelperText
 
-| Prop             | Type      | Default | Description             |
-| ---------------- | --------- | ------- | ----------------------- |
-| isInvalid        | boolean   | false   | Error color styling     |
-| children         | ReactNode | –       | Helper text content     |
-| All SpacingProps | –         | –       | Supports margin/padding |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `isInvalid` | `boolean` | `false` | Uses error palette when true |
+| `children` | `ReactNode` | — | Helper copy |
+| — | — | — | Also accepts **SpacingProps** |
 
-# 👥 FormGroup
+### FormGroup
 
-| Prop             | Type                          | Default      | Description                   |
-| ---------------- | ----------------------------- | ------------ | ----------------------------- |
-| direction        | `"horizontal"` | `"vertical"` | `"vertical"` | Layout orientation            |
-| spacing          | `"sm"` | `"md"` | `"lg"`      | `"md"`       | Field spacing                 |
-| children         | ReactNode                     | –            | Nested controls               |
-| All SpacingProps | –                             | –            | Supports margin/padding/width |
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `direction` | `"vertical"` \| `"horizontal"` | `"vertical"` | Stack direction |
+| `spacing` | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Gap between fields |
+| `children` | `ReactNode` | — | Nested fields |
+| — | — | — | Also accepts **SpacingProps** |
 
-# 🎨 Design Tokens Integration
+## Design tokens integration
 
 All form components automatically inherit design system tokens:
 
@@ -335,28 +351,31 @@ All form components automatically inherit design system tokens:
 <FormLabel>Uses sizes.text.sm</FormLabel>
 ```
 
-* Custom Styling Example
+* Custom styling example
+
 ```tsx
+import { FormControl, FormLabel, Input, colors } from "kovax-react";
+
 <FormControl
   style={{
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    borderRadius: '8px'
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    borderRadius: "8px",
   }}
   p={16}
   m={8}
 >
-  <FormLabel color={colors.primary[600]}>Styled Field</FormLabel>
+  <FormLabel style={{ color: colors.primary[600] }}>Styled Field</FormLabel>
   <Input placeholder="Custom themed input" />
 </FormControl>
 ```
 
 ## ♿ Accessibility
 
-* FormControl: passes state props (isInvalid, isRequired, isDisabled) to children.
+* **FormControl:** clones **non-native** children (custom components) and injects `isInvalid`, `isRequired`, and `isDisabled`. Plain DOM nodes such as `<label>` are left unchanged.
 
-* FormLabel: properly associates with inputs via htmlFor.
+* **FormLabel:** associates controls via `htmlFor` / `id`.
 
-* *ormError: uses role="alert" and aria-live="polite".
+* **FormError:** uses `role="alert"` and `aria-live="polite"`.
 
 * Required fields show a visual asterisk and ARIA attributes.
 
@@ -364,7 +383,7 @@ All form components automatically inherit design system tokens:
 
 ## 💡 Best Practices
 
-# ✅ Do
+### Do
 
 * Always pair FormLabel with htmlFor.
 
@@ -374,7 +393,7 @@ All form components automatically inherit design system tokens:
 
 * Group fields with FormGroup.
 
-# ❌ Don’t
+### Don’t
 
 * Use raw HTML labels.
 
@@ -384,21 +403,11 @@ All form components automatically inherit design system tokens:
 
 * Overuse inline styles — prefer spacing props.
 
-## 🧪 Testing
+## Testing
 
-# ✅ 100% test coverage
+Automated tests live under `src/components/Form/__tests__`. Run `npm test` in the library repository.
 
-* Accessibility attributes
+## Meta
 
-* Validation state propagation
-
-* Spacing props consistency
-
-# 📊 Status
-
-| Field        | Value                                                        |
-| ------------ | ------------------------------------------------------------ |
-| **Version**  | 1.0.0                                                        |
-| **Features** | TypeScript, Accessibility, Validation, Layout, Design Tokens |
-| **Coverage** | ✅ 100%                                                       |
-| **Status**   | ✅ Production Ready                                           |
+- Package version: see root `package.json`
+- TypeScript types are exported next to each component

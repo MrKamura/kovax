@@ -11,8 +11,10 @@ Built with SOLID principles and TypeScript.
 ## 📦 Import
 
 ```tsx
-import { Button } from "kovax";
+import { Button } from "kovax-react";
 ```
+
+`Button` forwards its `ref` to the native `<button>` element.
 
 ## ⚙️ Props
 
@@ -31,7 +33,7 @@ import { Button } from "kovax";
 | **`loader`**          | `React.ReactNode`                                                | Custom loader component                                        | Default spinner |
 | **`loaderPosition`**  | `"left" \| "right" \| "center"`                                  | Loader position                                                | `"left"`        |
 | **`leftIcon`**        | `React.ReactNode`                                                | Icon on the left side                                          | —               |
-| **`rightIcon`**       | `React.ReactNode`                                                | Icon on the left side                                          | —               |
+| **`rightIcon`**       | `React.ReactNode`                                                | Icon on the right side                                         | —               |
 | **`shadow`**          | `"none" \| "sm" \| "md" \| "lg"\| "xl"`                          | Shadow size                                                    | `"none"`        |
 | **`disabled`**        | `boolean`                                                        | Disables the button                                            | `false`         |
 | **`borderColor`**     | `string`                                                         | Border color                                                   | —               |
@@ -218,12 +220,10 @@ All spacing props accept both numbers (px) and strings
   <Button variant="outline" color="secondary">Outline</Button>
   <Button variant="ghost" color="success">Ghost</Button>
   <Button variant="link" color="error">Link</Button>
-  <Button leftIcon={<FaCheck />} color="success">With Icon</Button>
+  <Button leftIcon={<span aria-hidden>✓</span>} color="success">With Icon</Button>
   <Button isLoading loaderPosition="center" w="100%">Full Width</Button>
 </div>
 ```
-© 2025 — Kovax UI Components
-Version: 1.0.0 (SOLID Architecture)
+## Meta
 
-
-
+- Package name: `kovax-react` (see repository `package.json` for version).

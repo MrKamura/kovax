@@ -4,9 +4,9 @@ import { InputProps } from "./Input.types";
 import { getSpacingStyles } from "../../utils/styleUtils";
 
 /**
- * Kovax Input v1.0.0 - improved mask and accessibility
+ * Kovax Input — mask and accessibility; `ref` targets the native &lt;input&gt;.
  */
-export const Input: React.FC<InputProps> = (props) => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
   const {
     // Spacing props
     w, h, minW, maxW, minH, maxH,
@@ -114,7 +114,6 @@ export const Input: React.FC<InputProps> = (props) => {
    * Handle input change
    */
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    // Если input disabled, не обрабатываем изменения
     if (isDisabled) return;
 
     const inputValue = e.target.value;
@@ -144,7 +143,6 @@ export const Input: React.FC<InputProps> = (props) => {
    * Handle focus
    */
   const handleFocus = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
-    // Если input disabled, не обрабатываем фокус
     if (isDisabled) return;
     
     setIsFocused(true);
@@ -230,8 +228,10 @@ export const Input: React.FC<InputProps> = (props) => {
   return (
     <div style={{ position: "relative", width: "100%" }}>
       <input
+        ref={ref}
         {...restProps}
         {...accessibilityProps}
+        className={className}
         style={inputStyle}
         disabled={isDisabled}
         readOnly={isReadOnly}
@@ -257,6 +257,6 @@ export const Input: React.FC<InputProps> = (props) => {
       )}
     </div>
   );
-};
+});
 
 Input.displayName = "Input";

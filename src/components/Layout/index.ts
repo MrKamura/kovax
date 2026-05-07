@@ -16,3 +16,4 @@ export { Sticky } from './Sticky';
 // Export types
 export type { StackProps, HStackProps, VStackProps } from './Stack.types';
 export type { BoxProps, BaseBoxProps, BoxAsProp } from './Box';
+export type { LayoutBoxProps } from './layoutTypes';

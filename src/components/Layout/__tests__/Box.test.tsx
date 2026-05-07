@@ -119,8 +119,8 @@ describe('Box Component', () => {
     });
 
     test('renders as textarea', () => {
-      render(<Box as="textarea" rows={5}>Textarea content</Box>);
-      const textarea = screen.getByText('Textarea content') as HTMLTextAreaElement;
+      render(<Box as="textarea" rows={5} defaultValue="Textarea content" />);
+      const textarea = screen.getByDisplayValue('Textarea content') as HTMLTextAreaElement;
       expect(textarea.tagName).toBe('TEXTAREA');
       expect(textarea.rows).toBe(5);
     });

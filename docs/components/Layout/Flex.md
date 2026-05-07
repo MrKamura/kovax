@@ -205,21 +205,13 @@ m, p, width, height, border, borderRadius, backgroundColor, and more.
 </Flex>
 ```
 
-* Responsive Layout
-```tsx
-<Flex 
-  direction={{ mobile: "column", tablet: "row" }}
-  gap={{ mobile: 16, tablet: 24 }}
-  align={{ mobile: "stretch", tablet: "center" }}
->
-  <Box flex={1}>
-    <Heading>Main Content</Heading>
-    <Text>This layout adapts to screen size</Text>
-  </Box>
+* Responsive behaviour
 
-  <Box width={{ mobile: "100%", tablet: "300px" }}>
-    <Sidebar />
-  </Box>
+`Flex` props are static values (string, number, or literals). For breakpoints, use CSS (`@media`), a parent layout, or your own responsive hook—not object props such as `{ mobile: "column" }`, which this library does not interpret.
+
+```tsx
+<Flex direction="column" gap={16}>
+  {/* Use CSS or container queries for wider layouts */}
 </Flex>
 ```
 
@@ -278,52 +270,19 @@ const MemoizedFlex = React.memo(Flex);
 </Flex>
 ```
 
-## 🧪 Testing
+## Tests
 
-The Flex component has 100% test coverage, including:
+See `src/components/Layout/__tests__/Flex.test.tsx`. Run `npm test` in the repo.
 
-✅ Default styles
-✅ Direction & reverse
-✅ Alignment & justify
-✅ Wrapping & gaps
-✅ Sizing & basis
-✅ Style merging
-✅ Prop inheritance
-✅ Children rendering
-✅ Memoization
+## Theme integration
 
-```bash
-Test Suites: 1 passed, 1 total
-Tests:       9 passed, 9 total
-```
+Use design tokens from `kovax-react` for gaps and colors:
 
-## 🔧 Technical Details
-
-| Property            | Value                 |
-| ------------------- | --------------------- |
-| **Built on**        | Box component         |
-| **Performance**     | Memoized, lightweight |
-| **Bundle size**     | ~1.2KB gzipped        |
-| **Dependencies**    | React 16.8+, Box      |
-| **Browser support** | All modern browsers   |
-| **TypeScript**      | Fully typed           |
-| **Tree-shakeable**  | ✅ Yes                 |
-
-## 🎨 Theme Integration
 ```tsx
-// Theme spacing
-<Flex gap="spacing.md">
+import { sizes } from "kovax-react";
+
+<Flex gap={sizes.spacing.md}>
   <Button>Cancel</Button>
   <Button>Save</Button>
 </Flex>
-
-// Theme breakpoints
-<Flex direction={{ mobile: "column", tablet: "row" }}>
-  <ContentA />
-  <ContentB />
-</Flex>
 ```
-
-## 🏷️ Tags
-
-#React #KovaxUI #Flex #Layout #Box #Responsive #DesignSystem #UI #Component #Performance #Documentation #BestPractices #TypeScript #Frontend
