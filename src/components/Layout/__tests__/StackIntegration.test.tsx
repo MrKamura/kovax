@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Stack, HStack, VStack } from '../index';
 
-describe('Stack Components Integration', () => {
-  test('nested Stack components', () => {
+describe('Stack integration', () => {
+  it('nested Stack components', () => {
     render(
       <Stack direction="column" gap={16}>
         <Stack direction="row" gap={8} justify="space-between">
@@ -23,7 +23,7 @@ describe('Stack Components Integration', () => {
     expect(screen.getByTestId('center-2')).toBeTruthy();
   });
 
-  test('mixed Stack, HStack and VStack', () => {
+  it('mixed Stack, HStack and VStack', () => {
     render(
       <VStack gap={20}>
         <HStack gap={12} justify="space-between">
@@ -45,7 +45,7 @@ describe('Stack Components Integration', () => {
     expect(screen.getByTestId('item-3')).toBeTruthy();
   });
 
-  test('complex layout with all Stack variants', () => {
+  it('complex layout with all Stack variants', () => {
     render(
       <Stack direction="column" gap={24} m={16} p={12}>
         <VStack flex={1} gap={8}>
@@ -68,7 +68,7 @@ describe('Stack Components Integration', () => {
     expect(screen.getByTestId('content-body')).toBeTruthy();
   });
 
-  test('all direction variants work correctly', () => {
+  it('all direction variants work correctly', () => {
     const directions = ['row', 'column', 'row-reverse', 'column-reverse'] as const;
     
     directions.forEach(direction => {

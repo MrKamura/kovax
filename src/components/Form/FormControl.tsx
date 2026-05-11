@@ -1,5 +1,5 @@
 import React from "react";
-import { sizes } from "../theme/tokens";
+import { themeToken } from "../theme/tokens";
 import { SpacingProps } from "../../types/spacing";
 import { VStack } from "../Layout/VStack";
 
@@ -24,7 +24,7 @@ export const FormControl: React.FC<FormControlProps> = ({
 }) => (
   <VStack
     align="stretch"
-    gap={sizes.spacing.xs}
+    gap={themeToken("spacing.xs")}
     opacity={isDisabled ? 0.6 : 1}
     w="100%"
     className={className}

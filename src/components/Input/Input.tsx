@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { colors, shadows, sizes, transitions } from "../theme/tokens";
+import { colors, themeToken } from "../theme/tokens";
 import { InputProps } from "./Input.types";
 import { getSpacingStyles } from "../../utils/styleUtils";
 
@@ -184,17 +184,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
 
   // Size styles
   const sizeStyles = {
-    sm: { 
-      padding: `${sizes.spacing.xs} ${sizes.spacing.sm}`, 
-      fontSize: sizes.text.sm 
+    sm: {
+      padding: `${themeToken("spacing.xs")} ${themeToken("spacing.sm")}`,
+      fontSize: themeToken("text.sm"),
     },
-    md: { 
-      padding: `${sizes.spacing.sm} ${sizes.spacing.md}`, 
-      fontSize: sizes.text.base 
+    md: {
+      padding: `${themeToken("spacing.sm")} ${themeToken("spacing.md")}`,
+      fontSize: themeToken("text.base"),
     },
-    lg: { 
-      padding: `${sizes.spacing.md} ${sizes.spacing.lg}`, 
-      fontSize: sizes.text.lg 
+    lg: {
+      padding: `${themeToken("spacing.md")} ${themeToken("spacing.lg")}`,
+      fontSize: themeToken("text.lg"),
     },
   };
 
@@ -213,12 +213,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
   // Combined styles
   const inputStyle = {
     ...sizeStyles[size],
-    borderRadius: sizes.borderRadius.md,
+    borderRadius: themeToken("borderRadius.md"),
     border: `1px solid ${borderColorValue}`,
     background,
-    boxShadow: shadows.sm,
+    boxShadow: themeToken("shadow.sm"),
     opacity,
-    transition: transitions.default,
+    transition: themeToken("transition.default"),
     outline: "none",
     width: "100%",
     boxSizing: "border-box" as const,
@@ -247,9 +247,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
         <div 
           id={errorId}
           style={{ 
-            color: colors.error[500], 
-            fontSize: sizes.text.sm, 
-            marginTop: sizes.spacing.xs 
+            color: colors.error[500],
+            fontSize: themeToken("text.sm"),
+            marginTop: themeToken("spacing.xs"),
           }}
         >
           {errorMessage}

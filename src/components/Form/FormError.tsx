@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, sizes } from '../theme/tokens';
+import { colors, themeToken } from '../theme/tokens';
 import { SpacingProps } from '../../types/spacing';
 import { getSpacingStyles } from '../../utils/styleUtils';
 import { HStack } from '../Layout/HStack';
@@ -22,14 +22,14 @@ export const FormError: React.FC<FormErrorProps> = ({
   return (
     <HStack
       align="center"
-      gap={sizes.spacing.xs}
+      gap={themeToken("spacing.xs")}
       className={className}
       role="alert"
       aria-live="polite"
       style={{
         color: colors.error[500],
-        fontSize: sizes.text.sm,
-        marginTop: sizes.spacing.xs,
+        fontSize: themeToken("text.sm"),
+        marginTop: themeToken("spacing.xs"),
         ...spacingStyles,
       }}
     >

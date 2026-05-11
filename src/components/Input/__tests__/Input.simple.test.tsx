@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Input } from '../Input';
 
-describe('Input Simple Tests', () => {
-  test('input renders and can be found by placeholder', () => {
+describe('Input', () => {
+  it('input renders and can be found by placeholder', () => {
     render(<Input placeholder="Enter text" />);
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInstanceOf(HTMLInputElement);
   });
 
-  test('input calls onChange when value changes', () => {
+  it('input calls onChange when value changes', () => {
     const mockOnChange = jest.fn();
     render(<Input onChange={mockOnChange} placeholder="Test" />);
     
@@ -19,7 +19,7 @@ describe('Input Simple Tests', () => {
     expect(mockOnChange).toHaveBeenCalledTimes(1);
   });
 
-  test('disabled input cannot be focused or changed', () => {
+  it('disabled input cannot be focused or changed', () => {
     const mockOnChange = jest.fn();
     const mockOnFocus = jest.fn();
     
@@ -33,20 +33,17 @@ describe('Input Simple Tests', () => {
     );
     
     const input = screen.getByPlaceholderText('Disabled') as HTMLInputElement;
-    
-    // Проверяем disabled свойство
+
     expect(input.disabled).toBe(true);
-    
-    // Пытаемся изменить значение - не должно вызывать onChange
+
     fireEvent.change(input, { target: { value: 'new value' } });
     expect(mockOnChange).not.toHaveBeenCalled();
-    
-    // Пытаемся сфокусироваться - не должно вызывать onFocus
+
     fireEvent.focus(input);
     expect(mockOnFocus).not.toHaveBeenCalled();
   });
 
-  test('error message appears when isInvalid is true', () => {
+  it('error message appears when isInvalid is true', () => {
     render(
       <Input 
         isInvalid 
@@ -59,19 +56,19 @@ describe('Input Simple Tests', () => {
     expect(errorMessage).toBeTruthy();
   });
 
-  test('input has correct type attribute', () => {
+  it('input has correct type attribute', () => {
     render(<Input type="email" placeholder="Email" />);
     const input = screen.getByPlaceholderText('Email') as HTMLInputElement;
     expect(input.type).toBe('email');
   });
 
-  test('input has correct default type', () => {
+  it('input has correct default type', () => {
     render(<Input placeholder="Default" />);
     const input = screen.getByPlaceholderText('Default') as HTMLInputElement;
     expect(input.type).toBe('text');
   });
 
-  test('readonly input cannot be changed', () => {
+  it('readonly input cannot be changed', () => {
     const mockOnChange = jest.fn();
     render(
       <Input 

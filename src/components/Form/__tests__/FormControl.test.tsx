@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { FormControl } from '../FormControl';
 import { Input } from '../../Input/Input';
 
-describe('FormControl Component', () => {
-  test('renders children correctly', () => {
+describe('FormControl', () => {
+  it('renders children correctly', () => {
     render(
       <FormControl>
         <label htmlFor="test">Test Label</label>
@@ -17,7 +16,7 @@ describe('FormControl Component', () => {
     expect(screen.getByRole('textbox')).toBeTruthy();
   });
 
-  test('applies spacing props', () => {
+  it('applies spacing props', () => {
     render(
       <FormControl m={16} p={8}>
         <input type="text" />
@@ -29,7 +28,7 @@ describe('FormControl Component', () => {
     expect(formControl?.style.padding).toBe('8px');
   });
 
-  test('applies disabled styles when isDisabled is true', () => {
+  it('applies disabled styles when isDisabled is true', () => {
     render(
       <FormControl isDisabled>
         <input type="text" />
@@ -40,7 +39,7 @@ describe('FormControl Component', () => {
     expect(formControl?.style.opacity).toBe('0.6');
   });
 
-  test('does not apply disabled styles when isDisabled is false', () => {
+  it('does not apply disabled styles when isDisabled is false', () => {
     render(
       <FormControl isDisabled={false}>
         <input type="text" />
@@ -51,7 +50,7 @@ describe('FormControl Component', () => {
     expect(formControl?.style.opacity).toBe('1');
   });
 
-  test('passes form state props to children', () => {
+  it('passes form state props to children', () => {
     const { rerender } = render(
       <FormControl isInvalid isRequired isDisabled>
         <Input data-testid="test-input" />
@@ -71,14 +70,14 @@ describe('FormControl Component', () => {
     );
     
     input = screen.getByTestId('test-input');
-    // Когда isInvalid=false, aria-invalid может быть null или 'false'
+    // With isInvalid=false, aria-invalid may be absent or "false"
     const ariaInvalid = input.getAttribute('aria-invalid');
     expect(ariaInvalid === 'false' || ariaInvalid === null).toBe(true);
     expect(input.hasAttribute('required')).toBe(false);
     expect(input.hasAttribute('disabled')).toBe(false);
   });
 
-  test('applies custom className', () => {
+  it('applies custom className', () => {
     render(
       <FormControl className="custom-form-control">
         <input type="text" />
@@ -89,11 +88,11 @@ describe('FormControl Component', () => {
     expect(formControl?.className).toContain('custom-form-control');
   });
 
-  test('has correct display name', () => {
+  it('has correct display name', () => {
     expect(FormControl.displayName).toBe('FormControl');
   });
 
-  test('maintains flex column layout', () => {
+  it('maintains flex column layout', () => {
     render(
       <FormControl>
         <input type="text" />
@@ -106,7 +105,7 @@ describe('FormControl Component', () => {
     expect(formControl?.style.width).toBe('100%');
   });
 
-  test('applies gap between children', () => {
+  it('applies gap between children', () => {
     render(
       <FormControl>
         <label>Label</label>

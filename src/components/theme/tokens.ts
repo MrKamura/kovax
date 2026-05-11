@@ -61,6 +61,12 @@ export const colors = {
   },
 } as const;
 
+/** Neutral surfaces outside palette scales */
+export const baseColors = {
+  white: "#ffffff",
+  black: "#000000",
+} as const;
+
 export const sizes = {
   text: {
     xs: '0.75rem',
@@ -102,4 +108,80 @@ export const transitions = {
 export type ColorName = keyof typeof colors;
 export type ColorShade = keyof typeof colors.primary;
 export type ShadowKey = keyof typeof shadows;
+export type TransitionKey = keyof typeof transitions;
+export type TextSizeKey = keyof typeof sizes.text;
+export type BorderRadiusKey = keyof typeof sizes.borderRadius;
+/** Keys on the spacing scale (`sizes.spacing`) */
 export type SizeKey = keyof typeof sizes.spacing;
+
+/**
+ * Palette string: `palette.shade` (`secondary.200`) or base `white` / `black`.
+ * Unknown strings are returned unchanged (e.g. `#fff`, `rgba(...)`).
+ */
+export type ColorToken =
+  | `${ColorName}.${ColorShade}`
+  | "white"
+  | "black";
+
+export function colorToken(path: ColorToken | string): string {
+  if (path === "white") return baseColors.white;
+  if (path === "black") return baseColors.black;
+
+  const dot = path.indexOf(".");
+  if (dot <= 0) return path;
+
+  const paletteName = path.slice(0, dot) as ColorName;
+  const shadeKey = path.slice(dot + 1);
+  const palette = colors[paletteName];
+  if (palette != null && shadeKey in palette) {
+    return (palette as Record<string, string>)[shadeKey];
+  }
+
+  return path;
+}
+
+/**
+ * Single string reference into theme tokens.
+ *
+ * - Colors: same as `colorToken` — `secondary.200`, `white`, arbitrary CSS.
+ * - Sizes: `text.sm`, `spacing.md`, `borderRadius.md`.
+ * - Other: `shadow.sm`, `transition.default`.
+ */
+export type ThemeToken =
+  | ColorToken
+  | `shadow.${ShadowKey}`
+  | `transition.${TransitionKey}`
+  | `text.${TextSizeKey}`
+  | `spacing.${SizeKey}`
+  | `borderRadius.${BorderRadiusKey}`;
+
+export function themeToken(path: ThemeToken | string): string {
+  const dot = path.indexOf(".");
+  if (dot <= 0) {
+    return colorToken(path);
+  }
+
+  const ns = path.slice(0, dot);
+  const key = path.slice(dot + 1);
+
+  switch (ns) {
+    case "shadow":
+      if (key in shadows) return (shadows as Record<string, string>)[key];
+      return path;
+    case "transition":
+      if (key in transitions) return (transitions as Record<string, string>)[key];
+      return path;
+    case "text":
+      if (key in sizes.text) return (sizes.text as Record<string, string>)[key];
+      return path;
+    case "spacing":
+      if (key in sizes.spacing) return (sizes.spacing as Record<string, string>)[key];
+      return path;
+    case "borderRadius":
+      if (key in sizes.borderRadius)
+        return (sizes.borderRadius as Record<string, string>)[key];
+      return path;
+    default:
+      return colorToken(path);
+  }
+}

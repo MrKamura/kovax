@@ -1,6 +1,6 @@
 /// <reference types="@testing-library/jest-dom" />
 
-// Глобальные типы для тестов
+// Global types for tests
 declare namespace jest {
   interface Matchers<R> {
     toBeInTheDocument(): R;

@@ -3,6 +3,10 @@ import type { BaseBoxProps } from './Box.types';
 import { Box } from './Box';
 import { getGridTemplateStyles } from './gridStyles';
 
+function gridGapToCss(value: number | string): string | number {
+  return typeof value === 'number' ? `${value}px` : value;
+}
+
 export interface GridOwnProps {
   columns?: number | string;
   rows?: number | string;
@@ -86,10 +90,18 @@ export const Grid: React.FC<GridProps> = React.memo(
       gridAutoFlow: autoFlow,
       gridAutoColumns: autoColumns,
       gridAutoRows: autoRows,
-      rowGap,
-      columnGap,
       ...getGridTemplateStyles({ template, columns, rows, areas }),
     };
+
+    if (gap !== undefined) {
+      gridLayoutStyle.gap = gridGapToCss(gap);
+    }
+    if (rowGap !== undefined) {
+      gridLayoutStyle.rowGap = gridGapToCss(rowGap);
+    }
+    if (columnGap !== undefined) {
+      gridLayoutStyle.columnGap = gridGapToCss(columnGap);
+    }
 
     return (
       <Box
@@ -100,7 +112,6 @@ export const Grid: React.FC<GridProps> = React.memo(
         maxW={boxProps.maxW ?? maxWidth}
         minH={boxProps.minH ?? minHeight}
         maxH={boxProps.maxH ?? maxHeight}
-        gap={gap}
         className={className}
         id={id}
         style={{ ...gridLayoutStyle, ...style }}

@@ -347,14 +347,14 @@ All form components automatically inherit design system tokens:
 ```tsx
 <FormError>Uses colors.error[500]</FormError>
 <FormHelperText>Uses colors.secondary[500]</FormHelperText>
-<FormGroup spacing="md">Uses sizes.spacing.md</FormGroup>
-<FormLabel>Uses sizes.text.sm</FormLabel>
+<FormGroup spacing="md">Uses themeToken(&quot;spacing.md&quot;)</FormGroup>
+<FormLabel>Uses themeToken(&quot;text.sm&quot;)</FormLabel>
 ```
 
 * Custom styling example
 
 ```tsx
-import { FormControl, FormLabel, Input, colors } from "kovax-react";
+import { FormControl, FormLabel, Input, themeToken } from "kovax-react";
 
 <FormControl
   style={{
@@ -364,7 +364,7 @@ import { FormControl, FormLabel, Input, colors } from "kovax-react";
   p={16}
   m={8}
 >
-  <FormLabel style={{ color: colors.primary[600] }}>Styled Field</FormLabel>
+  <FormLabel style={{ color: themeToken("primary.600") }}>Styled Field</FormLabel>
   <Input placeholder="Custom themed input" />
 </FormControl>
 ```

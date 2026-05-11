@@ -1,5 +1,5 @@
 import React from 'react';
-import { sizes } from '../theme/tokens';
+import { themeToken } from '../theme/tokens';
 import { SpacingProps } from '../../types/spacing';
 import { Stack } from '../Layout/Stack';
 
@@ -21,9 +21,9 @@ export const FormGroup: React.FC<FormGroupProps> = ({
   ...spacingProps
 }) => {
   const spacingMap = {
-    sm: sizes.spacing.sm,
-    md: sizes.spacing.md,
-    lg: sizes.spacing.lg,
+    sm: themeToken("spacing.sm"),
+    md: themeToken("spacing.md"),
+    lg: themeToken("spacing.lg"),
   };
 
   return (

@@ -1,0 +1,94 @@
+{
+  "brandAria": "Главная — Kovax React",
+  "nav": {
+    "mainAria": "Основные разделы",
+    "home": "Главная",
+    "components": "Компоненты",
+    "documentation": "Документация"
+  },
+  "sidebar": {
+    "heading": "Компоненты",
+    "meta": "Живые примеры",
+    "navAria": "Компоненты"
+  },
+  "langSwitcher": {
+    "aria": "Язык интерфейса",
+    "en": "EN",
+    "ru": "RU"
+  },
+  "liveExample": {
+    "ariaExample": "Пример",
+    "ariaViewMode": "Режим просмотра",
+    "preview": "Превью",
+    "code": "Код"
+  },
+  "docProps": {
+    "ariaProps": "Пропсы",
+    "prop": "Проп",
+    "type": "Тип",
+    "default": "По умолчанию",
+    "description": "Описание"
+  },
+  "docMarkdown": {
+    "ariaDocumentation": "Документация"
+  },
+  "intro": {
+    "title": "Песочница Kovax",
+    "import": "Компоненты подключаются из <code>src/</code> через алиас <code>kovax-react</code> — изменения в библиотеке сразу видны здесь.",
+    "docs": "Полные тексты из <code>docs/</code> (пропсы, гайды) — в разделе шапки <strong>Документация</strong>. Живые демо: <strong>Компоненты</strong>, затем пункт слева в списке.",
+    "tabs": "У каждого примера есть вкладки «Превью» и «Код».",
+    "runTitle": "Запуск",
+    "runBody": "Из корня репозитория: <code>npm install</code>, затем <code>npm run dev:playground</code> (прод-сборка: <code>npm run build:playground</code>). Дополнительные флаги Vite: <code>npm run dev -w kovax-playground -- --host</code>."
+  },
+  "documentation": {
+    "title": "Документация",
+    "lead": "Markdown из каталога <code>docs/</code> репозитория: импорты, таблицы пропсов и примеры из файлов документации.",
+    "topicBarAria": "Раздел документации",
+    "topics": {
+      "foundation": "Основы",
+      "layout": "Layout",
+      "typography": "Typography",
+      "button": "Button",
+      "input": "Input",
+      "form": "Form"
+    },
+    "hints": {
+      "foundation": "README, Getting Started, Tokens, Design system",
+      "layout": "docs/components/Layout/",
+      "typography": "docs/components/Typography/",
+      "button": "docs/components/Button.md",
+      "input": "docs/components/Input.md",
+      "form": "docs/components/Form.md"
+    }
+  },
+  "layout": {
+    "intro": "Ниже — по одному блоку на каждый примитив из <code>docs/components/Layout/</code>: таблица пропсов (по документации) и живой пример. Полные тексты — в шапке <strong>Документация</strong> → Layout.",
+    "stackHint": "У HStack / VStack те же пропсы; у VStack по умолчанию <code>align=&quot;stretch&quot;</code>.",
+    "flexCenterHint": "Композиция: Flex задаёт область, Center центрирует вложенное.",
+    "boxPropsTitle": "Пропсы (docs/components/Layout/Box.md)"
+  },
+  "typography": {
+    "intro": "Текстовые примитивы на токенах <code>sizes.text</code>. Полное описание — в шапке <strong>Документация</strong> → Typography.",
+    "examplesText": "Примеры: Text",
+    "examplesHeading": "Примеры: Heading",
+    "examplesLink": "Примеры: Link",
+    "examplesCodeKbd": "Примеры: Code и Kbd",
+    "examplesBlockquote": "Примеры: Blockquote",
+    "examplesList": "Примеры: List"
+  },
+  "button": {
+    "intro": "Варианты кнопки и состояние загрузки. Таблицы пропсов — в шапке <strong>Документация</strong> → Button.",
+    "examplesVariants": "Примеры: варианты",
+    "examplesSizes": "Примеры: размеры",
+    "examplesStates": "Примеры: состояния"
+  },
+  "input": {
+    "intro": "Поля ввода с разными размерами и схемами. Справка — в шапке <strong>Документация</strong> → Input.",
+    "examplesBasics": "Примеры: базовые"
+  },
+  "form": {
+    "intro": "Связка лейбла, поля, подсказки и ошибки. Справка — в шапке <strong>Документация</strong> → Form.",
+    "examplesFormControl": "Примеры: FormControl",
+    "examplesFormGroup": "Примеры: FormGroup"
+  }
+}

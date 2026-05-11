@@ -279,9 +279,9 @@ See `src/components/Layout/__tests__/Flex.test.tsx`. Run `npm test` in the repo.
 Use design tokens from `kovax-react` for gaps and colors:
 
 ```tsx
-import { sizes } from "kovax-react";
+import { themeToken } from "kovax-react";
 
-<Flex gap={sizes.spacing.md}>
+<Flex gap={themeToken("spacing.md")}>
   <Button>Cancel</Button>
   <Button>Save</Button>
 </Flex>

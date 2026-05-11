@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { FormGroup } from '../FormGroup';
 
-describe('FormGroup Component', () => {
-  test('renders children correctly', () => {
+describe('FormGroup', () => {
+  it('renders children correctly', () => {
     render(
       <FormGroup>
         <input type="text" placeholder="First" />
@@ -15,7 +15,7 @@ describe('FormGroup Component', () => {
     expect(screen.getByPlaceholderText('Second')).toBeTruthy();
   });
 
-  test('applies vertical direction by default', () => {
+  it('applies vertical direction by default', () => {
     render(
       <FormGroup>
         <input type="text" />
@@ -27,7 +27,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.flexDirection).toBe('column');
   });
 
-  test('applies horizontal direction when specified', () => {
+  it('applies horizontal direction when specified', () => {
     render(
       <FormGroup direction="horizontal">
         <input type="text" />
@@ -39,7 +39,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.flexDirection).toBe('row');
   });
 
-  test('applies different spacing sizes', () => {
+  it('applies different spacing sizes', () => {
     const { rerender } = render(
       <FormGroup spacing="sm">
         <input type="text" />
@@ -71,7 +71,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.gap).toBeTruthy();
   });
 
-  test('applies spacing props', () => {
+  it('applies spacing props', () => {
     render(
       <FormGroup m={16} p={8}>
         <input type="text" />
@@ -83,7 +83,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.padding).toBe('8px');
   });
 
-  test('applies custom className', () => {
+  it('applies custom className', () => {
     render(
       <FormGroup className="custom-group">
         <input type="text" />
@@ -94,7 +94,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.className).toContain('custom-group');
   });
 
-  test('has full width', () => {
+  it('has full width', () => {
     render(
       <FormGroup>
         <input type="text" />
@@ -105,7 +105,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.width).toBe('100%');
   });
 
-  test('has flex display', () => {
+  it('has flex display', () => {
     render(
       <FormGroup>
         <input type="text" />
@@ -116,7 +116,7 @@ describe('FormGroup Component', () => {
     expect(formGroup?.style.display).toBe('flex');
   });
 
-  test('has correct display name', () => {
+  it('has correct display name', () => {
     expect(FormGroup.displayName).toBe('FormGroup');
   });
 });

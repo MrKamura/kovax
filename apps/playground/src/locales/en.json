@@ -1,0 +1,94 @@
+{
+  "brandAria": "Home — Kovax React",
+  "nav": {
+    "mainAria": "Main sections",
+    "home": "Home",
+    "components": "Components",
+    "documentation": "Documentation"
+  },
+  "sidebar": {
+    "heading": "Components",
+    "meta": "Live examples",
+    "navAria": "Components"
+  },
+  "langSwitcher": {
+    "aria": "Interface language",
+    "en": "EN",
+    "ru": "RU"
+  },
+  "liveExample": {
+    "ariaExample": "Example",
+    "ariaViewMode": "View mode",
+    "preview": "Preview",
+    "code": "Code"
+  },
+  "docProps": {
+    "ariaProps": "Props",
+    "prop": "Prop",
+    "type": "Type",
+    "default": "Default",
+    "description": "Description"
+  },
+  "docMarkdown": {
+    "ariaDocumentation": "Documentation"
+  },
+  "intro": {
+    "title": "Kovax playground",
+    "import": "Components import from <code>src/</code> via the <code>kovax-react</code> alias — library changes show up here immediately.",
+    "docs": "Full copy from <code>docs/</code> (props tables, guides) lives under <strong>Documentation</strong> in the header. Live component demos: <strong>Components</strong>, then pick an item in the sidebar.",
+    "tabs": "Each example has Preview and Code tabs.",
+    "runTitle": "Run locally",
+    "runBody": "From the repo root: <code>npm install</code>, then <code>npm run dev:playground</code> (production build: <code>npm run build:playground</code>). Extra Vite flags: <code>npm run dev -w kovax-playground -- --host</code>."
+  },
+  "documentation": {
+    "title": "Documentation",
+    "lead": "Markdown from the repo <code>docs/</code> folder: imports, props tables, and examples from the packaged docs.",
+    "topicBarAria": "Documentation topic",
+    "topics": {
+      "foundation": "Foundation",
+      "layout": "Layout",
+      "typography": "Typography",
+      "button": "Button",
+      "input": "Input",
+      "form": "Form"
+    },
+    "hints": {
+      "foundation": "README, Getting Started, Tokens, Design system",
+      "layout": "docs/components/Layout/",
+      "typography": "docs/components/Typography/",
+      "button": "docs/components/Button.md",
+      "input": "docs/components/Input.md",
+      "form": "docs/components/Form.md"
+    }
+  },
+  "layout": {
+    "intro": "One block per primitive from <code>docs/components/Layout/</code>: a props table (from the docs) and a live example. Full prose lives under header <strong>Documentation</strong> → Layout.",
+    "stackHint": "HStack / VStack share the same props; VStack defaults to <code>align=&quot;stretch&quot;</code>.",
+    "flexCenterHint": "Composition pattern: Flex defines the region; Center centers its child.",
+    "boxPropsTitle": "Props (docs/components/Layout/Box.md)"
+  },
+  "typography": {
+    "intro": "Text primitives backed by <code>sizes.text</code> tokens. Full reference — header <strong>Documentation</strong> → Typography.",
+    "examplesText": "Examples: Text",
+    "examplesHeading": "Examples: Heading",
+    "examplesLink": "Examples: Link",
+    "examplesCodeKbd": "Examples: Code & Kbd",
+    "examplesBlockquote": "Examples: Blockquote",
+    "examplesList": "Examples: List"
+  },
+  "button": {
+    "intro": "Button variants and loading state. Props tables — header <strong>Documentation</strong> → Button.",
+    "examplesVariants": "Examples: variants",
+    "examplesSizes": "Examples: sizes",
+    "examplesStates": "Examples: states"
+  },
+  "input": {
+    "intro": "Inputs at different sizes and color schemes. Reference — header <strong>Documentation</strong> → Input.",
+    "examplesBasics": "Examples: basics"
+  },
+  "form": {
+    "intro": "Label, field, helper text, and error wiring. Reference — header <strong>Documentation</strong> → Form.",
+    "examplesFormControl": "Examples: FormControl",
+    "examplesFormGroup": "Examples: FormGroup"
+  }
+}

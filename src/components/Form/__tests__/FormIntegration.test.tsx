@@ -9,8 +9,8 @@ import {
 } from '../index';
 import { Input } from '../../Input/Input';
 
-describe('Form Components Integration', () => {
-  test('complete form with all components', () => {
+describe('Form integration', () => {
+  it('complete form with all components', () => {
     render(
       <FormControl isInvalid isRequired>
         <FormLabel htmlFor="email" isRequired isInvalid>
@@ -31,7 +31,7 @@ describe('Form Components Integration', () => {
     expect(screen.getByText('*')).toBeTruthy();
   });
 
-  test('form group with multiple controls', () => {
+  it('form group with multiple controls', () => {
     render(
       <FormGroup direction="horizontal" spacing="md">
         <FormControl>
@@ -50,7 +50,7 @@ describe('Form Components Integration', () => {
     expect(screen.getAllByRole('textbox')).toHaveLength(2);
   });
 
-  test('form control state propagation', () => {
+  it('form control state propagation', () => {
     render(
       <FormControl isInvalid isRequired isDisabled>
         <FormLabel isInvalid isRequired>
@@ -74,7 +74,7 @@ describe('Form Components Integration', () => {
     expect(helperText.style.color).toBeTruthy();
   });
 
-  test('accessible form structure', () => {
+  it('accessible form structure', () => {
     render(
       <FormControl>
         <FormLabel htmlFor="username">Username</FormLabel>

@@ -5,30 +5,59 @@
   },
   "version": "0.1.6",
   "type": "module",
+  "sideEffects": false,
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./components/Button": {
-      "types": "./dist/components/Button/index.d.ts"
+    "./layout": {
+      "types": "./dist/layout.d.ts",
+      "import": "./dist/layout.js",
+      "require": "./dist/layout.cjs"
     },
-    "./components/Input": {
-      "types": "./dist/components/Input/index.d.ts"
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js",
+      "require": "./dist/button.cjs"
     },
-    "./components/Layout": {
-      "types": "./dist/components/Layout/index.d.ts"
+    "./input": {
+      "types": "./dist/input.d.ts",
+      "import": "./dist/input.js",
+      "require": "./dist/input.cjs"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js",
+      "require": "./dist/form.cjs"
+    },
+    "./tokens": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js",
+      "require": "./dist/tokens.cjs"
+    },
+    "./typography": {
+      "types": "./dist/typography.d.ts",
+      "import": "./dist/typography.js",
+      "require": "./dist/typography.cjs"
     }
   },
   "files": [
     "dist"
   ],
+  "workspaces": [
+    "apps/*"
+  ],
   "scripts": {
     "build": "tsup",
+    "build:sourcemap": "tsup --sourcemap",
     "dev": "tsup --watch",
+    "dev:playground": "npm run dev -w kovax-playground",
+    "build:playground": "npm run build -w kovax-playground",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
     "test": "jest",

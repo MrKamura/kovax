@@ -1,6 +1,6 @@
 # Separator
 
-Horizontal or vertical line divider. Renders a `Box` with background color and thickness; `orientation="vertical"` swaps width/height behavior.
+Horizontal or vertical line divider. Renders a `Box` with background color and thickness. For `orientation="vertical"`, thickness maps to **width**; the line stretches along the cross axis in flex layouts (`align-self: stretch`) with `min-height: 1em` so it stays visible next to text (e.g. in `HStack` with `align="center"`).
 
 ## Import
 

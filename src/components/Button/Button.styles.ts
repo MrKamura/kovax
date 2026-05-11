@@ -1,4 +1,4 @@
-import { colors, shadows, sizes, transitions } from "../theme/tokens";
+import { colors, themeToken } from "../theme/tokens";
 import { ButtonStyleProps } from "./Button.types";
 
 export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolean }): React.CSSProperties => {
@@ -22,14 +22,34 @@ export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolea
   const activeColor = colorSet[700] ?? baseColor;
 
   const sizeMap: Record<string, { fontSize: string; padding: string; height: string }> = {
-    xs: { fontSize: sizes.text.xs, padding: `${sizes.spacing.xs} ${sizes.spacing.sm}`, height: "28px" },
-    sm: { fontSize: sizes.text.sm, padding: `${sizes.spacing.sm} ${sizes.spacing.md}`, height: "32px" },
-    md: { fontSize: sizes.text.base, padding: `${sizes.spacing.sm} ${sizes.spacing.lg}`, height: "38px" },
-    lg: { fontSize: sizes.text.lg, padding: `${sizes.spacing.md} ${sizes.spacing.lg}`, height: "44px" },
-    xl: { fontSize: sizes.text.xl, padding: `${sizes.spacing.lg} ${sizes.spacing.xl}`, height: "50px" },
+    xs: {
+      fontSize: themeToken("text.xs"),
+      padding: `${themeToken("spacing.xs")} ${themeToken("spacing.sm")}`,
+      height: "28px",
+    },
+    sm: {
+      fontSize: themeToken("text.sm"),
+      padding: `${themeToken("spacing.sm")} ${themeToken("spacing.md")}`,
+      height: "32px",
+    },
+    md: {
+      fontSize: themeToken("text.base"),
+      padding: `${themeToken("spacing.sm")} ${themeToken("spacing.lg")}`,
+      height: "38px",
+    },
+    lg: {
+      fontSize: themeToken("text.lg"),
+      padding: `${themeToken("spacing.md")} ${themeToken("spacing.lg")}`,
+      height: "44px",
+    },
+    xl: {
+      fontSize: themeToken("text.xl"),
+      padding: `${themeToken("spacing.lg")} ${themeToken("spacing.xl")}`,
+      height: "50px",
+    },
   };
 
-  // Используем type guard для безопасного доступа
+  // Type guard for safe access to size presets
   const s = typeof size === "string" && size in sizeMap 
     ? sizeMap[size as keyof typeof sizeMap] 
     : sizeMap.md;
@@ -46,12 +66,12 @@ export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolea
     borderColor: computedBorderColor,
     borderWidth: variant === "outline" ? "1px" : 0,
     borderStyle: variant === "outline" ? "solid" : "none",
-    borderRadius: borderRadius ?? sizes.borderRadius.md,
-    boxShadow: shadows[shadow as keyof typeof shadows] ?? 'none',
+    borderRadius: borderRadius ?? themeToken("borderRadius.md"),
+    boxShadow: themeToken(`shadow.${shadow}`),
     padding: s.padding,
     fontSize: s.fontSize,
     fontWeight: 500,
-    transition: transitions.default,
+    transition: themeToken("transition.default"),
     cursor: disabled ? "not-allowed" : "pointer",
     opacity: disabled ? 0.6 : 1,
     display: "inline-flex",

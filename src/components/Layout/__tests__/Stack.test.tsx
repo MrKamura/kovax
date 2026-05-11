@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Stack } from '../Stack';
 
-describe('Stack Component', () => {
-  test('renders children correctly', () => {
+describe('Stack', () => {
+  it('renders children correctly', () => {
     render(
       <Stack>
         <div data-testid="item-1">Item 1</div>
@@ -15,7 +15,7 @@ describe('Stack Component', () => {
     expect(screen.getByTestId('item-2')).toBeTruthy();
   });
 
-  test('applies row direction by default', () => {
+  it('applies row direction by default', () => {
     const { container } = render(<Stack>Test</Stack>);
     
     const stack = container.firstChild as HTMLElement;
@@ -23,14 +23,14 @@ describe('Stack Component', () => {
     expect(stack.style.flexDirection).toBe('row');
   });
 
-  test('applies custom direction', () => {
+  it('applies custom direction', () => {
     const { container } = render(<Stack direction="column">Test</Stack>);
     
     const stack = container.firstChild as HTMLElement;
     expect(stack.style.flexDirection).toBe('column');
   });
 
-  test('applies all direction variants', () => {
+  it('applies all direction variants', () => {
     const directions = ['row', 'column', 'row-reverse', 'column-reverse'] as const;
     
     directions.forEach(direction => {
@@ -44,7 +44,7 @@ describe('Stack Component', () => {
     });
   });
 
-  test('applies alignment props', () => {
+  it('applies alignment props', () => {
     const { container } = render(
       <Stack align="flex-end" justify="center">
         Test
@@ -56,14 +56,14 @@ describe('Stack Component', () => {
     expect(stack.style.justifyContent).toBe('center');
   });
 
-  test('applies wrap property', () => {
+  it('applies wrap property', () => {
     const { container } = render(<Stack wrap="wrap">Test</Stack>);
     
     const stack = container.firstChild as HTMLElement;
     expect(stack.style.flexWrap).toBe('wrap');
   });
 
-  test('applies spacing props including gap', () => {
+  it('applies spacing props including gap', () => {
     const { container } = render(<Stack m={16} p={8} gap={12}>Test</Stack>);
     
     const stack = container.firstChild as HTMLElement;
@@ -72,14 +72,14 @@ describe('Stack Component', () => {
     expect(stack.style.gap).toBe('12px');
   });
 
-  test('applies custom className', () => {
+  it('applies custom className', () => {
     const { container } = render(<Stack className="custom-stack">Test</Stack>);
     
     const stack = container.firstChild as HTMLElement;
     expect(stack.className).toContain('custom-stack');
   });
 
-  test('handles click events', () => {
+  it('handles click events', () => {
     const handleClick = jest.fn();
     const { container } = render(<Stack onClick={handleClick}>Clickable</Stack>);
     
@@ -88,7 +88,7 @@ describe('Stack Component', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  test('has correct display name', () => {
+  it('has correct display name', () => {
     expect(Stack.displayName).toBe('Stack');
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, sizes } from '../theme/tokens';
+import { colors, themeToken } from '../theme/tokens';
 import { SpacingProps } from '../../types/spacing';
 import { getSpacingStyles } from '../../utils/styleUtils';
 import { Box } from '../Layout/Box';
@@ -32,10 +32,10 @@ export const FormLabel: React.FC<FormLabelProps> = ({
       className={className}
       display="block"
       style={{
-        fontSize: sizes.text.sm,
+        fontSize: themeToken("text.sm"),
         fontWeight: 500,
         color: isInvalid ? colors.error[600] : colors.secondary[700],
-        marginBottom: sizes.spacing.xs,
+        marginBottom: themeToken("spacing.xs"),
         cursor: 'pointer',
         ...spacingStyles,
       }}

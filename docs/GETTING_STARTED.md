@@ -22,10 +22,10 @@ ESM and CJS builds are published from the package `exports` field. Typical impor
 import { Box, Button, Input, VStack } from "kovax-react";
 ```
 
-Design tokens:
+Design tokens (objects and the string helper `themeToken`):
 
 ```tsx
-import { colors, sizes } from "kovax-react";
+import { colors, sizes, themeToken } from "kovax-react";
 ```
 
 ## Compose with `Box`

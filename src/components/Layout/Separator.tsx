@@ -33,7 +33,9 @@ export const Separator: React.FC<SeparatorProps> = React.memo(
       }),
       ...(!isHorizontal && {
         width: typeof size === 'number' ? `${size}px` : size,
-        height: '100%',
+        alignSelf: 'stretch',
+        minHeight: '1em',
+        height: 'auto',
         backgroundColor: color,
       }),
       ...(margin !== undefined && {

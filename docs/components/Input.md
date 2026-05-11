@@ -47,9 +47,9 @@ Any `SpacingProps` field applies to the input (`w`, `h`, `m`, `p`, `display`, â€
 ## Composition example
 
 ```tsx
-import { Box, Input, shadows, sizes } from "kovax-react";
+import { Box, Input, themeToken } from "kovax-react";
 
-<Box w={400} p={16} boxShadow={shadows.sm} borderRadius={sizes.borderRadius.md}>
+<Box w={400} p={16} boxShadow={themeToken("shadow.sm")} borderRadius={themeToken("borderRadius.md")}>
   <Input placeholder="Inside Box" w="100%" />
 </Box>
 ```
@@ -57,7 +57,7 @@ import { Box, Input, shadows, sizes } from "kovax-react";
 ## Implementation notes
 
 - Masking is implemented in the component; there is no `react-input-mask` dependency.
-- Border, shadow, and transitions use `src/components/theme/tokens.ts`.
+- Border, shadow, and transitions resolve tokens via `themeToken(...)` from `src/components/theme/tokens.ts`.
 
 ## Meta
 

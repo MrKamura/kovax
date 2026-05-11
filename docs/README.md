@@ -22,6 +22,15 @@ Component and foundation docs live next to this file. Links are relative to the 
 - [VisuallyHidden](./components/Layout/VisuallyHidden.md)
 - [Sticky](./components/Layout/Sticky.md)
 
+### Typography
+
+- [Text](./components/Typography/Text.md)
+- [Heading](./components/Typography/Heading.md)
+- [Link](./components/Typography/Link.md)
+- [Code / Kbd](./components/Typography/Code.md)
+- [Blockquote](./components/Typography/Blockquote.md)
+- [List / ListItem](./components/Typography/List.md)
+
 ### Forms
 
 - [Form primitives](./components/Form.md) — `FormControl`, `FormLabel`, `FormError`, `FormHelperText`, `FormGroup`
