@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/MrKamura/kovax/compare/v0.3.0...v0.4.0) (2026-05-12)
+
+
+### Features
+
+* tables, overlays, tabs, accordion, alert, progress, pickers, Textarea ([09a0db1](https://github.com/MrKamura/kovax/commit/09a0db16bfbe4ff829d21c90ffc088a2a9022cb3))
+
+
+
 # [0.3.0](https://github.com/MrKamura/kovax/compare/v0.2.0...v0.3.0) (2026-05-12)
 
 
