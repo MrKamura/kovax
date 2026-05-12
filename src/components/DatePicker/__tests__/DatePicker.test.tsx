@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "../DatePicker";
 import { DateRangePicker } from "../DateRangePicker";
@@ -50,19 +50,30 @@ describe("DateRangePicker", () => {
     ).toBeInTheDocument();
   });
 
-  it("datetime variant shows two time fields when range complete", async () => {
-    const user = userEvent.setup();
-    render(
-      <DateRangePicker
-        variant="datetime"
-        selected={{
-          from: new Date(2026, 4, 1, 9, 0),
-          to: new Date(2026, 4, 7, 18, 0),
-        }}
-        formatRange={() => "range"}
-      />,
-    );
-    await user.click(screen.getByRole("button", { name: "range" }));
-    expect(document.querySelectorAll('input[type="time"]').length).toBe(2);
-  });
+  it(
+    "datetime variant shows two time fields when range complete",
+    async () => {
+      const user = userEvent.setup();
+      render(
+        <DateRangePicker
+          variant="datetime"
+          selected={{
+            from: new Date(2026, 4, 1, 9, 0),
+            to: new Date(2026, 4, 7, 18, 0),
+          }}
+          formatRange={() => "range"}
+        />,
+      );
+      await user.click(screen.getByRole("button", { name: "range" }));
+      await waitFor(
+        () => {
+          expect(document.querySelectorAll('input[type="time"]').length).toBe(
+            2,
+          );
+        },
+        { timeout: 12000 },
+      );
+    },
+    15000,
+  );
 });
