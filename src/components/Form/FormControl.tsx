@@ -13,7 +13,7 @@ export interface FormControlProps extends SpacingProps {
 }
 
 /**
- * FormControl — vertical wrapper with shared invalid/required/disabled context for fields (`Input`, `FormLabel`, `FormHelperText`).
+ * FormControl — vertical wrapper with shared invalid/required/disabled context for fields (`Input`, `Textarea`, `FormLabel`, `FormHelperText`).
  */
 export const FormControl: React.FC<FormControlProps> = ({
   children,

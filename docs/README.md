@@ -35,9 +35,19 @@ Component and foundation docs live next to this file. Links are relative to the 
 
 - [Form primitives](./components/Form.md) — `FormControl`, `FormLabel`, `FormError`, `FormHelperText`, `FormGroup`
 - [Input](./components/Input.md)
+- [Textarea](./components/Textarea.md)
+- [Checkbox / Radio / Switch](./components/Controls.md)
+- [Select & Combobox](./components/Select.md)
+- [Date picker](./components/DatePicker.md) — `DatePicker`, `DateRangePicker` (react-day-picker + Kovax Popover)
+- [Tooltip, Dialog, Modal, Toast & Popover](./components/Overlays.md)
 
 ### Other
 
+- [Tabs](./components/Tabs.md) — `Tabs.Root`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`
+- [Accordion & Collapsible](./components/Accordion.md) — `Collapsible.*`, `Accordion.*`
+- [Alert](./components/Alert.md) — inline banner / live region (`tone`, optional dismiss)
+- [Progress](./components/Progress.md) — `LinearProgress`, `CircularProgress` (`indeterminate`, palettes)
+- [Table](./components/Table.md) — `Table` primitives + `DataTable` (columns/rows, optional sort)
 - [Button](./components/Button.md)
 
 ## Guides

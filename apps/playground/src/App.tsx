@@ -7,19 +7,51 @@ import { DocumentationSection } from "./sections/DocumentationSection";
 import { LayoutSection } from "./sections/LayoutSection";
 import { ButtonSection } from "./sections/ButtonSection";
 import { InputSection } from "./sections/InputSection";
+import { ControlsSection } from "./sections/ControlsSection";
+import { SelectSection } from "./sections/SelectSection";
+import { OverlaysSection } from "./sections/OverlaysSection";
 import { FormSection } from "./sections/FormSection";
 import { TypographySection } from "./sections/TypographySection";
+import { TabsSection } from "./sections/TabsSection";
+import { AccordionSection } from "./sections/AccordionSection";
+import { AlertSection } from "./sections/AlertSection";
+import { ProgressSection } from "./sections/ProgressSection";
+import { DatePickerSection } from "./sections/DatePickerSection";
+import { TableSection } from "./sections/TableSection";
 
 type Area = "home" | "components" | "docs";
 
-type ComponentPage = "layout" | "typography" | "button" | "input" | "form";
+type ComponentPage =
+  | "layout"
+  | "typography"
+  | "button"
+  | "input"
+  | "controls"
+  | "select"
+  | "overlays"
+  | "form"
+  | "tabs"
+  | "accordion"
+  | "alert"
+  | "progress"
+  | "datePicker"
+  | "table";
 
 const COMPONENT_NAV: { id: ComponentPage; label: string }[] = [
   { id: "layout", label: "Layout" },
   { id: "typography", label: "Typography" },
   { id: "button", label: "Button" },
   { id: "input", label: "Input" },
+  { id: "controls", label: "Controls" },
+  { id: "select", label: "Select" },
+  { id: "overlays", label: "Overlays" },
   { id: "form", label: "Form" },
+  { id: "tabs", label: "Tabs" },
+  { id: "accordion", label: "Accordion" },
+  { id: "alert", label: "Alert" },
+  { id: "progress", label: "Progress" },
+  { id: "datePicker", label: "Date picker" },
+  { id: "table", label: "Table" },
 ];
 
 export default function App() {
@@ -54,7 +86,7 @@ export default function App() {
             </span>
           </div>
           <div className="doc-header-actions">
-            {showSidebar ? <LanguageSwitcher /> : null}
+            <LanguageSwitcher />
             <nav className="doc-header-nav" aria-label={t("nav.mainAria")}>
               <button
                 type="button"
@@ -111,8 +143,18 @@ export default function App() {
             </nav>
           </aside>
         ) : null}
-        <main className="doc-main">
-          {area === "home" && <IntroSection />}
+        <main
+          className={[
+            "doc-main",
+            area === "home" ? "doc-main--home" : "",
+            area === "docs" ? "doc-main--docs" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          {area === "home" && (
+            <IntroSection onOpenComponents={goComponents} onOpenDocs={() => setArea("docs")} />
+          )}
           {area === "docs" && <DocumentationSection />}
           {area === "components" && component === "layout" && <LayoutSection />}
           {area === "components" && component === "typography" && (
@@ -120,7 +162,16 @@ export default function App() {
           )}
           {area === "components" && component === "button" && <ButtonSection />}
           {area === "components" && component === "input" && <InputSection />}
+          {area === "components" && component === "controls" && <ControlsSection />}
+          {area === "components" && component === "select" && <SelectSection />}
+          {area === "components" && component === "overlays" && <OverlaysSection />}
           {area === "components" && component === "form" && <FormSection />}
+          {area === "components" && component === "tabs" && <TabsSection />}
+          {area === "components" && component === "accordion" && <AccordionSection />}
+          {area === "components" && component === "alert" && <AlertSection />}
+          {area === "components" && component === "progress" && <ProgressSection />}
+          {area === "components" && component === "datePicker" && <DatePickerSection />}
+          {area === "components" && component === "table" && <TableSection />}
         </main>
       </div>
 

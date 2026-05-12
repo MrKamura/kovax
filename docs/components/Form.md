@@ -35,7 +35,7 @@ import {
 
 ## 🏗️ FormControl
 
-Container component that manages validation state and exposes **`FormControlContext`** so **`Input`**, **`FormLabel`**, and **`FormHelperText`** pick up **`isInvalid`**, **`isRequired`**, and **`isDisabled`** when you don’t repeat props on every child. Explicit props on a child still win over context.
+Container component that manages validation state and exposes **`FormControlContext`** so **`Input`**, **`Textarea`**, **`Select`**, **`Checkbox`**, **`Radio`**, **`Switch`**, **`FormLabel`**, and **`FormHelperText`** pick up **`isInvalid`**, **`isRequired`**, and **`isDisabled`** when you don’t repeat props on every child. Explicit props on a child still win over context.
 
 * Basic Usage
 ```tsx
@@ -377,7 +377,7 @@ import { FormControl, FormLabel, Input, themeToken } from "kovax-react";
 
 ## ♿ Accessibility
 
-* **FormControl:** provides **`FormControlContext`**; **`Input`**, **`FormLabel`**, and **`FormHelperText`** read **`isInvalid`**, **`isRequired`**, and **`isDisabled`** from the nearest control when props are omitted. Native elements such as **`<label>`** are unchanged unless you wrap them yourself.
+* **FormControl:** provides **`FormControlContext`**; **`Input`**, **`Textarea`**, **`Select`**, **`Checkbox`**, **`Radio`**, **`Switch`**, **`FormLabel`**, and **`FormHelperText`** read **`isInvalid`**, **`isRequired`**, and **`isDisabled`** from the nearest control when props are omitted. Native elements such as **`<label>`** are unchanged unless you wrap them yourself.
 
 * **FormLabel:** associates controls via `htmlFor` / `id`.
 

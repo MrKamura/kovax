@@ -3,14 +3,38 @@ import { Trans, useTranslation } from "react-i18next";
 import { DocMarkdownPanel } from "../components/DocMarkdownPanel";
 import {
   buttonDocumentationMarkdown,
+  controlsDocumentationMarkdown,
   formDocumentationMarkdown,
   inputDocumentationMarkdown,
   introDocumentationMarkdown,
   layoutDocumentationMarkdown,
+  selectDocumentationMarkdown,
+  overlaysDocumentationMarkdown,
+  accordionDocumentationMarkdown,
+  alertDocumentationMarkdown,
+  progressDocumentationMarkdown,
+  datePickerDocumentationMarkdown,
+  tableDocumentationMarkdown,
+  tabsDocumentationMarkdown,
   typographyDocumentationMarkdown,
 } from "../docContent/bundles";
 
-type DocTopicId = "foundation" | "layout" | "typography" | "button" | "input" | "form";
+type DocTopicId =
+  | "foundation"
+  | "layout"
+  | "typography"
+  | "button"
+  | "input"
+  | "controls"
+  | "select"
+  | "overlays"
+  | "form"
+  | "tabs"
+  | "accordion"
+  | "alert"
+  | "progress"
+  | "datePicker"
+  | "table";
 
 const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
@@ -34,8 +58,44 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
     markdown: inputDocumentationMarkdown,
   },
   {
+    id: "controls",
+    markdown: controlsDocumentationMarkdown,
+  },
+  {
+    id: "select",
+    markdown: selectDocumentationMarkdown,
+  },
+  {
+    id: "overlays",
+    markdown: overlaysDocumentationMarkdown,
+  },
+  {
     id: "form",
     markdown: formDocumentationMarkdown,
+  },
+  {
+    id: "tabs",
+    markdown: tabsDocumentationMarkdown,
+  },
+  {
+    id: "accordion",
+    markdown: accordionDocumentationMarkdown,
+  },
+  {
+    id: "alert",
+    markdown: alertDocumentationMarkdown,
+  },
+  {
+    id: "progress",
+    markdown: progressDocumentationMarkdown,
+  },
+  {
+    id: "datePicker",
+    markdown: datePickerDocumentationMarkdown,
+  },
+  {
+    id: "table",
+    markdown: tableDocumentationMarkdown,
   },
 ];
 

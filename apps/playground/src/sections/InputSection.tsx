@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, Input, InputGroup, Text, themeToken, VStack } from "kovax-react";
+import { Box, Heading, Input, InputGroup, Text, Textarea, themeToken, VStack } from "kovax-react";
 import { Trans, useTranslation } from "react-i18next";
 import { MdSearch } from "react-icons/md";
 import { LiveExample } from "../components/LiveExample";
@@ -87,6 +87,33 @@ function FloatingLabelDemo() {
       />
       <Input floatingLabel variant="outline" placeholder="Company" value={company} onChange={(e) => setCompany(e.target.value)} />
       <Input floatingLabel variant="filled" size="sm" placeholder="Small floating label" />
+    </VStack>
+  );
+}
+
+function TextareaDemos() {
+  const [notes, setNotes] = useState("");
+  return (
+    <VStack align="stretch" gap={16} maxW={480}>
+      <Textarea placeholder="Comments — resize is vertical by default" rows={4} />
+      <Textarea variant="outline" placeholder="Outline · md" rows={3} />
+      <Textarea
+        showCharacterCount
+        maxLength={120}
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+        placeholder="Controlled with character counter"
+        aria-label="Notes"
+      />
+      <Textarea floatingLabel variant="filled" placeholder="Floating label" rows={4} />
+      <Textarea
+        isInvalid
+        errorMessage="Please enter at least one line."
+        placeholder="Invalid with message"
+        aria-label="Invalid textarea"
+        rows={2}
+      />
+      <Textarea resize="none" placeholder="resize=&quot;none&quot;" rows={3} aria-label="No resize" />
     </VStack>
   );
 }
@@ -335,6 +362,38 @@ function Demo() {
             The native placeholder is hidden; an associated label (<code>htmlFor</code>) carries the same text for screen readers.
           </Text>
           <FloatingLabelDemo />
+        </VStack>
+      </LiveExample>
+
+      <h2>{t("input.examplesTextarea")}</h2>
+      <LiveExample
+        code={`import { useState } from "react";
+import { Textarea, Text, themeToken, VStack } from "kovax-react";
+
+function Demo() {
+  const [notes, setNotes] = useState("");
+  return (
+    <VStack align="stretch" gap={16} maxW={480}>
+      <Text size="sm" color={themeToken("secondary.600")}>
+        Same variants, sizes, and palettes as Input; default resize is vertical. Use maxLength + showCharacterCount for feedback.
+      </Text>
+      <Textarea placeholder="Comments" rows={4} />
+      <Textarea variant="outline" rows={3} />
+      <Textarea showCharacterCount maxLength={120} value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Notes" aria-label="Notes" />
+      <Textarea floatingLabel variant="filled" placeholder="Description" rows={4} />
+      <Textarea resize="none" rows={3} aria-label="Fixed height" />
+    </VStack>
+  );
+}
+
+<Demo />`}
+      >
+        <VStack align="stretch" gap={12} maxW={520}>
+          <Text size="sm" color={themeToken("secondary.600")}>
+            <code>forwardRef</code> targets the native <code>textarea</code>; pairs with{" "}
+            <strong>FormControl</strong> the same way as <strong>Input</strong>.
+          </Text>
+          <TextareaDemos />
         </VStack>
       </LiveExample>
 

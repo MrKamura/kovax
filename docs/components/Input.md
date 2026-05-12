@@ -2,6 +2,8 @@
 
 Text field with optional **`variant`**, **`InputGroup`** chrome (prefix/suffix), **`floatingLabel`** animated caption, mask, validation-related props, shared spacing props, and **`forwardRef`** to the native **`<input>`**.
 
+For multi-line text see **[Textarea](./Textarea.md)** (same variants / sizes / palettes).
+
 ## Import
 
 ```tsx
