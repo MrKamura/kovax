@@ -1,7 +1,7 @@
 ## 📄 Text
 
 General-purpose text primitive: size from `sizes.text` tokens, optional line truncation, line balancing (`text-wrap: balance`), and the same **spacing / visual props** as `Box` (`margin`, `padding`, `color`, `textAlign`, …).
-
+ Дава
 `Text` forwards `ref` to the native host element (`as`).
 
 See also: [Heading](./Heading.md), [Link](./Link.md), [Code](./Code.md), [Blockquote](./Blockquote.md), [List](./List.md).

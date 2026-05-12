@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { themeToken } from "../theme/tokens";
 import { SpacingProps } from "../../types/spacing";
 import { VStack } from "../Layout/VStack";
+import { FormControlContext, type FormControlContextValue } from "./FormControlContext";
 
 export interface FormControlProps extends SpacingProps {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ export interface FormControlProps extends SpacingProps {
 }
 
 /**
- * FormControl — wrapper for form fields with label and error handling
+ * FormControl — vertical wrapper with shared invalid/required/disabled context for fields (`Input`, `FormLabel`, `FormHelperText`).
  */
 export const FormControl: React.FC<FormControlProps> = ({
   children,
@@ -21,29 +22,26 @@ export const FormControl: React.FC<FormControlProps> = ({
   isDisabled = false,
   className = "",
   ...spacingProps
-}) => (
-  <VStack
-    align="stretch"
-    gap={themeToken("spacing.xs")}
-    opacity={isDisabled ? 0.6 : 1}
-    w="100%"
-    className={className}
-    {...spacingProps}
-  >
-    {React.Children.map(children, (child) => {
-      if (!React.isValidElement(child)) {
-        return child;
-      }
-      if (typeof child.type === 'string') {
-        return child;
-      }
-      return React.cloneElement(child, {
-        isInvalid,
-        isRequired,
-        isDisabled,
-      } as Record<string, unknown>);
-    })}
-  </VStack>
-);
+}) => {
+  const ctx = useMemo(
+    (): FormControlContextValue => ({ isInvalid, isRequired, isDisabled }),
+    [isInvalid, isRequired, isDisabled],
+  );
+
+  return (
+    <FormControlContext.Provider value={ctx}>
+      <VStack
+        align="stretch"
+        gap={themeToken("spacing.xs")}
+        opacity={isDisabled ? 0.6 : 1}
+        w="100%"
+        className={className}
+        {...spacingProps}
+      >
+        {children}
+      </VStack>
+    </FormControlContext.Provider>
+  );
+};
 
 FormControl.displayName = "FormControl";

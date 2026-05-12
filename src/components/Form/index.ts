@@ -9,3 +9,6 @@ export type { FormLabelProps } from './FormLabel';
 export type { FormErrorProps } from './FormError';
 export type { FormHelperTextProps } from './FormHelperText';
 export type { FormGroupProps } from './FormGroup';
+
+export { FormControlContext, useFormControlContext } from './FormControlContext';
+export type { FormControlContextValue } from './FormControlContext';

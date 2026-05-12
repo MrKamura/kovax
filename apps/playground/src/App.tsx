@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { DocFooter } from "./components/DocFooter";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { IntroSection } from "./sections/IntroSection";
 import { DocumentationSection } from "./sections/DocumentationSection";
@@ -36,14 +37,22 @@ export default function App() {
     <div className="doc-app">
       <header className="doc-header">
         <div className="doc-header-inner">
-          <button
-            type="button"
-            className="doc-header-brand"
-            onClick={() => setArea("home")}
-            aria-label={t("brandAria")}
-          >
-            Kovax React
-          </button>
+          <div className="doc-header-brand-wrap">
+            <button
+              type="button"
+              className="doc-header-brand"
+              onClick={() => setArea("home")}
+              aria-label={t("brandAria")}
+            >
+              Kovax React
+            </button>
+            <span
+              className="doc-header-version"
+              title={`kovax-react@${import.meta.env.VITE_KOVAX_VERSION}`}
+            >
+              v{import.meta.env.VITE_KOVAX_VERSION}
+            </span>
+          </div>
           <div className="doc-header-actions">
             {showSidebar ? <LanguageSwitcher /> : null}
             <nav className="doc-header-nav" aria-label={t("nav.mainAria")}>
@@ -114,6 +123,8 @@ export default function App() {
           {area === "components" && component === "form" && <FormSection />}
         </main>
       </div>
+
+      <DocFooter />
     </div>
   );
 }

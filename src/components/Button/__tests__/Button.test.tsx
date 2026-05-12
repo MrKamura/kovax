@@ -54,8 +54,7 @@ describe('Button', () => {
   describe('Loading States', () => {
     it('shows default loader when isLoading is true', () => {
       render(<Button isLoading>Loading</Button>);
-      const loader = document.querySelector('.animate-spin');
-      expect(loader).toBeInTheDocument();
+      expect(screen.getByTestId('kv-default-button-loader')).toBeInTheDocument();
     });
 
     it('shows custom loader when provided', () => {
@@ -102,7 +101,7 @@ describe('Button', () => {
   // Variant Tests
   describe('Variants', () => {
     it('renders different variants', () => {
-      const variants = ['solid', 'outline', 'ghost', 'link'] as const;
+      const variants = ['solid', 'outline', 'ghost', 'link', 'destructive'] as const;
       
       variants.forEach(variant => {
         const { unmount } = render(
@@ -172,6 +171,41 @@ describe('Button', () => {
     it('applies disabled attribute', () => {
       render(<Button disabled>Disabled</Button>);
       expect(screen.getByRole('button')).toBeDisabled();
+    });
+
+    it('renders as link when as="a"', () => {
+      render(
+        <Button as="a" href="https://example.com">
+          Go
+        </Button>,
+      );
+      const link = screen.getByRole('link', { name: /go/i });
+      expect(link).toHaveAttribute('href', 'https://example.com');
+    });
+
+    it('sets aria-busy when loading', () => {
+      render(<Button isLoading>Saving</Button>);
+      expect(screen.getByRole('button')).toHaveAttribute('aria-busy', 'true');
+    });
+
+    it('sets aria-live polite when loading with loadingText', () => {
+      render(
+        <Button isLoading loadingText="Saving your changes">
+          Save
+        </Button>,
+      );
+      expect(screen.getByRole('button')).toHaveAttribute('aria-live', 'polite');
+      expect(screen.getByText('Saving your changes')).toBeInTheDocument();
+    });
+
+    it('sets aria-pressed when pressed prop is set', () => {
+      render(<Button pressed={false}>Toggle</Button>);
+      expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false');
+    });
+
+    it('applies fullWidth via width 100%', () => {
+      render(<Button fullWidth>Wide</Button>);
+      expect(screen.getByRole('button')).toHaveStyle({ width: '100%' });
     });
   });
 });

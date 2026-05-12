@@ -86,6 +86,36 @@ describe('Input', () => {
       const errorMessage = screen.getByText('Error description') as HTMLDivElement;
       expect(errorMessage).toBeTruthy();
     });
+
+    it('merges aria-describedby with error region id', () => {
+      render(
+        <Input
+          isInvalid
+          errorMessage="Bad value"
+          aria-describedby="field-hint"
+          placeholder="Merged ids"
+        />,
+      );
+      const input = screen.getByPlaceholderText("Merged ids");
+      const ids = input.getAttribute("aria-describedby")?.split(/\s+/).filter(Boolean) ?? [];
+      expect(ids).toContain("field-hint");
+      expect(ids.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('merges aria-describedby with character counter id', () => {
+      render(
+        <Input
+          showCharacterCount
+          maxLength={8}
+          aria-describedby="hint-prefix"
+          placeholder="Bio field"
+        />,
+      );
+      const input = screen.getByPlaceholderText("Bio field");
+      const ids = input.getAttribute("aria-describedby")?.split(/\s+/).filter(Boolean) ?? [];
+      expect(ids).toContain("hint-prefix");
+      expect(ids.length).toBeGreaterThanOrEqual(2);
+    });
   });
 
   describe('integration', () => {

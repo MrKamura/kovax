@@ -1,10 +1,13 @@
+import type { CSSProperties } from "react";
 import { colors, themeToken } from "../theme/tokens";
 import { ButtonStyleProps } from "./Button.types";
 
-export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolean }): React.CSSProperties => {
+export const createButtonStyles = (
+  props: ButtonStyleProps & { disabled?: boolean },
+): CSSProperties => {
   const {
-    variant = "solid",
-    color = "primary",
+    variant: variantProp = "solid",
+    color: colorProp = "primary",
     shadow = "none",
     size = "md",
     w,
@@ -15,6 +18,9 @@ export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolea
     borderRadius,
     disabled,
   } = props;
+
+  const variant = variantProp === "destructive" ? "solid" : variantProp;
+  const color = variantProp === "destructive" ? "error" : colorProp;
 
   const colorSet = colors[color] ?? colors.primary;
   const baseColor = colorSet[500];
@@ -49,13 +55,12 @@ export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolea
     },
   };
 
-  // Type guard for safe access to size presets
-  const s = typeof size === "string" && size in sizeMap 
-    ? sizeMap[size as keyof typeof sizeMap] 
-    : sizeMap.md;
+  const s =
+    typeof size === "string" && size in sizeMap ? sizeMap[size as keyof typeof sizeMap] : sizeMap.md;
 
-  const txtColor = textColor ?? (variant === "solid" ? "#fff" : baseColor);
-  const backgroundColor = variant === "solid" ? bg ?? baseColor : "transparent";
+  const solidFg = themeToken("white");
+  const txtColor = textColor ?? (variant === "solid" ? solidFg : baseColor);
+  const backgroundColor = variant === "solid" ? (bg ?? baseColor) : "transparent";
   const computedBorderColor = borderColor ?? (variant === "outline" ? baseColor : "transparent");
 
   return {
@@ -83,8 +88,9 @@ export const createButtonStyles = (props: ButtonStyleProps & { disabled?: boolea
     textDecoration: variant === "link" ? "underline" : "none",
     userSelect: "none",
 
-    // CSS variables for interactive states
-    ["--hover-bg" as any]: variant === "solid" ? hoverColor : variant === "outline" ? colorSet[50] : "transparent",
-    ["--active-bg" as any]: variant === "solid" ? activeColor : variant === "outline" ? colorSet[100] : "transparent",
+    ["--hover-bg" as string]:
+      variant === "solid" ? hoverColor : variant === "outline" ? colorSet[50] : "transparent",
+    ["--active-bg" as string]:
+      variant === "solid" ? activeColor : variant === "outline" ? colorSet[100] : "transparent",
   };
 };

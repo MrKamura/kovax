@@ -1,8 +1,12 @@
-export { Button } from "../components/Button/Button";
+export { Button, IconButton, ButtonGroup } from "../components/Button";
 export type {
+  ButtonAnchorPassthrough,
   ButtonProps,
   ButtonStyleProps,
   ButtonContentProps,
   ButtonVariant,
   LoaderPosition,
-} from "../components/Button/Button.types";
+  ButtonPolymorphicProps,
+  IconButtonProps,
+  ButtonGroupProps,
+} from "../components/Button";

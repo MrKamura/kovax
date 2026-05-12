@@ -11,6 +11,12 @@
     "meta": "Live examples",
     "navAria": "Components"
   },
+  "footer": {
+    "aria": "Site footer",
+    "copyright": "© {{year}} Kovax React playground.",
+    "note": "Interactive demos for the MIT-licensed kovax-react library.",
+    "repoLabel": "GitHub"
+  },
   "langSwitcher": {
     "aria": "Interface language",
     "en": "EN",
@@ -77,18 +83,33 @@
     "examplesList": "Examples: List"
   },
   "button": {
-    "intro": "Button variants and loading state. Props tables — header <strong>Documentation</strong> → Button.",
+    "intro": "Buttons (including IconButton, ButtonGroup), polymorphic <code>as</code>, loading and accessibility props. Props tables — header <strong>Documentation</strong> → Button.",
     "examplesVariants": "Examples: variants",
     "examplesSizes": "Examples: sizes",
-    "examplesStates": "Examples: states"
+    "examplesLinkVariant": "Examples: link variant",
+    "examplesIcons": "Examples: icons",
+    "examplesLoading": "Examples: loading",
+    "examplesStates": "Examples: disabled",
+    "examplesPolymorphic": "Examples: as prop (link)",
+    "examplesIconButtonGroup": "Examples: IconButton & ButtonGroup",
+    "examplesExtras": "Examples: destructive, fullWidth, pressed, iconSize"
   },
   "input": {
-    "intro": "Inputs at different sizes and color schemes. Reference — header <strong>Documentation</strong> → Input.",
-    "examplesBasics": "Examples: basics"
+    "intro": "Text fields: sizes, color schemes, masks, validation, and native HTML attributes. Reference — header <strong>Documentation</strong> → Input.",
+    "examplesBasics": "Examples: basics",
+    "examplesVariantGroup": "Examples: variant & InputGroup",
+    "examplesSizesColors": "Examples: sizes & colorScheme",
+    "examplesStatesValidation": "Examples: states & validation",
+    "examplesNativeTypes": "Examples: native types",
+    "examplesClearCounter": "Examples: clear & character count",
+    "examplesFloatingLabel": "Examples: floating label animation",
+    "examplesMaskComposition": "Examples: mask & composition"
   },
   "form": {
-    "intro": "Label, field, helper text, and error wiring. Reference — header <strong>Documentation</strong> → Form.",
+    "intro": "Label, helper text, and error wiring. FormControl shares invalid/required/disabled via React context with Input, FormLabel, and FormHelperText (explicit props override). Reference — header <strong>Documentation</strong> → Form.",
     "examplesFormControl": "Examples: FormControl",
-    "examplesFormGroup": "Examples: FormGroup"
+    "examplesFormGroup": "Examples: FormGroup",
+    "examplesFormActions": "Examples: form actions with Button",
+    "examplesReactHookForm": "Examples: react-hook-form integration"
   }
 }

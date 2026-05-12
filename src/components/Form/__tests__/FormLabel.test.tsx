@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { FormControl } from '../FormControl';
 import { FormLabel } from '../FormLabel';
 
 describe('FormLabel', () => {
@@ -21,6 +22,16 @@ describe('FormLabel', () => {
     
     expect(label.getAttribute('for')).toBe('test-input');
     expect(input.getAttribute('id')).toBe('test-input');
+  });
+
+  it('inherits required and invalid styling from FormControl context', () => {
+    render(
+      <FormControl isRequired isInvalid>
+        <FormLabel htmlFor="ctx-field">Email</FormLabel>
+      </FormControl>,
+    );
+    expect(screen.getByText('*')).toBeTruthy();
+    expect(screen.getByText('Email')).toBeTruthy();
   });
 
   it('shows required indicator when isRequired is true', () => {

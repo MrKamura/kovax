@@ -94,6 +94,22 @@ body {
   background: rgba(37, 99, 235, 0.08);
 }
 
+.doc-header-brand-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.doc-header-version {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--doc-muted);
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
 .doc-header-brand {
   font: inherit;
   font-weight: 600;
@@ -561,4 +577,53 @@ body {
 .doc-md-prose strong {
   font-weight: 600;
   color: var(--doc-text);
+}
+
+.doc-footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  padding: 1.25rem clamp(1rem, 3vw, 1.5rem) 1.5rem;
+}
+
+.doc-footer-inner {
+  max-width: min(72rem, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.doc-footer-text {
+  flex: 1;
+  min-width: min(100%, 12rem);
+}
+
+.doc-footer-copy {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--doc-text);
+}
+
+.doc-footer-note {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--doc-muted);
+  max-width: 36rem;
+}
+
+.doc-footer-link {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--doc-accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.doc-footer-link:hover {
+  text-decoration: underline;
 }

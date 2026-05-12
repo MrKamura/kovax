@@ -35,7 +35,7 @@ import {
 
 ## 🏗️ FormControl
 
-Container component that manages validation state, accessibility, and layout context for form fields.
+Container component that manages validation state and exposes **`FormControlContext`** so **`Input`**, **`FormLabel`**, and **`FormHelperText`** pick up **`isInvalid`**, **`isRequired`**, and **`isDisabled`** when you don’t repeat props on every child. Explicit props on a child still win over context.
 
 * Basic Usage
 ```tsx
@@ -294,6 +294,10 @@ function RegistrationForm() {
 }
 ```
 
+### react-hook-form (and similar)
+
+`kovax-react` does not ship a validation library. With **react-hook-form**, bind fields using **`Controller`** (or **`useController`**) and spread **`field`** onto **`Input`**, plus your own **`id`**. Drive **`FormControl isInvalid`** from **`formState.errors`** so labels and helpers stay in sync.
+
 ## Props reference
 
 ### FormControl
@@ -306,13 +310,15 @@ function RegistrationForm() {
 | `children` | `ReactNode` | — | Label, input, helper text, error |
 | — | — | — | Also accepts **SpacingProps** (`m`, `p`, `w`, …) |
 
+Context API: **`useFormControlContext()`** / **`FormControlContext`** (exported from the **Form** entry) return **`null`** outside **`FormControl`**.
+
 ### FormLabel
 
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `htmlFor` | `string` | — | For attribute linking to control `id` |
-| `isInvalid` | `boolean` | `false` | Error colors |
-| `isRequired` | `boolean` | `false` | Shows required asterisk |
+| `isInvalid` | `boolean` | — | Error colors; when omitted, uses **`FormControl`** context (`false` if absent) |
+| `isRequired` | `boolean` | — | Shows required asterisk; when omitted, uses **`FormControl`** context (`false` if absent) |
 | `children` | `ReactNode` | — | Label text |
 | — | — | — | Also accepts **SpacingProps** |
 
@@ -327,7 +333,7 @@ function RegistrationForm() {
 
 | Prop | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `isInvalid` | `boolean` | `false` | Uses error palette when true |
+| `isInvalid` | `boolean` | — | Uses error palette when true; when omitted, uses **`FormControl`** context (`false` if absent) |
 | `children` | `ReactNode` | — | Helper copy |
 | — | — | — | Also accepts **SpacingProps** |
 
@@ -371,7 +377,7 @@ import { FormControl, FormLabel, Input, themeToken } from "kovax-react";
 
 ## ♿ Accessibility
 
-* **FormControl:** clones **non-native** children (custom components) and injects `isInvalid`, `isRequired`, and `isDisabled`. Plain DOM nodes such as `<label>` are left unchanged.
+* **FormControl:** provides **`FormControlContext`**; **`Input`**, **`FormLabel`**, and **`FormHelperText`** read **`isInvalid`**, **`isRequired`**, and **`isDisabled`** from the nearest control when props are omitted. Native elements such as **`<label>`** are unchanged unless you wrap them yourself.
 
 * **FormLabel:** associates controls via `htmlFor` / `id`.
 

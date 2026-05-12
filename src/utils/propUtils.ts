@@ -1,4 +1,4 @@
-import { ButtonStyleProps } from '../components/Button/Button.types';
+import { ButtonStyleProps } from "../components/Button/Button.types";
 
 export const extractStyleProps = (props: any): ButtonStyleProps & { disabled?: boolean } => {
   const {
@@ -7,6 +7,7 @@ export const extractStyleProps = (props: any): ButtonStyleProps & { disabled?: b
     size,
     shadow,
     w,
+    fullWidth,
     h,
     bg,
     textColor,
@@ -20,7 +21,7 @@ export const extractStyleProps = (props: any): ButtonStyleProps & { disabled?: b
     color,
     size,
     shadow,
-    w,
+    w: fullWidth ? "100%" : w,
     h,
     bg,
     textColor,

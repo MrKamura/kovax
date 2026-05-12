@@ -11,6 +11,12 @@
     "meta": "Живые примеры",
     "navAria": "Компоненты"
   },
+  "footer": {
+    "aria": "Подвал сайта",
+    "copyright": "© {{year}}, площадка Kovax React.",
+    "note": "Интерактивные демо для библиотеки kovax-react (лицензия MIT).",
+    "repoLabel": "GitHub"
+  },
   "langSwitcher": {
     "aria": "Язык интерфейса",
     "en": "EN",
@@ -77,18 +83,33 @@
     "examplesList": "Примеры: List"
   },
   "button": {
-    "intro": "Варианты кнопки и состояние загрузки. Таблицы пропсов — в шапке <strong>Документация</strong> → Button.",
+    "intro": "Кнопки (<strong>IconButton</strong>, <strong>ButtonGroup</strong>), полиморфный проп <code>as</code>, загрузка и доступность. Таблицы пропсов — в шапке <strong>Документация</strong> → Button.",
     "examplesVariants": "Примеры: варианты",
     "examplesSizes": "Примеры: размеры",
-    "examplesStates": "Примеры: состояния"
+    "examplesLinkVariant": "Примеры: вариант link",
+    "examplesIcons": "Примеры: иконки",
+    "examplesLoading": "Примеры: загрузка",
+    "examplesStates": "Примеры: disabled",
+    "examplesPolymorphic": "Примеры: проп as (ссылка)",
+    "examplesIconButtonGroup": "Примеры: IconButton и ButtonGroup",
+    "examplesExtras": "Примеры: destructive, fullWidth, pressed, iconSize"
   },
   "input": {
-    "intro": "Поля ввода с разными размерами и схемами. Справка — в шапке <strong>Документация</strong> → Input.",
-    "examplesBasics": "Примеры: базовые"
+    "intro": "Текстовые поля: размеры, цветовые схемы, маски, валидация и нативные атрибуты HTML. Справка — в шапке <strong>Документация</strong> → Input.",
+    "examplesBasics": "Примеры: базовые",
+    "examplesVariantGroup": "Примеры: variant и InputGroup",
+    "examplesSizesColors": "Примеры: размеры и colorScheme",
+    "examplesStatesValidation": "Примеры: состояния и валидация",
+    "examplesNativeTypes": "Примеры: нативные type",
+    "examplesClearCounter": "Примеры: clear и счётчик maxLength",
+    "examplesFloatingLabel": "Примеры: анимация плавающей подписи",
+    "examplesMaskComposition": "Примеры: маска и композиция"
   },
   "form": {
-    "intro": "Связка лейбла, поля, подсказки и ошибки. Справка — в шапке <strong>Документация</strong> → Form.",
+    "intro": "Связка лейбла, подсказки и ошибки. FormControl передаёт invalid/required/disabled через React context в Input, FormLabel и FormHelperText (явные пропсы имеют приоритет). Справка — в шапке <strong>Документация</strong> → Form.",
     "examplesFormControl": "Примеры: FormControl",
-    "examplesFormGroup": "Примеры: FormGroup"
+    "examplesFormGroup": "Примеры: FormGroup",
+    "examplesFormActions": "Примеры: действия формы с Button",
+    "examplesReactHookForm": "Примеры: интеграция с react-hook-form"
   }
 }
