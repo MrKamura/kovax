@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { DocMarkdownPanel } from "../components/DocMarkdownPanel";
+import { SupportDonateLinks } from "../components/SupportDonateLinks";
 import {
   buttonDocumentationMarkdown,
   controlsDocumentationMarkdown,
@@ -114,6 +115,10 @@ export function DocumentationSection() {
           components={{ code: <span className="doc-code" /> }}
         />
       </p>
+
+      <div className="doc-docs-support">
+        <SupportDonateLinks variant="inline" />
+      </div>
 
       <div
         className="doc-docs-topic-bar"

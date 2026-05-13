@@ -14,8 +14,30 @@
   "footer": {
     "aria": "Site footer",
     "copyright": "© {{year}} Kovax React playground.",
-    "note": "Interactive demos for the MIT-licensed kovax-react library.",
-    "repoLabel": "GitHub"
+    "note": "Interactive demos for the MIT-licensed kovax-react library."
+  },
+  "support": {
+    "sectionAria": "Support the project",
+    "title": "Support development",
+    "lead": "Donations help grow kovax-react — new components, documentation, and stability.",
+    "inlineLabel": "Support",
+    "boosty": "Boosty",
+    "cloudtips": "CloudTips",
+    "bmac": "Buy Me a Coffee",
+    "kofi": "Ko-fi"
+  },
+  "sponsors": {
+    "title": "Sponsored by",
+    "lead": "Corporate sponsors help sustain kovax-react. Logo placement by tier (USD per month).",
+    "tier50Label": "$50 / mo",
+    "tier50Detail": "Your logo in the README",
+    "tier200Label": "$200 / mo",
+    "tier200Detail": "Logo in README + on this live site",
+    "tier500Label": "$500 / mo",
+    "tier500Detail": "README + live site + thank-you in release notes",
+    "slotAria": "Sponsor logo placeholder",
+    "slotPlaceholder": "Your logo",
+    "cta": "Interested in a tier? Use the support links in the section above or reach out via Boosty."
   },
   "langSwitcher": {
     "aria": "Interface language",

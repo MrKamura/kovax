@@ -14,8 +14,30 @@
   "footer": {
     "aria": "Подвал сайта",
     "copyright": "© {{year}}, площадка Kovax React.",
-    "note": "Интерактивные демо для библиотеки kovax-react (лицензия MIT).",
-    "repoLabel": "GitHub"
+    "note": "Интерактивные демо для библиотеки kovax-react (лицензия MIT)."
+  },
+  "support": {
+    "sectionAria": "Поддержать проект",
+    "title": "Поддержать разработку",
+    "lead": "Донаты помогают развивать kovax-react — новые компоненты, документация и стабильность.",
+    "inlineLabel": "Поддержать",
+    "boosty": "Boosty",
+    "cloudtips": "CloudTips",
+    "bmac": "Buy Me a Coffee",
+    "kofi": "Ko-fi"
+  },
+  "sponsors": {
+    "title": "Спонсоры",
+    "lead": "Корпоративные спонсоры поддерживают развитие kovax-react. Размещение логотипа по тарифу (USD в месяц).",
+    "tier50Label": "$50 / мес",
+    "tier50Detail": "Логотип в README",
+    "tier200Label": "$200 / мес",
+    "tier200Detail": "README + этот живой сайт",
+    "tier500Label": "$500 / мес",
+    "tier500Detail": "README + сайт + благодарность в релиз-нотах",
+    "slotAria": "Место под логотип спонсора",
+    "slotPlaceholder": "Ваш логотип",
+    "cta": "Тарифы и размещение — через ссылки поддержки выше или напрямую на Boosty."
   },
   "langSwitcher": {
     "aria": "Язык интерфейса",

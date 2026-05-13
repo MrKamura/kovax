@@ -120,6 +120,16 @@
     "type": "git",
     "url": "git+https://github.com/MrKamura/kovax.git"
   },
+  "funding": [
+    {
+      "type": "custom",
+      "url": "https://boosty.to/mrkamura"
+    },
+    {
+      "type": "custom",
+      "url": "https://pay.cloudtips.ru/p/d79814b0"
+    }
+  ],
   "peerDependencies": {
     "react": ">=16.0.0 <20.0.0",
     "react-dom": ">=16.0.0 <20.0.0",

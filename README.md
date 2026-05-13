@@ -13,7 +13,7 @@ Browse **interactive examples** and the same **Markdown documentation** as in th
 
 **[https://mrkamura.github.io/kovax/](https://mrkamura.github.io/kovax/)**
 
-The playground loads components from source via the `kovax-react` workspace alias; GitHub Pages builds are produced by the repo workflow on push to `master` / `main`.
+The playground loads components from source via the `kovax-react` workspace alias; production builds are deployed by the CI workflow on push to `master` / `main`.
 
 ## Overview
 
@@ -200,7 +200,39 @@ export function SignInExample() {
 | Overlays (Tooltip, Popover, Dialog, …) | [docs/components/Overlays.md](./docs/components/Overlays.md) |
 | Form | [docs/components/Form.md](./docs/components/Form.md) |
 
-On **npm**, relative links in this file resolve against the [GitHub repository](https://github.com/MrKamura/kovax) when viewing the package readme.
+On **npm**, relative links in this readme resolve against the package page on [npmjs.com](https://www.npmjs.com/package/kovax-react).
+
+## Sponsored by
+
+Corporate sponsorship helps fund ongoing work on **kovax-react**. Logo placement by tier (USD per month):
+
+| Tier | Monthly | Placement |
+| ---- | ------- | --------- |
+| **Bronze** | **$50** | Logo in this README |
+| **Silver** | **$200** | Logo in README + on the [live documentation site](https://mrkamura.github.io/kovax/) |
+| **Gold** | **$500** | README + live site + thank-you in release notes |
+
+### Logo wall
+
+Logos are listed below as sponsors join.
+
+| Bronze ($50) | Silver ($200) | Gold ($500) |
+| ------------ | ------------- | ----------- |
+| *Your logo — slot available* | *Your logo — slot available* | *Your logo — slot available* |
+
+To discuss a tier, use the **Support** section on the [playground](https://mrkamura.github.io/kovax/) or reach out via [Boosty](https://boosty.to/mrkamura).
+
+## Hire the maintainer
+
+Paid engagements around **kovax-react** and related React / UI work:
+
+- **Integration** — adopting the library in your app, theming, aligning tokens with your stack  
+- **Custom components** — extending kovax primitives or building new ones to spec  
+- **Design systems** — component sets and documentation tailored to your product  
+
+**Rates:** from **$20 USD/hour**; **fixed-price** projects by agreement.
+
+**Contact:** [@mr_kamura](https://t.me/mr_kamura) on Telegram.
 
 ## Scripts (contributors)
 
@@ -213,7 +245,7 @@ npm run dev:playground     # Vite dev server for apps/playground
 npm run build:playground   # production build of the playground
 ```
 
-Automation (maintainers): pushing a version tag `v*` publishes to npm if `NPM_TOKEN` is configured; pushes to `master`/`main` can deploy the playground to GitHub Pages (see `.github/workflows/`).
+Automation (maintainers): pushing a version tag `v*` publishes to npm if `NPM_TOKEN` is configured; pushes to `master`/`main` can deploy the playground via the workflow under `.github/workflows/`.
 
 ## Contributing
 

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-
-const REPO_URL = "https://github.com/MrKamura/kovax";
+import { SupportDonateLinks } from "./SupportDonateLinks";
 
 export function DocFooter() {
   const { t } = useTranslation();
@@ -17,14 +16,9 @@ export function DocFooter() {
           <p className="doc-footer-copy">{t("footer.copyright", { year })}</p>
           <p className="doc-footer-note">{t("footer.note")}</p>
         </div>
-        <a
-          className="doc-footer-link"
-          href={REPO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t("footer.repoLabel")}
-        </a>
+        <div className="doc-footer-aside">
+          <SupportDonateLinks variant="inline" />
+        </div>
       </div>
     </footer>
   );

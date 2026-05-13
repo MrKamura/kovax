@@ -1,4 +1,6 @@
 import { Trans, useTranslation } from "react-i18next";
+import { SponsorsSection } from "../components/SponsorsSection";
+import { SupportDonateLinks } from "../components/SupportDonateLinks";
 
 export interface IntroSectionProps {
   onOpenComponents: () => void;
@@ -24,6 +26,7 @@ export function IntroSection({ onOpenComponents, onOpenDocs }: IntroSectionProps
             {t("intro.ctaDocs")}
           </button>
         </div>
+        <SupportDonateLinks variant="hero" />
       </section>
 
       <section className="intro-cards" aria-label={t("intro.cardsAria")}>
@@ -45,6 +48,8 @@ export function IntroSection({ onOpenComponents, onOpenDocs }: IntroSectionProps
           <p className="intro-card-body">{t("intro.cardLiveBody")}</p>
         </article>
       </section>
+
+      <SponsorsSection />
 
       <section className="intro-detail">
         <h2>{t("intro.detailTitle")}</h2>

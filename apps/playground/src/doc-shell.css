@@ -385,6 +385,137 @@ body {
   outline-offset: 2px;
 }
 
+.intro-support {
+  margin-top: 1.35rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--doc-border);
+}
+
+.intro-support-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: var(--doc-text);
+}
+
+.intro-support-lead {
+  margin: 0 0 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--doc-muted);
+  max-width: 38rem;
+}
+
+.intro-support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.intro-donate-btn {
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  color: var(--doc-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.12s ease;
+}
+
+.intro-donate-btn:hover {
+  border-color: #cbd5e1;
+  background: var(--doc-bg);
+}
+
+.intro-donate-btn:active {
+  transform: translateY(1px);
+}
+
+.intro-donate-btn:focus-visible {
+  outline: 2px solid var(--doc-accent);
+  outline-offset: 2px;
+}
+
+.support-donate-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+}
+
+.support-donate-inline-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--doc-muted);
+}
+
+.support-donate-nav .support-donate-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+}
+
+.support-donate-nav .support-donate-list li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.support-donate-nav .support-donate-list li:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.55rem;
+  color: var(--doc-muted);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.support-donate-nav .support-donate-list a {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--doc-accent);
+  text-decoration: none;
+}
+
+.support-donate-nav .support-donate-list a:hover {
+  text-decoration: underline;
+}
+
+.support-donate-nav .support-donate-list a:focus-visible {
+  outline: 2px solid var(--doc-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.doc-docs-support {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid var(--doc-border);
+  background: var(--doc-bg);
+}
+
+.doc-footer-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.doc-footer-aside .support-donate-inline {
+  justify-content: flex-end;
+}
+
 .intro-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
@@ -412,6 +543,85 @@ body {
   line-height: 1.55;
   color: var(--doc-muted);
   max-width: none;
+}
+
+.intro-sponsors {
+  padding: 1.25rem clamp(1rem, 3vw, 1.35rem);
+  border-radius: 12px;
+  border: 1px solid var(--doc-border);
+  background: var(--doc-surface);
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.05);
+}
+
+.intro-sponsors-heading {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+  color: var(--doc-text);
+}
+
+.intro-sponsors-lead {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--doc-muted);
+  max-width: 42rem;
+}
+
+.intro-sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: 1rem;
+}
+
+.intro-sponsors-tier {
+  margin: 0;
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  border: 1px solid var(--doc-border);
+  background: var(--doc-bg);
+}
+
+.intro-sponsors-tier-label {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+  color: var(--doc-accent);
+}
+
+.intro-sponsors-tier-detail {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--doc-muted);
+}
+
+.intro-sponsors-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  background: var(--doc-surface);
+}
+
+.intro-sponsors-slot-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--doc-muted);
+}
+
+.intro-sponsors-cta {
+  margin: 1rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--doc-muted);
+  max-width: 42rem;
 }
 
 .intro-detail {
@@ -836,7 +1046,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
 }
