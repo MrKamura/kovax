@@ -1,4 +1,13 @@
 {
+  "seo": {
+    "brandSuffix": "Kovax React",
+    "homeTitle": "{{brand}} — UI playground & documentation",
+    "homeDescription": "Live React component demos (kovax-react), bundled Markdown docs from the repo, and design tokens — MIT licensed.",
+    "docsTitle": "Documentation — {{brand}}",
+    "docsDescription": "Markdown documentation from docs/: imports, props tables, and guides for layout, forms, overlays, and more.",
+    "componentTitle": "{{label}} — {{brand}}",
+    "componentDescription": "Live examples for {{label}} in the Kovax React playground."
+  },
   "brandAria": "Home — Kovax React",
   "nav": {
     "mainAria": "Main sections",
@@ -117,6 +126,52 @@
       "progress": "Progress.md — LinearProgress, CircularProgress; live: Components → Progress",
       "datePicker": "DatePicker.md — react-day-picker wrappers; live: Components → Date picker",
       "table": "Table.md — Table primitives + DataTable; live: Components → Table"
+    }
+  },
+  "tokens": {
+    "pageTitle": "Design tokens",
+    "intro": "Single source of truth for the visual language: palettes, spacing, radii, typography, motion, layering, and breakpoints. Every value below is exported from <code>kovax-react</code> and accessible through <code>themeToken(\"…\")</code>.",
+    "colorsTitle": "Color palettes",
+    "colorsLead": "Each palette uses the 50 → 900 ladder. Use 50–200 for surfaces, 300–500 for accents, 600–900 for text and focus.",
+    "baseColors": "Base colors",
+    "typographyTitle": "Typography",
+    "typographyLead": "Type ramp, weights, line-heights, and tracking. Components consume these via the same string tokens.",
+    "fontSize": "Font size scale",
+    "fontWeight": "Font weight ladder",
+    "lineHeight": "Line height",
+    "letterSpacing": "Letter spacing",
+    "spacingTitle": "Spacing scale",
+    "spacingLead": "Inset and stack rhythm. Bars below show the actual rem width — the bar at 5xl is 96px on the default root.",
+    "radiusTitle": "Border radius",
+    "radiusLead": "Composable radii — pair smaller values for compact UI and larger for cards / marketing surfaces.",
+    "shadowTitle": "Shadows",
+    "shadowLead": "Elevation ladder plus utility shadows: an inner shadow for sunken surfaces and a focus ring for accessibility.",
+    "motionTitle": "Motion",
+    "motionLead": "Pair duration and easing tokens for transitions. Legacy <code>transition.*</code> strings remain for back-compat.",
+    "duration": "Duration",
+    "easing": "Easing",
+    "transitionsLegacy": "Legacy composite transitions",
+    "zIndexTitle": "Z-index ladder",
+    "zIndexLead": "Predictable stacking for overlays. Higher value renders above lower one.",
+    "breakpointsTitle": "Breakpoints",
+    "breakpointsLead": "Em-based viewport breakpoints — they scale with the user's root font size for better accessibility.",
+    "thKey": "Token",
+    "thValue": "Value",
+    "thUsage": "Used for",
+    "thHint": "Media query",
+    "zIndexHints": {
+      "hide": "Hidden below content",
+      "base": "Default flow",
+      "docked": "Pinned UI (sidebars, FAB)",
+      "dropdown": "Menus, comboboxes",
+      "sticky": "Sticky headers",
+      "banner": "Site-wide banners",
+      "overlay": "Backdrop / overlays",
+      "modal": "Modal dialogs",
+      "popover": "Popovers, dropdowns over modals",
+      "skipLink": "Skip-to-content link",
+      "toast": "Transient notifications",
+      "tooltip": "Tooltips on top of everything"
     }
   },
   "layout": {

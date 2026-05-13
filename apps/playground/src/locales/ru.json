@@ -1,4 +1,13 @@
 {
+  "seo": {
+    "brandSuffix": "Kovax React",
+    "homeTitle": "{{brand}} — площадка UI и документация",
+    "homeDescription": "Живые демо React-компонентов (kovax-react), Markdown из репозитория и дизайн-токены — лицензия MIT.",
+    "docsTitle": "Документация — {{brand}}",
+    "docsDescription": "Документация в Markdown из docs/: импорты, таблицы пропсов и гайды по вёрстке, формам, оверлеям и др.",
+    "componentTitle": "{{label}} — {{brand}}",
+    "componentDescription": "Живые примеры раздела «{{label}}» на площадке Kovax React."
+  },
   "brandAria": "Главная — Kovax React",
   "nav": {
     "mainAria": "Основные разделы",
@@ -117,6 +126,52 @@
       "progress": "Progress.md — LinearProgress, CircularProgress; живые демо: Компоненты → Progress",
       "datePicker": "DatePicker.md — обёртки react-day-picker; живые демо: Компоненты → Date picker",
       "table": "Table.md — примитивы Table и DataTable; живые демо: Компоненты → Table"
+    }
+  },
+  "tokens": {
+    "pageTitle": "Дизайн-токены",
+    "intro": "Единый источник визуального языка: палитры, отступы, радиусы, типографика, motion, слои и брейкпоинты. Все значения экспортируются из <code>kovax-react</code> и доступны через <code>themeToken(\"…\")</code>.",
+    "colorsTitle": "Цветовые палитры",
+    "colorsLead": "Каждая палитра — лестница 50 → 900. 50–200 для поверхностей, 300–500 для акцентов, 600–900 для текста и фокуса.",
+    "baseColors": "Базовые цвета",
+    "typographyTitle": "Типографика",
+    "typographyLead": "Шкала размеров, насыщенностей, межстрочного и межбуквенного расстояний. Компоненты используют те же строковые токены.",
+    "fontSize": "Размер шрифта",
+    "fontWeight": "Насыщенность",
+    "lineHeight": "Межстрочный интервал",
+    "letterSpacing": "Межбуквенный интервал",
+    "spacingTitle": "Шкала отступов",
+    "spacingLead": "Ритм отступов и контейнеров. Полоски показывают реальную ширину в rem — 5xl при стандартном root равен 96 px.",
+    "radiusTitle": "Скругления",
+    "radiusLead": "Сочетайте мелкие радиусы для плотного UI и крупные — для карточек и маркетинговых поверхностей.",
+    "shadowTitle": "Тени",
+    "shadowLead": "Иерархия теней плюс утилитарные: внутренняя для углублённых поверхностей и focus-ring для доступности.",
+    "motionTitle": "Анимации",
+    "motionLead": "Сочетайте токены длительности и кривой ускорения. Старые композитные <code>transition.*</code> сохранены для совместимости.",
+    "duration": "Длительность",
+    "easing": "Кривая ускорения",
+    "transitionsLegacy": "Старые composite transitions",
+    "zIndexTitle": "Z-index",
+    "zIndexLead": "Предсказуемое наложение слоёв. Чем выше значение, тем выше элемент.",
+    "breakpointsTitle": "Брейкпоинты",
+    "breakpointsLead": "Брейкпоинты в em — растут вместе с базовым размером шрифта пользователя для лучшей доступности.",
+    "thKey": "Токен",
+    "thValue": "Значение",
+    "thUsage": "Назначение",
+    "thHint": "Медиа-запрос",
+    "zIndexHints": {
+      "hide": "Спрятано под контентом",
+      "base": "Базовый поток",
+      "docked": "Закреплённый UI (сайдбары, FAB)",
+      "dropdown": "Меню, комбобоксы",
+      "sticky": "Sticky-заголовки",
+      "banner": "Сквозные баннеры",
+      "overlay": "Подложки / overlay",
+      "modal": "Модальные окна",
+      "popover": "Поповеры поверх модалок",
+      "skipLink": "Skip-to-content",
+      "toast": "Уведомления",
+      "tooltip": "Тултипы поверх всего"
     }
   },
   "layout": {

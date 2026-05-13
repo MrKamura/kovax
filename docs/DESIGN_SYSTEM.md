@@ -4,18 +4,35 @@ Kovax UI does not ship a separate CSS theme file for consumers. Visual language 
 
 ## Tokens
 
-All base scales live in [`components/Tokens.md`](./components/Tokens.md):
+All base scales live in [`components/Tokens.md`](./components/Tokens.md). For a live, paginated reference open **Components → Design tokens** in the [playground](https://mrkamura.github.io/kovax/).
 
-- **colors** — palettes such as `primary`, `secondary`, `success`, `warning`, `error`
+- **colors** — palettes `primary`, `secondary`, `success`, `warning`, `error` (50 → 900 ladder)
+- **baseColors** — neutral `white` / `black`
 - **sizes** — spacing (`sizes.spacing`), typography (`sizes.text`), radii (`sizes.borderRadius`)
-- **shadows** — preset shadow strings
-- **transitions** — timing strings used by interactive components
-- **themeToken** — string access to all of the above and colors (`themeToken("secondary.200")`, `themeToken("spacing.md")`, …)
+- **fontWeights** / **lineHeights** / **letterSpacings** — typography refinement scales
+- **shadows** — elevation ladder plus `inner` and `focusRing` utilities
+- **motion** — `motion.duration.*` and `motion.easing.*` (legacy `transitions.*` retained)
+- **zIndices** — predictable stacking order for overlays
+- **breakpoints** — em-based viewport breakpoints
+- **themeToken** — string access to every namespace (`themeToken("secondary.200")`, `themeToken("spacing.md")`, `themeToken("zIndex.modal")`, …)
 
 Import from the package entry:
 
 ```tsx
-import { colors, sizes, shadows, themeToken } from "kovax-react";
+import {
+  colors,
+  baseColors,
+  sizes,
+  fontWeights,
+  lineHeights,
+  letterSpacings,
+  shadows,
+  motion,
+  transitions,
+  zIndices,
+  breakpoints,
+  themeToken,
+} from "kovax-react";
 ```
 
 ## Typography

@@ -1,184 +1,217 @@
 ## 🎨 Design Tokens
 
-Kovax React provides a flexible set of design tokens — color palettes, shadows, sizes, and transitions — to ensure consistent UI across all components.
-These tokens can be used directly in your custom styles or when extending the Kovax theme.
+Kovax React ships a typed token system — palettes, spacing, radii, typography, motion, layering, and breakpoints — so every component speaks the same visual language. Tokens are plain objects on top of `themeToken("…")`, so they work with inline styles, CSS-in-JS, and emit calc-friendly strings (e.g. `"1.25rem"`, `"cubic-bezier(...)"`).
 
-## 📦 Exported Tokens
+Looking for a visual gallery? Open **Components → Design tokens** in the [live documentation](https://mrkamura.github.io/kovax/).
 
-All tokens are exported from the main library entry point:
+## 📦 Exports
 
 ```tsx
 import {
+  // Palettes
   colors,
-  shadows,
-  sizes,
-  transitions,
   baseColors,
-  themeToken,
-  ThemeToken,
+
+  // Scales
+  sizes,            // { text, spacing, borderRadius }
+  fontWeights,
+  lineHeights,
+  letterSpacings,
+  shadows,
+  motion,           // { duration, easing }
+  transitions,      // legacy composite strings
+  zIndices,
+  breakpoints,
+
+  // Helpers
   colorToken,
-  ColorToken,
+  themeToken,
+
+  // Types
   ColorName,
   ColorShade,
+  ColorToken,
   ShadowKey,
   TransitionKey,
   TextSizeKey,
+  SizeKey,
   BorderRadiusKey,
-} from 'kovax-react';
+  FontWeightKey,
+  LineHeightKey,
+  LetterSpacingKey,
+  DurationKey,
+  EasingKey,
+  ZIndexKey,
+  BreakpointKey,
+  ThemeToken,
+} from "kovax-react";
 ```
 
 ## 🎨 Colors
 
-The colors object defines the full color palette used across the UI.
-Each color has multiple shades (from 50 to 900) for light and dark variations.
+Five semantic palettes with a 50 → 900 ladder. Use 50–200 for surfaces, 300–500 for accents, and 600–900 for text and active states.
 
 ```tsx
-console.log(colors.primary[500]); // #1E88E5
+colors.primary[500];   // "#3b82f6"
+colors.success[600];   // "#059669"
+themeToken("error.50") // "#fef2f2"
 ```
 
-* Example structure
-```tsx
-colors = {
-  primary: {
-    50: '#E3F2FD',
-    100: '#BBDEFB',
-    200: '#90CAF9',
-    300: '#64B5F6',
-    400: '#42A5F5',
-    500: '#2196F3',
-    600: '#1E88E5',
-    700: '#1976D2',
-    800: '#1565C0',
-    900: '#0D47A1',
-  },
-  success: { ... },
-  danger: { ... },
-  neutral: { ... }
-};
-```
+Palettes: `primary`, `secondary`, `success`, `warning`, `error`.
 
-## ⚪ Base colors
+### Base colors
 
-Plain neutral values outside `colors.*` scales (e.g. contrasting text on accent fills):
+Neutral values outside the palette ladder — useful for contrasting text on accent fills.
 
 ```tsx
 import { baseColors } from "kovax-react";
 
-baseColors.white; // '#ffffff'
-baseColors.black; // '#000000'
+baseColors.white; // "#ffffff"
+baseColors.black; // "#000000"
 ```
 
-## String tokens (`themeToken`)
+## 🔤 Typography
 
-One helper for colors, typography (`sizes.text`), spacing (`sizes.spacing`), radii (`sizes.borderRadius`), shadows, and transitions. A dotted string sets **category** and **key** (palette colors still use `palette.shade`).
+`sizes.text` is the size ramp; `fontWeights`, `lineHeights`, `letterSpacings` are dedicated scales (numbers / em-based strings).
 
-| Prefix | Example | Equivalent |
-|--------|---------|------------|
-| palette | `secondary.200` | `colors.secondary[200]` |
-| *(no second segment)* | `white`, `black`, `#fafafa` | same as `colorToken` |
-| `text` | `text.sm` | `sizes.text.sm` |
-| `spacing` | `spacing.md` | `sizes.spacing.md` |
-| `borderRadius` | `borderRadius.md` | `sizes.borderRadius.md` |
-| `shadow` | `shadow.sm` | `shadows.sm` |
-| `transition` | `transition.default` | `transitions.default` |
+| Token namespace | Example | Resolves to |
+| --------------- | ------- | ----------- |
+| `text.*` | `text.base` → `text.5xl` | rem (`1rem`, `3rem`, …) |
+| `fontWeight.*` | `fontWeight.medium` | numeric (`"500"`) |
+| `lineHeight.*` | `lineHeight.normal` | numeric (`"1.5"`) |
+| `letterSpacing.*` | `letterSpacing.tight` | em (`-0.02em`) |
 
 ```tsx
-import { themeToken } from "kovax-react";
-
-themeToken("secondary.200");
-themeToken("white");
-themeToken("text.lg");
-themeToken("spacing.md");
-themeToken("borderRadius.sm");
-themeToken("shadow.sm");
-themeToken("transition.fast");
+const titleStyle = {
+  fontSize: themeToken("text.3xl"),
+  fontWeight: themeToken("fontWeight.semibold"),
+  lineHeight: themeToken("lineHeight.tight"),
+  letterSpacing: themeToken("letterSpacing.tighter"),
+};
 ```
 
-The `ThemeToken` type unions the allowed strings for these branches (including `ColorToken`). Unknown keys under `shadow.*`, `spacing.*`, etc. are returned as-is; arbitrary CSS without a dot is handled via the color branch (`colorToken`).
+## 📏 Spacing
 
-### Colors only (`colorToken`)
-
-`colorToken` is still exported separately: same rules for `palette.shade`, `white`, `black`, and arbitrary CSS. `themeToken` delegates to that path for color-like inputs.
-
-## 🧩 Types
-```tsx
-type ColorName = 'primary' | 'success' | 'danger' | 'warning' | 'neutral';
-type ColorShade = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-```
-
-This helps ensure type-safe access to your colors in TypeScript:
+Backwards-compatible rem ladder with `none / 2xs / 2xl / 3xl / 4xl / 5xl` additions for marketing layouts.
 
 ```tsx
-const getColor = (name: ColorName, shade: ColorShade) => colors[name][shade];
+sizes.spacing.xs;   // "0.5rem"
+sizes.spacing["2xl"]; // "2.5rem"
+themeToken("spacing.none"); // "0rem"
 ```
+
+## 🟦 Border radius
+
+```tsx
+sizes.borderRadius.md;     // "0.5rem"
+sizes.borderRadius["2xl"]; // "1.25rem"
+sizes.borderRadius.full;   // "9999px"
+```
+
+New: `none / xs / xl / 2xl / 3xl`. Existing `sm / md / lg / full` keep their values.
 
 ## 🌫️ Shadows
 
-Shadows provide consistent depth and elevation across UI elements.
+Elevation ladder with two utility shadows for inset surfaces and focus rings.
 
 ```tsx
-shadows = {
-  none: 'none',
-  sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-  md: '0 4px 6px -1px rgb(0 0 0 / 0.1), …',
-  lg: '…',
-  xl: '…',
-};
+shadows.md;         // soft card
+shadows["2xl"];     // marketing hero
+shadows.inner;      // sunken surfaces
+shadows.focusRing;  // 3px blue ring for a11y
 ```
 
-Example:
+## ⚡ Motion
+
+`motion.duration` and `motion.easing` compose into transitions. The legacy `transitions` object is preserved.
 
 ```tsx
-<div style={{ boxShadow: themeToken("shadow.md") }}>Card with shadow</div>
+const t = `background-color ${themeToken(
+  "duration.fast",
+)} ${themeToken("easing.standard")}`;
+
+// Legacy composite (still exported):
+themeToken("transition.default");
 ```
 
-## 📏 Sizes
+Durations: `instant / fast / normal / slow / slower`. Easings: `linear / standard / decelerate / accelerate / bounce`.
 
-The `sizes` object groups **text**, **spacing**, and **radii**:
+## 🗂️ Z-index
+
+Predictable stacking order for overlays. Higher value renders above lower one.
 
 ```tsx
-sizes.text.xs       // '0.75rem'
-sizes.spacing.md    // '1rem'
-sizes.borderRadius.md // '0.5rem'
+zIndices.dropdown; // 1000
+zIndices.modal;    // 1400
+zIndices.tooltip;  // 1800
+themeToken("zIndex.modal"); // "1400"
 ```
 
-Via string tokens:
+Ladder: `hide < base < docked < dropdown < sticky < banner < overlay < modal < popover < skipLink < toast < tooltip`.
+
+## 🧭 Breakpoints
+
+Em-based viewport breakpoints — they scale with the user's root font size, which is more accessible than rigid px values.
 
 ```tsx
-themeToken("text.sm");
-themeToken("spacing.md");
-themeToken("borderRadius.lg");
+breakpoints.md; // "48em" ≈ 768px
+
+const css = `@media (min-width: ${themeToken("breakpoint.lg")}) { … }`;
 ```
 
-## ⚡ Transitions
+## 🧪 String tokens (`themeToken`)
+
+One helper for every namespace.
+
+| Prefix | Example | Equivalent |
+| ------ | ------- | ---------- |
+| palette | `secondary.200` | `colors.secondary[200]` |
+| *(no second segment)* | `white`, `black`, `#fafafa` | same as `colorToken` |
+| `text` | `text.lg` | `sizes.text.lg` |
+| `spacing` | `spacing.md` | `sizes.spacing.md` |
+| `borderRadius` | `borderRadius.xl` | `sizes.borderRadius.xl` |
+| `shadow` | `shadow.focusRing` | `shadows.focusRing` |
+| `fontWeight` | `fontWeight.semibold` | `fontWeights.semibold` |
+| `lineHeight` | `lineHeight.normal` | `lineHeights.normal` |
+| `letterSpacing` | `letterSpacing.tight` | `letterSpacings.tight` |
+| `duration` | `duration.fast` | `motion.duration.fast` |
+| `easing` | `easing.standard` | `motion.easing.standard` |
+| `transition` | `transition.default` | `transitions.default` |
+| `zIndex` | `zIndex.modal` | `zIndices.modal` |
+| `breakpoint` | `breakpoint.lg` | `breakpoints.lg` |
+
+Unknown namespaced keys are returned as-is, so it's safe to feed runtime values through `themeToken` for fall-through behaviour.
+
+## 🧩 Types
 
 ```tsx
-transitions = {
-  default: 'all 0.2s ease-in-out',
-  fast: 'all 0.1s ease-in-out',
-  slow: 'all 0.3s ease-in-out',
-};
+type ColorName = "primary" | "secondary" | "success" | "warning" | "error";
+type ColorShade = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+
+const getColor = (name: ColorName, shade: ColorShade) => colors[name][shade];
 ```
 
-Example:
+`ThemeToken` unions every accepted dotted string (palette + scale namespaces) so IDEs auto-complete tokens.
+
+## 🧭 Example: composite card
 
 ```tsx
-<div style={{ transition: themeToken("transition.default") }}>Animated element</div>
-```
-
-## 🧭 Example Usage
-```tsx
-import { themeToken } from 'kovax-react';
+import { themeToken } from "kovax-react";
 
 export const Card = () => (
   <div
     style={{
       backgroundColor: themeToken("primary.50"),
       border: `1px solid ${themeToken("primary.200")}`,
-      borderRadius: themeToken("borderRadius.md"),
-      boxShadow: themeToken("shadow.md"),
-      transition: themeToken("transition.fast"),
-      padding: themeToken("spacing.md"),
+      borderRadius: themeToken("borderRadius.xl"),
+      boxShadow: themeToken("shadow.lg"),
+      padding: themeToken("spacing.lg"),
+      fontSize: themeToken("text.base"),
+      fontWeight: themeToken("fontWeight.medium"),
+      lineHeight: themeToken("lineHeight.snug"),
+      transition: `box-shadow ${themeToken(
+        "duration.normal",
+      )} ${themeToken("easing.standard")}`,
     }}
   >
     Hello Kovax
@@ -186,12 +219,10 @@ export const Card = () => (
 );
 ```
 
-## 🧱 Token Principles
+## 🧱 Token principles
 
-* Consistency: Shared visual language across all components
-
-* Scalability: Easily extended with custom color palettes
-
-* Type safety: `ThemeToken`, `ColorToken`, `ColorName`, `ColorShade`, and related types
-
-* Reusability: Tokens can be reused across multiple projects
+- **Consistency** — shared visual language across every component.
+- **Composability** — primitives over presets; `themeToken("…")` works in inline styles, `style` objects, or CSS-in-JS.
+- **Type safety** — `ThemeToken`, `ColorToken`, `ColorName`, `ColorShade`, and the per-scale keys keep autocomplete honest.
+- **Backwards compatibility** — every key added in v0.5+ is additive; previous code keeps working.
+- **Accessibility-aware** — em-based breakpoints and `prefers-reduced-motion` friendly `motion.duration.instant`.

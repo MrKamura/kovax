@@ -1,14 +1,33 @@
+import { type MouseEvent } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { SponsorsSection } from "../components/SponsorsSection";
 import { SupportDonateLinks } from "../components/SupportDonateLinks";
+import { useSiteNav } from "../routing/SiteNavContext";
+import { pathnameForRoute } from "../routing/siteRoutes";
 
-export interface IntroSectionProps {
-  onOpenComponents: () => void;
-  onOpenDocs: () => void;
+function spaNavClick(
+  event: MouseEvent<HTMLAnchorElement>,
+  navigate: ReturnType<typeof useSiteNav>["navigate"],
+  next: Parameters<typeof navigate>[0],
+): void {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (event.button !== 0) return;
+  event.preventDefault();
+  navigate(next);
 }
 
-export function IntroSection({ onOpenComponents, onOpenDocs }: IntroSectionProps) {
+export function IntroSection() {
   const { t } = useTranslation();
+  const { route, baseUrl, navigate } = useSiteNav();
+
+  const componentsHref = pathnameForRoute(
+    { lang: route.lang, area: "components", component: "tokens" },
+    baseUrl,
+  );
+  const docsHref = pathnameForRoute(
+    { lang: route.lang, area: "docs", component: "tokens" },
+    baseUrl,
+  );
 
   return (
     <div className="intro-page">
@@ -19,12 +38,32 @@ export function IntroSection({ onOpenComponents, onOpenDocs }: IntroSectionProps
         </h1>
         <p className="intro-hero-lead">{t("intro.heroLead")}</p>
         <div className="intro-hero-actions">
-          <button type="button" className="intro-cta intro-cta--primary" onClick={onOpenComponents}>
+          <a
+            href={componentsHref}
+            className="intro-cta intro-cta--primary"
+            onClick={(e) =>
+              spaNavClick(e, navigate, {
+                lang: route.lang,
+                area: "components",
+                component: "tokens",
+              })
+            }
+          >
             {t("intro.ctaComponents")}
-          </button>
-          <button type="button" className="intro-cta intro-cta--secondary" onClick={onOpenDocs}>
+          </a>
+          <a
+            href={docsHref}
+            className="intro-cta intro-cta--secondary"
+            onClick={(e) =>
+              spaNavClick(e, navigate, {
+                lang: route.lang,
+                area: "docs",
+                component: "tokens",
+              })
+            }
+          >
             {t("intro.ctaDocs")}
-          </button>
+          </a>
         </div>
         <SupportDonateLinks variant="hero" />
       </section>

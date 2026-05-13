@@ -4,7 +4,7 @@ Component and foundation docs live next to this file. Links are relative to the 
 
 ## Foundation
 
-- [Design tokens](./components/Tokens.md)
+- [Design tokens](./components/Tokens.md) — palettes, spacing, typography, motion, z-index, breakpoints. Live gallery: **Components → Design tokens** on the [playground](https://mrkamura.github.io/kovax/).
 
 ## Components
 
