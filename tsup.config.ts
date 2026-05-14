@@ -16,6 +16,8 @@ export default defineConfig({
     progress: "src/entries/progress.ts",
     "date-picker": "src/entries/date-picker.ts",
     table: "src/entries/table.ts",
+    avatar: "src/entries/avatar.ts",
+    badge: "src/entries/badge.ts",
   },
   format: ["esm", "cjs"],
   dts: true,

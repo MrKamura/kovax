@@ -97,12 +97,14 @@
   },
   "documentation": {
     "title": "Documentation",
-    "lead": "Markdown from the repo <code>docs/</code> folder: imports, props tables, and examples. For **Overlays**, pair **Documentation → Overlays** with **Components → Overlays**; for **Tabs**, pair **Documentation → Tabs** with **Components → Tabs**; for **Accordion / Collapsible**, pair **Documentation → Accordion** with **Components → Accordion**; for **Alert**, pair **Documentation → Alert** with **Components → Alert**; for **Progress**, pair **Documentation → Progress** with **Components → Progress**; for **Date picker**, pair **Documentation → Date picker** with **Components → Date picker**; for **Table**, pair **Documentation → Table** with **Components → Table**.",
+    "lead": "Markdown from the repo <code>docs/</code> folder: imports, props tables, and examples. For **Overlays**, pair **Documentation → Overlays** with **Components → Overlays**; for **Tabs**, pair **Documentation → Tabs** with **Components → Tabs**; for **Accordion / Collapsible**, pair **Documentation → Accordion** with **Components → Accordion**; for **Alert**, pair **Documentation → Alert** with **Components → Alert**; for **Progress**, pair **Documentation → Progress** with **Components → Progress**; for **Date picker**, pair **Documentation → Date picker** with **Components → Date picker**; for **Table**, pair **Documentation → Table** with **Components → Table**; for **Avatar**, pair **Documentation → Avatar** with **Components → Avatar**; for **Badge**, pair **Documentation → Badge** with **Components → Badge**.",
     "topicBarAria": "Documentation topic",
     "topics": {
       "foundation": "Foundation",
       "layout": "Layout",
       "typography": "Typography",
+      "avatar": "Avatar",
+      "badge": "Badge",
       "button": "Button",
       "input": "Input",
       "controls": "Controls",
@@ -120,6 +122,8 @@
       "foundation": "README, Getting Started, Tokens, Design system",
       "layout": "docs/components/Layout/",
       "typography": "docs/components/Typography/",
+      "avatar": "Avatar.md — photo / initials / fallback; live: Components → Avatar; kovax-react/avatar",
+      "badge": "Badge.md — labels / status chips; live: Components → Badge; kovax-react/badge",
       "button": "docs/components/Button.md",
       "input": "docs/components/Input.md + Textarea.md",
       "controls": "docs/components/Controls.md",
@@ -176,6 +180,33 @@
     "propPalettes": "Partial overrides per side. Merged on top of the built-in light/dark palettes (color ramps, base colors, shadows).",
     "propTarget": "Element that receives the data-kovax-theme attribute. Defaults to documentElement; pass a ref to scope theming to a subtree.",
     "propNonce": "nonce attribute forwarded to the injected <style>. Required when running under a strict Content-Security-Policy."
+  },
+  "avatar": {
+    "pageTitle": "Avatar",
+    "intro": "<strong>Avatar</strong> shows a profile photo or generates initials / custom fallback content in a fixed circular or softly rounded frame. Deep import: <code>kovax-react/avatar</code>.",
+    "examplesSizes": "Sizes",
+    "examplesShapes": "Shape",
+    "examplesSchemes": "Fallback colors",
+    "examplesPhoto": "Photo",
+    "photoLead": "Pass <code>src</code> and <code>alt</code>. While the image loads successfully, initials are hidden.",
+    "photoAlt": "Sample portrait",
+    "examplesFallback": "Custom fallback & broken image",
+    "customIconName": "Icon fallback",
+    "brokenName": "Broken image",
+    "examplesStack": "Stacked row",
+    "a11yNote": "<strong>Accessibility:</strong> without <code>src</code>, set <code>name</code> (preferred) or <code>aria-label</code> so the fallback keeps an accessible name. With <code>src</code>, provide meaningful <code>alt</code> unless the avatar is purely decorative."
+  },
+  "badge": {
+    "pageTitle": "Badge",
+    "intro": "<strong>Badge</strong> is a compact pill for statuses, counts, and meta labels. Surfaces follow semantic palettes (<code>solid</code>, <code>outline</code>, <code>subtle</code>). Deep import: <code>kovax-react/badge</code>.",
+    "examplesVariants": "Variants",
+    "examplesPalette": "Semantic colors",
+    "examplesMatrix": "Variant × color",
+    "matrixLead": "Each row is a <code>variant</code>; chips show every <code>color</code>. Default is <code>variant=\"subtle\"</code> + <code>color=\"neutral\"</code>.",
+    "examplesSizes": "Sizes",
+    "examplesDot": "Dot indicator",
+    "examplesInline": "Inline with text",
+    "a11yNote": "<strong>Accessibility:</strong> Badge is a <code>&lt;span&gt;</code> — not interactive. For removable filters use <code>Button</code> with appropriate labeling; for live counts pair with visible nearby context or <code>aria-label</code> on a parent."
   },
   "tokens": {
     "pageTitle": "Design tokens",

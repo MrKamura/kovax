@@ -18,6 +18,8 @@ export * from "./Popover";
 export * from "./Tabs";
 export * from "./Collapsible";
 export * from "./Accordion";
+export * from "./Avatar";
+export * from "./Badge";
 export * from "./Alert";
 export * from "./Progress";
 export * from "./DatePicker";

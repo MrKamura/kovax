@@ -30,6 +30,8 @@ Component and foundation docs live next to this file. Links are relative to the 
 - [Code / Kbd](./components/Typography/Code.md)
 - [Blockquote](./components/Typography/Blockquote.md)
 - [List / ListItem](./components/Typography/List.md)
+- [Avatar](./components/Avatar.md) — photo / initials / custom fallback (`kovax-react/avatar`)
+- [Badge](./components/Badge.md) — status / count pills (`kovax-react/badge`)
 
 ### Forms
 

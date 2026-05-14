@@ -7,6 +7,8 @@ export type ComponentPage =
   | "theme"
   | "layout"
   | "typography"
+  | "avatar"
+  | "badge"
   | "button"
   | "input"
   | "controls"
@@ -31,6 +33,8 @@ const COMPONENT_TO_SLUG: Record<ComponentPage, string> = {
   theme: "theme",
   layout: "layout",
   typography: "typography",
+  avatar: "avatar",
+  badge: "badge",
   button: "button",
   input: "input",
   controls: "controls",

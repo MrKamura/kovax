@@ -97,12 +97,14 @@
   },
   "documentation": {
     "title": "Документация",
-    "lead": "Markdown из каталога <code>docs/</code> репозитория: импорты, таблицы пропсов и примеры. Для **Overlays** сочетайте **Документация → Overlays** и **Компоненты → Overlays**; для **Tabs** — **Документация → Tabs** и **Компоненты → Tabs**; для **Accordion / Collapsible** — **Документация → Accordion** и **Компоненты → Accordion**; для **Alert** — **Документация → Alert** и **Компоненты → Alert**; для **Progress** — **Документация → Progress** и **Компоненты → Progress**; для **Date picker** — **Документация → Date picker** и **Компоненты → Date picker**; для **Table** — **Документация → Table** и **Компоненты → Table**.",
+    "lead": "Markdown из каталога <code>docs/</code> репозитория: импорты, таблицы пропсов и примеры. Для **Overlays** сочетайте **Документация → Overlays** и **Компоненты → Overlays**; для **Tabs** — **Документация → Tabs** и **Компоненты → Tabs**; для **Accordion / Collapsible** — **Документация → Accordion** и **Компоненты → Accordion**; для **Alert** — **Документация → Alert** и **Компоненты → Alert**; для **Progress** — **Документация → Progress** и **Компоненты → Progress**; для **Date picker** — **Документация → Date picker** и **Компоненты → Date picker**; для **Table** — **Документация → Table** и **Компоненты → Table**; для **Avatar** — **Документация → Avatar** и **Компоненты → Avatar**; для **Badge** — **Документация → Badge** и **Компоненты → Badge**.",
     "topicBarAria": "Раздел документации",
     "topics": {
       "foundation": "Основы",
       "layout": "Layout",
       "typography": "Typography",
+      "avatar": "Avatar",
+      "badge": "Badge",
       "button": "Button",
       "input": "Input",
       "controls": "Controls",
@@ -120,6 +122,8 @@
       "foundation": "README, Getting Started, Tokens, Design system",
       "layout": "docs/components/Layout/",
       "typography": "docs/components/Typography/",
+      "avatar": "Avatar.md — фото / инициалы / fallback; живые демо: Компоненты → Avatar; kovax-react/avatar",
+      "badge": "Badge.md — статусы и метки; живые демо: Компоненты → Badge; kovax-react/badge",
       "button": "docs/components/Button.md",
       "input": "docs/components/Input.md + Textarea.md",
       "controls": "docs/components/Controls.md",
@@ -176,6 +180,33 @@
     "propPalettes": "Частичные оверрайды по сторонам. Сливаются поверх встроенных light/dark палитр (color ramps, base colors, shadows).",
     "propTarget": "Элемент, на который пишется data-kovax-theme. По умолчанию documentElement; передайте ref, чтобы скоупить тему на поддерев.",
     "propNonce": "nonce, который пробросится в инжектируемый <style>. Нужен для строгого Content-Security-Policy."
+  },
+  "avatar": {
+    "pageTitle": "Avatar",
+    "intro": "<strong>Avatar</strong> показывает фото профиля или рисует инициалы / свой fallback в фиксированном круге или скруглённом квадрате. Глубокий импорт: <code>kovax-react/avatar</code>.",
+    "examplesSizes": "Размеры",
+    "examplesShapes": "Форма",
+    "examplesSchemes": "Цвет fallback",
+    "examplesPhoto": "Фото",
+    "photoLead": "Передайте <code>src</code> и <code>alt</code>. Пока изображение грузится успешно, инициалы скрыты.",
+    "photoAlt": "Пример портрета",
+    "examplesFallback": "Свой fallback и битая картинка",
+    "customIconName": "Иконка",
+    "brokenName": "Битый URL",
+    "examplesStack": "Ряд с наложением",
+    "a11yNote": "<strong>Доступность:</strong> без <code>src</code> задайте <code>name</code> (предпочтительно) или <code>aria-label</code>, чтобы у fallback было имя. С <code>src</code> указывайте осмысленный <code>alt</code>, если аватар не чисто декоративный."
+  },
+  "badge": {
+    "pageTitle": "Badge",
+    "intro": "<strong>Badge</strong> — компактная «таблетка» для статусов, счётчиков и метаданных. Поверхности: <code>solid</code>, <code>outline</code>, <code>subtle</code> на семантических палитрах. Глубокий импорт: <code>kovax-react/badge</code>.",
+    "examplesVariants": "Варианты",
+    "examplesPalette": "Семантические цвета",
+    "examplesMatrix": "Вариант × цвет",
+    "matrixLead": "Каждая строка — <code>variant</code>; чипы показывают все <code>color</code>. По умолчанию <code>variant=\"subtle\"</code> и <code>color=\"neutral\"</code>.",
+    "examplesSizes": "Размеры",
+    "examplesDot": "Точка-индикатор",
+    "examplesInline": "В строке с текстом",
+    "a11yNote": "<strong>Доступность:</strong> Badge — это <code>&lt;span&gt;</code>, не интерактивный элемент. Для снимаемых фильтров используйте <code>Button</code> с явной подписью; для живых счётчиков дайте контекст рядом или <code>aria-label</code> на родителе."
   },
   "tokens": {
     "pageTitle": "Дизайн-токены",

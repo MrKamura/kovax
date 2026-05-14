@@ -6,6 +6,8 @@ const COMPONENT_KEYS: Record<ComponentPage, string> = {
   theme: "theme.pageTitle",
   layout: "documentation.topics.layout",
   typography: "documentation.topics.typography",
+  avatar: "documentation.topics.avatar",
+  badge: "documentation.topics.badge",
   button: "documentation.topics.button",
   input: "documentation.topics.input",
   controls: "documentation.topics.controls",

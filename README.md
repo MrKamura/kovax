@@ -1,5 +1,7 @@
 # Kovax UI
 
+![Kovax React — typed UI library with CSS-variable theming](./docs/cover.webp)
+
 React component library focused on layout primitives, typography, forms, data tables, and typed design tokens.
 
 ![npm](https://img.shields.io/npm/v/kovax-react?color=3b82f6&label=version)

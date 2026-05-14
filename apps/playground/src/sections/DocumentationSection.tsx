@@ -13,6 +13,8 @@ import {
   overlaysDocumentationMarkdown,
   accordionDocumentationMarkdown,
   alertDocumentationMarkdown,
+  avatarDocumentationMarkdown,
+  badgeDocumentationMarkdown,
   progressDocumentationMarkdown,
   datePickerDocumentationMarkdown,
   tableDocumentationMarkdown,
@@ -24,6 +26,8 @@ type DocTopicId =
   | "foundation"
   | "layout"
   | "typography"
+  | "avatar"
+  | "badge"
   | "button"
   | "input"
   | "controls"
@@ -49,6 +53,14 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
     id: "typography",
     markdown: typographyDocumentationMarkdown,
+  },
+  {
+    id: "avatar",
+    markdown: avatarDocumentationMarkdown,
+  },
+  {
+    id: "badge",
+    markdown: badgeDocumentationMarkdown,
   },
   {
     id: "button",

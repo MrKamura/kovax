@@ -13,6 +13,8 @@ import { SelectSection } from "./sections/SelectSection";
 import { OverlaysSection } from "./sections/OverlaysSection";
 import { FormSection } from "./sections/FormSection";
 import { TypographySection } from "./sections/TypographySection";
+import { AvatarSection } from "./sections/AvatarSection";
+import { BadgeSection } from "./sections/BadgeSection";
 import { TabsSection } from "./sections/TabsSection";
 import { AccordionSection } from "./sections/AccordionSection";
 import { AlertSection } from "./sections/AlertSection";
@@ -47,6 +49,8 @@ const COMPONENT_NAV: { id: ComponentPage; labelKey: string }[] = [
   { id: "theme", labelKey: "theme.pageTitle" },
   { id: "layout", labelKey: "documentation.topics.layout" },
   { id: "typography", labelKey: "documentation.topics.typography" },
+  { id: "avatar", labelKey: "documentation.topics.avatar" },
+  { id: "badge", labelKey: "documentation.topics.badge" },
   { id: "button", labelKey: "documentation.topics.button" },
   { id: "input", labelKey: "documentation.topics.input" },
   { id: "controls", labelKey: "documentation.topics.controls" },
@@ -301,6 +305,8 @@ export default function App({
             {area === "components" && component === "typography" && (
               <TypographySection />
             )}
+            {area === "components" && component === "avatar" && <AvatarSection />}
+            {area === "components" && component === "badge" && <BadgeSection />}
             {area === "components" && component === "button" && <ButtonSection />}
             {area === "components" && component === "input" && <InputSection />}
             {area === "components" && component === "controls" && (
