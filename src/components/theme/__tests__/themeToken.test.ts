@@ -14,42 +14,61 @@ import {
   zIndices,
 } from "../tokens";
 
+const wrap = (name: string, fallback: string | number): string =>
+  `var(${name}, ${fallback})`;
+
 describe("themeToken", () => {
-  it("delegates colors to the same values as colorToken", () => {
+  it("delegates colors to colorToken (var with fallback)", () => {
     expect(themeToken("secondary.200")).toBe(colorToken("secondary.200"));
-    expect(themeToken("white")).toBe(baseColors.white);
+    expect(themeToken("white")).toBe(`var(--kx-color-base-white, ${baseColors.white})`);
+  });
+
+  it("passes through unknown CSS identifiers (no namespace)", () => {
     expect(themeToken("#abc")).toBe("#abc");
   });
 
-  it("resolves text, spacing, borderRadius", () => {
-    expect(themeToken("text.sm")).toBe(sizes.text.sm);
-    expect(themeToken("spacing.md")).toBe(sizes.spacing.md);
-    expect(themeToken("borderRadius.md")).toBe(sizes.borderRadius.md);
+  it("wraps text / spacing / borderRadius in CSS variables", () => {
+    expect(themeToken("text.sm")).toBe(wrap("--kx-text-sm", sizes.text.sm));
+    expect(themeToken("spacing.md")).toBe(wrap("--kx-spacing-md", sizes.spacing.md));
+    expect(themeToken("borderRadius.md")).toBe(
+      wrap("--kx-radius-md", sizes.borderRadius.md),
+    );
   });
 
-  it("resolves shadow and transition", () => {
-    expect(themeToken("shadow.sm")).toBe(shadows.sm);
-    expect(themeToken("transition.default")).toBe(transitions.default);
+  it("wraps shadow and transition in CSS variables", () => {
+    expect(themeToken("shadow.sm")).toBe(wrap("--kx-shadow-sm", shadows.sm));
+    expect(themeToken("transition.default")).toBe(
+      wrap("--kx-transition-default", transitions.default),
+    );
   });
 
-  it("resolves extended size scales", () => {
-    expect(themeToken("text.2xl")).toBe(sizes.text["2xl"]);
-    expect(themeToken("spacing.none")).toBe(sizes.spacing.none);
-    expect(themeToken("borderRadius.2xl")).toBe(sizes.borderRadius["2xl"]);
-    expect(themeToken("shadow.2xl")).toBe(shadows["2xl"]);
-    expect(themeToken("shadow.inner")).toBe(shadows.inner);
+  it("resolves extended size scales as CSS variables", () => {
+    expect(themeToken("text.2xl")).toBe(wrap("--kx-text-2xl", sizes.text["2xl"]));
+    expect(themeToken("spacing.none")).toBe(wrap("--kx-spacing-none", sizes.spacing.none));
+    expect(themeToken("borderRadius.2xl")).toBe(
+      wrap("--kx-radius-2xl", sizes.borderRadius["2xl"]),
+    );
+    expect(themeToken("shadow.inner")).toBe(wrap("--kx-shadow-inner", shadows.inner));
   });
 
-  it("resolves typography refinement tokens", () => {
-    expect(themeToken("fontWeight.medium")).toBe(String(fontWeights.medium));
-    expect(themeToken("lineHeight.normal")).toBe(String(lineHeights.normal));
-    expect(themeToken("letterSpacing.tight")).toBe(letterSpacings.tight);
+  it("wraps typography refinement tokens", () => {
+    expect(themeToken("fontWeight.medium")).toBe(
+      wrap("--kx-font-weight-medium", fontWeights.medium),
+    );
+    expect(themeToken("lineHeight.normal")).toBe(
+      wrap("--kx-line-height-normal", lineHeights.normal),
+    );
+    expect(themeToken("letterSpacing.tight")).toBe(
+      wrap("--kx-letter-spacing-tight", letterSpacings.tight),
+    );
   });
 
-  it("resolves motion, zIndex, and breakpoint namespaces", () => {
-    expect(themeToken("duration.fast")).toBe(motion.duration.fast);
-    expect(themeToken("easing.standard")).toBe(motion.easing.standard);
-    expect(themeToken("zIndex.modal")).toBe(String(zIndices.modal));
+  it("wraps motion and zIndex namespaces; breakpoints stay raw", () => {
+    expect(themeToken("duration.fast")).toBe(wrap("--kx-duration-fast", motion.duration.fast));
+    expect(themeToken("easing.standard")).toBe(
+      wrap("--kx-easing-standard", motion.easing.standard),
+    );
+    expect(themeToken("zIndex.modal")).toBe(wrap("--kx-zindex-modal", zIndices.modal));
     expect(themeToken("breakpoint.md")).toBe(breakpoints.md);
   });
 
@@ -59,5 +78,10 @@ describe("themeToken", () => {
     expect(themeToken("fontWeight.???")).toBe("fontWeight.???");
     expect(themeToken("duration.???")).toBe("duration.???");
     expect(themeToken("zIndex.???")).toBe("zIndex.???");
+  });
+
+  it("colors fall back to the static palette hex (parity)", () => {
+    expect(themeToken("secondary.200")).toContain(colors.secondary[200]);
+    expect(themeToken("primary.500")).toContain(colors.primary[500]);
   });
 });

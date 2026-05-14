@@ -1,15 +1,21 @@
 import { baseColors, colorToken, colors } from "../tokens";
 
 describe("colorToken", () => {
-  it("resolves palette.shade", () => {
-    expect(colorToken("secondary.200")).toBe(colors.secondary[200]);
-    expect(colorToken("primary.500")).toBe(colors.primary[500]);
-    expect(colorToken("error.300")).toBe(colors.error[300]);
+  it("returns a CSS variable with palette hex fallback", () => {
+    expect(colorToken("secondary.200")).toBe(
+      `var(--kx-color-secondary-200, ${colors.secondary[200]})`,
+    );
+    expect(colorToken("primary.500")).toBe(
+      `var(--kx-color-primary-500, ${colors.primary[500]})`,
+    );
+    expect(colorToken("error.300")).toBe(
+      `var(--kx-color-error-300, ${colors.error[300]})`,
+    );
   });
 
-  it("resolves white/black", () => {
-    expect(colorToken("white")).toBe(baseColors.white);
-    expect(colorToken("black")).toBe(baseColors.black);
+  it("returns a CSS variable for white / black with fallback", () => {
+    expect(colorToken("white")).toBe(`var(--kx-color-base-white, ${baseColors.white})`);
+    expect(colorToken("black")).toBe(`var(--kx-color-base-black, ${baseColors.black})`);
   });
 
   it("passes through unknown css identifiers", () => {

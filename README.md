@@ -27,7 +27,7 @@ The playground loads components from source via the `kovax-react` workspace alia
 | **Navigation / disclosure** | **`Tabs`** (`Tabs.Root`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`), **`Collapsible`** / **`Accordion`** (`Collapsible.Root` … `Accordion.Content`) |
 | **Feedback / inline status** | **`Alert`** (`tone`, optional dismiss, live region), **`LinearProgress`** / **`CircularProgress`** (determinate & indeterminate) |
 | **Actions** | `Button`, `IconButton`, `ButtonGroup` |
-| **Theming** | `colors`, `sizes`, `shadows`, `transitions`, `baseColors`, `themeToken`, `colorToken`, and related TypeScript types — see [Tokens](./docs/components/Tokens.md) |
+| **Theming** | **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, CSS variables (`--kx-*`), light/dark palettes, `colors`, `sizes`, `shadows`, `transitions`, `baseColors`, **`themeToken`**, **`colorToken`** — see [Design system](./docs/DESIGN_SYSTEM.md) · [Tokens](./docs/components/Tokens.md) |
 
 Everything above is exported from the package root:
 
@@ -40,6 +40,7 @@ import {
   Input,
   Textarea,
   FormControl,
+  ThemeProvider,
   themeToken,
 } from "kovax-react";
 ```
@@ -63,25 +64,31 @@ Smaller bundles when you only need a slice of the library:
 | `kovax-react/progress` | **`LinearProgress`**, **`CircularProgress`** |
 | `kovax-react/date-picker` | **`DatePicker`**, **`DateRangePicker`** (+ types); peer **`react-day-picker`** |
 | `kovax-react/table` | **`Table`** compound primitives, **`DataTable`**, helpers (**`cycleSort`**, **`resolveDataCell`**) |
-| `kovax-react/tokens` | Tokens + `themeToken` / `colorToken` |
+| `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, palettes |
 
-## What’s new (v0.4)
+## What’s new (v0.5)
+
+- **ThemeProvider & dark mode** — mount **`ThemeProvider`** once (or scope with **`target`**); light/dark **`colorMode`**, optional **`palettes`** overrides, **`localStorage`** persistence (**`storageKey`**), CSP **`nonce`** on injected styles. **`themeToken`** / **`colorToken`** resolve to **`var(--kx-…, hex-fallback)`** so components follow CSS variables when the provider is active; without it, fallbacks keep previous hex appearance.
+- **Hooks** — **`useColorMode()`** (`setColorMode`, `toggleColorMode`, resolved vs stored mode) and **`useTheme()`** (active palette + scope selector).
+- **Playground** — static **prerender** for better SEO (**`sitemap.xml`**, **`robots.txt`**, per-route meta); **Components → ThemeProvider** live docs with examples.
+
+Full history: [CHANGELOG.md](./CHANGELOG.md).
+
+### Highlights from v0.4
 
 - **Playground** — responsive layout, sticky header with backdrop blur, redesigned **Home** (hero + CTAs + quick cards), documentation topics as a **responsive grid** (no cramped horizontal tab strip), wider column for Markdown docs; **EN/RU** language switcher available on every section; live sections for **Accordion**, **Alert**, **Controls**, **Date picker**, **Overlays**, **Progress**, **Select**, **Tabs**, **Table**, and more. **`react-hook-form`** is still **only** a playground dependency (e.g. **Input** / **Date picker** demos).
 - **Table & DataTable** — token-backed **`Table.*`** primitives (`variant`, `size`, striped rows, sticky header) plus **`DataTable`** with columns, **`rowHeader`**, and optional controlled sort — see [Table](./docs/components/Table.md); **`kovax-react/table`**.
 - **Textarea** — same chrome as **`Input`** (variants, **`FormControl`** context, **`floatingLabel`**, character counter, **`resize`**) — see [Textarea](./docs/components/Textarea.md); **`kovax-react/input`**.
 - **Date picker** — **`variant="datetime"`** (time inputs + **Apply**) for **`DatePicker`** and **`DateRangePicker`**; playground + docs examples — see [DatePicker](./docs/components/DatePicker.md); **`kovax-react/date-picker`**.
 
-Full history: [CHANGELOG.md](./CHANGELOG.md).
-
-### Highlights from v0.3 (still current)
+### Highlights from v0.3
 
 - **Accordion & Collapsible**, **Alert**, **Progress**, **Tabs**, overlays (**Popover**, **Dialog**, **Modal**, **Toast**, …), **Input** (floating label, clear, masks), **Select** & **useCombobox**, **Form** context wiring — see [docs/README.md](./docs/README.md).
 
 ### Foundations
 
 - **Typography** — token-backed `sizes.text` and spacing props where applicable.
-- **`themeToken`** / **`colorToken`** — palette, `text.*`, `spacing.*`, `borderRadius.*`, `shadow.*`, `transition.*` ([Tokens](./docs/components/Tokens.md)).
+- **`ThemeProvider`**, **`useColorMode`**, **`useTheme`** — CSS variables and dark mode ([Design system](./docs/DESIGN_SYSTEM.md)); **`themeToken`** / **`colorToken`** — `var(--kx-…)` with hex fallbacks ([Tokens](./docs/components/Tokens.md)).
 - **Live site** — [mrkamura.github.io/kovax](https://mrkamura.github.io/kovax/) (EN/RU UI chrome).
 
 ## Requirements
@@ -106,6 +113,20 @@ yarn add kovax-react
 ```
 
 ## Usage
+
+Wrap your app (or a subtree) with **`ThemeProvider`** so **`themeToken`** / **`colorToken`** values resolve through CSS variables and respond to light/dark mode:
+
+```tsx
+import { ThemeProvider } from "kovax-react";
+
+export function App({ children }: { children: React.ReactNode }) {
+  return (
+    <ThemeProvider defaultColorMode="system">
+      {children}
+    </ThemeProvider>
+  );
+}
+```
 
 ```tsx
 import {
@@ -175,13 +196,13 @@ export function SignInExample() {
 
 - React 18 in development; library targets React 16+ via peers
 - TypeScript 5, **tsup** for library builds
-- **Vite** + **react-markdown** for the optional playground app (`apps/playground`); **react-hook-form** is used only in playground demos, not shipped with the library.
+- **Vite** + **react-markdown** for the optional playground app (`apps/playground`); production builds run a **prerender** step for static HTML per route; **react-hook-form** is used only in playground demos, not shipped with the library.
 
 ## Documentation
 
 | Topic | Link |
 | ----- | ---- |
-| **Live docs & demos** | **[https://mrkamura.github.io/kovax/](https://mrkamura.github.io/kovax/)** |
+| **Live docs & demos** | **[https://mrkamura.github.io/kovax/](https://mrkamura.github.io/kovax/)** (includes **Components → ThemeProvider**) |
 | Component index | [docs/README.md](./docs/README.md) |
 | Getting started | [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md) |
 | Design system / tokens | [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) |

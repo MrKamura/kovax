@@ -3,6 +3,7 @@ import type { ComponentPage, SiteRoute } from "../routing/siteRoutes";
 
 const COMPONENT_KEYS: Record<ComponentPage, string> = {
   tokens: "tokens.pageTitle",
+  theme: "theme.pageTitle",
   layout: "documentation.topics.layout",
   typography: "documentation.topics.typography",
   button: "documentation.topics.button",

@@ -1,3 +1,10 @@
+import {
+  baseColorVarName,
+  colorVarName,
+  tokenVarName,
+  wrapVar,
+} from "./cssVars";
+
 export const colors = {
   primary: {
     50: '#eff6ff',
@@ -243,9 +250,17 @@ export type ColorToken =
   | "white"
   | "black";
 
+/**
+ * Resolve a color token to a CSS value.
+ *
+ * Returns `var(--kx-color-<palette>-<shade>, <hex>)` so the output is theme-aware
+ * when a `ThemeProvider` is mounted and falls back to the static palette
+ * otherwise. Unknown strings pass through unchanged (e.g. `#fafafa`,
+ * `rgba(...)`).
+ */
 export function colorToken(path: ColorToken | string): string {
-  if (path === "white") return baseColors.white;
-  if (path === "black") return baseColors.black;
+  if (path === "white") return wrapVar(baseColorVarName("white"), baseColors.white);
+  if (path === "black") return wrapVar(baseColorVarName("black"), baseColors.black);
 
   const dot = path.indexOf(".");
   if (dot <= 0) return path;
@@ -254,7 +269,8 @@ export function colorToken(path: ColorToken | string): string {
   const shadeKey = path.slice(dot + 1);
   const palette = colors[paletteName];
   if (palette != null && shadeKey in palette) {
-    return (palette as Record<string, string>)[shadeKey];
+    const hex = (palette as Record<string, string>)[shadeKey];
+    return wrapVar(colorVarName(paletteName, shadeKey), hex);
   }
 
   return path;
@@ -295,48 +311,56 @@ export function themeToken(path: ThemeToken | string): string {
   const ns = path.slice(0, dot);
   const key = path.slice(dot + 1);
 
+  const varNs = (namespace: string, fallback: string): string =>
+    wrapVar(tokenVarName(namespace, key), fallback);
+
   switch (ns) {
     case "shadow":
-      if (key in shadows) return (shadows as Record<string, string>)[key];
+      if (key in shadows) return varNs("shadow", (shadows as Record<string, string>)[key]);
       return path;
     case "transition":
-      if (key in transitions) return (transitions as Record<string, string>)[key];
+      if (key in transitions)
+        return varNs("transition", (transitions as Record<string, string>)[key]);
       return path;
     case "text":
-      if (key in sizes.text) return (sizes.text as Record<string, string>)[key];
+      if (key in sizes.text)
+        return varNs("text", (sizes.text as Record<string, string>)[key]);
       return path;
     case "spacing":
-      if (key in sizes.spacing) return (sizes.spacing as Record<string, string>)[key];
+      if (key in sizes.spacing)
+        return varNs("spacing", (sizes.spacing as Record<string, string>)[key]);
       return path;
     case "borderRadius":
       if (key in sizes.borderRadius)
-        return (sizes.borderRadius as Record<string, string>)[key];
+        return varNs("radius", (sizes.borderRadius as Record<string, string>)[key]);
       return path;
     case "fontWeight":
       if (key in fontWeights)
-        return String((fontWeights as Record<string, number>)[key]);
+        return varNs("font-weight", String((fontWeights as Record<string, number>)[key]));
       return path;
     case "lineHeight":
       if (key in lineHeights)
-        return String((lineHeights as Record<string, number>)[key]);
+        return varNs("line-height", String((lineHeights as Record<string, number>)[key]));
       return path;
     case "letterSpacing":
       if (key in letterSpacings)
-        return (letterSpacings as Record<string, string>)[key];
+        return varNs("letter-spacing", (letterSpacings as Record<string, string>)[key]);
       return path;
     case "duration":
       if (key in motion.duration)
-        return (motion.duration as Record<string, string>)[key];
+        return varNs("duration", (motion.duration as Record<string, string>)[key]);
       return path;
     case "easing":
       if (key in motion.easing)
-        return (motion.easing as Record<string, string>)[key];
+        return varNs("easing", (motion.easing as Record<string, string>)[key]);
       return path;
     case "zIndex":
       if (key in zIndices)
-        return String((zIndices as Record<string, number>)[key]);
+        return varNs("zindex", String((zIndices as Record<string, number>)[key]));
       return path;
     case "breakpoint":
+      // Breakpoints are also used in @media which can't read CSS variables —
+      // return the raw em value to keep that pattern working.
       if (key in breakpoints)
         return (breakpoints as Record<string, string>)[key];
       return path;
@@ -344,3 +368,5 @@ export function themeToken(path: ThemeToken | string): string {
       return colorToken(path);
   }
 }
+
+export { colorVarName, baseColorVarName, tokenVarName } from "./cssVars";

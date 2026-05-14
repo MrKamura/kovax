@@ -7,11 +7,26 @@
   --doc-muted: #64748b;
   --doc-accent: #2563eb;
   --doc-accent-soft: rgba(37, 99, 235, 0.12);
+  --doc-header-bg: rgba(255, 255, 255, 0.88);
+  --doc-code-bg: #f1f5f9;
   --doc-sidebar-w: 15rem;
   --doc-header-height: 3.5rem;
   --doc-header-z: 1100;
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   line-height: 1.5;
+}
+
+:root[data-kovax-theme="dark"] {
+  color-scheme: dark;
+  --doc-bg: #0b1220;
+  --doc-surface: #0f172a;
+  --doc-border: #1e293b;
+  --doc-text: #f1f5f9;
+  --doc-muted: #94a3b8;
+  --doc-accent: #60a5fa;
+  --doc-accent-soft: rgba(96, 165, 250, 0.18);
+  --doc-header-bg: rgba(15, 23, 42, 0.88);
+  --doc-code-bg: #1e293b;
 }
 
 html {
@@ -42,7 +57,7 @@ body {
   z-index: var(--doc-header-z);
   min-height: var(--doc-header-height);
   padding: 0.35rem 0;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--doc-header-bg);
   border-bottom: 1px solid var(--doc-border);
   box-shadow: 0 1px 0 rgb(15 23 42 / 0.04);
   backdrop-filter: blur(12px);
@@ -77,6 +92,41 @@ body {
   border-radius: 6px;
   overflow: hidden;
   flex-shrink: 0;
+}
+
+.doc-header-mode {
+  display: inline-flex;
+  border: 1px solid var(--doc-border);
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.doc-header-mode-btn {
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  background: var(--doc-surface);
+  color: var(--doc-muted);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.doc-header-mode-btn + .doc-header-mode-btn {
+  border-left: 1px solid var(--doc-border);
+}
+
+.doc-header-mode-btn:hover {
+  color: var(--doc-text);
+  background: var(--doc-bg);
+}
+
+.doc-header-mode-btn[data-active="true"] {
+  color: var(--doc-accent);
+  background: var(--doc-accent-soft);
 }
 
 .doc-header-lang-btn {
@@ -295,6 +345,15 @@ body {
 }
 
 .doc-main--docs .doc-docs-lead {
+  max-width: 62rem;
+}
+
+/* Design tokens page — same readable measure as docs + wide tables */
+.doc-main--tokens {
+  max-width: min(76rem, 100%);
+}
+
+.doc-main--tokens > p:first-of-type {
   max-width: 62rem;
 }
 
@@ -704,7 +763,7 @@ body {
 
 .live-example-tab:hover {
   color: var(--doc-text);
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--doc-surface);
 }
 
 .live-example-tab[data-active="true"] {
@@ -795,7 +854,7 @@ body {
 .doc-code {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.8125rem;
-  background: #f1f5f9;
+  background: var(--doc-code-bg);
   padding: 0.15rem 0.35rem;
   border-radius: 4px;
 }
@@ -832,6 +891,22 @@ body {
   gap: 0.5rem;
   margin: 0 0 1rem;
   padding: 0;
+}
+
+/* Narrow viewports: single horizontal row + scroll (many topics stay usable). */
+@media (max-width: 720px) {
+  .doc-docs-topic-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 0 0.45rem;
+    margin: 0 0 0.85rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 @media (min-width: 520px) {
@@ -889,10 +964,31 @@ body {
   box-shadow: 0 1px 2px rgb(37 99 235 / 0.08);
 }
 
+@media (max-width: 720px) {
+  .doc-docs-topic-tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: auto;
+    min-width: min(11rem, 72vw);
+    max-width: 14rem;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 720px) {
+  .doc-docs-topic-tab {
+    min-width: min(10rem, 38vw);
+  }
+}
+
 .doc-docs-topic-meta {
   margin: 0 0 1rem;
   font-size: 0.8125rem;
   color: var(--doc-muted);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .doc-md-prose {
@@ -1035,7 +1131,7 @@ body {
 .doc-md-prose code:not(pre code) {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.8125em;
-  background: #f1f5f9;
+  background: var(--doc-code-bg);
   padding: 0.12rem 0.35rem;
   border-radius: 4px;
 }
@@ -1457,4 +1553,160 @@ body {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.75rem;
   color: var(--doc-text);
+}
+
+/* Documentation + tokens — small screens */
+@media (max-width: 640px) {
+  .doc-main--docs h1,
+  .doc-main--tokens h1 {
+    font-size: 1.45rem;
+    letter-spacing: -0.025em;
+  }
+
+  .doc-md-panel-title {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .doc-md-prose {
+    padding: 0.85rem clamp(0.75rem, 2.8vw, 1.15rem) 1.35rem;
+  }
+
+  .doc-md-prose h1 {
+    font-size: 1.25rem;
+  }
+
+  .doc-md-prose h2 {
+    font-size: 1.05rem;
+  }
+
+  .doc-md-prose ul,
+  .doc-md-prose ol {
+    padding-left: 1.15rem;
+  }
+
+  .doc-md-prose pre {
+    font-size: 0.74rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+  }
+
+  .doc-md-table-scroll {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 8px;
+  }
+
+  .doc-md-prose table {
+    font-size: 0.78rem;
+  }
+
+  .doc-md-prose th,
+  .doc-md-prose td {
+    padding: 0.35rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-main--docs,
+  .doc-main--tokens {
+    padding: 1.25rem 0.75rem 2.25rem;
+  }
+
+  .doc-md-panel {
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Tokens gallery — stack dense grids on narrow widths */
+.tokens-color-palette .tokens-base-swatch {
+  flex: 1 1 min(100%, 10rem);
+  min-width: min(100%, 8.5rem);
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .tokens-scale-row,
+  .tokens-text-row,
+  .tokens-block-row,
+  .tokens-motion-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 0.45rem;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .tokens-scale-row .tokens-scale-key,
+  .tokens-text-row .tokens-scale-key,
+  .tokens-block-row .tokens-scale-key,
+  .tokens-motion-row .tokens-scale-key {
+    font-size: 0.6875rem;
+  }
+
+  .tokens-scale-value {
+    text-align: left;
+    white-space: normal;
+    word-break: break-word;
+    justify-self: stretch;
+  }
+
+  .tokens-text-sample {
+    min-height: 2rem;
+    white-space: normal;
+  }
+
+  .tokens-block-row .tokens-text-paragraph {
+    font-size: 0.85rem;
+  }
+
+  .tokens-motion-track {
+    width: 100%;
+    min-height: 1.65rem;
+  }
+
+  .tokens-color-palette {
+    padding: 0.65rem 0.75rem 0.85rem;
+  }
+
+  .tokens-color-swatch-fill {
+    height: 2.65rem;
+  }
+
+  .tokens-shadow-preview {
+    height: 3rem;
+  }
+
+  .tokens-radius-preview {
+    height: 2.75rem;
+  }
+
+  .tokens-block-lead {
+    font-size: 0.875rem;
+  }
+
+  .tokens-table {
+    font-size: 0.75rem;
+  }
+
+  .tokens-table th,
+  .tokens-table td {
+    padding: 0.45rem 0.55rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .tokens-color-grid {
+    gap: 0.35rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 3.6rem), 1fr));
+  }
+
+  .tokens-radius-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 7.5rem), 1fr));
+  }
+
+  .tokens-shadow-grid {
+    grid-template-columns: 1fr;
+  }
 }

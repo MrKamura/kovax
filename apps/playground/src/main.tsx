@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
-import { ToastProvider } from "kovax-react";
+import { ThemeProvider, ToastProvider } from "kovax-react";
 import "react-day-picker/style.css";
 import "./i18n/config";
 import i18n from "./i18n/config";
@@ -19,9 +19,11 @@ void i18n.changeLanguage(initial.lang).then(() => {
   const el = document.getElementById("root")!;
   const tree = (
     <StrictMode>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
+      <ThemeProvider defaultColorMode="system">
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </ThemeProvider>
     </StrictMode>
   );
 

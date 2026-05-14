@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { renderToString } from "react-dom/server";
 import { I18nextProvider } from "react-i18next";
 import i18n from "i18next";
-import { ToastProvider } from "kovax-react";
+import { ThemeProvider, ToastProvider } from "kovax-react";
 import App from "../src/App";
 import { playgroundBaseFromEnv } from "../src/env/playgroundBase";
 import en from "../src/locales/en.json";
@@ -141,9 +141,11 @@ async function main(): Promise<void> {
 
     const body = renderToString(
       <I18nextProvider i18n={i18nInst}>
-        <ToastProvider>
-          <App initialRoute={route} baseUrl={baseUrl} />
-        </ToastProvider>
+        <ThemeProvider defaultColorMode="light" storageKey={false}>
+          <ToastProvider>
+            <App initialRoute={route} baseUrl={baseUrl} />
+          </ToastProvider>
+        </ThemeProvider>
       </I18nextProvider>,
     );
 

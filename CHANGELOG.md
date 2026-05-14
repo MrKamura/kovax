@@ -1,3 +1,18 @@
+# [0.5.0](https://github.com/MrKamura/kovax/compare/v0.4.0...v0.5.0) (2026-05-14)
+
+
+### Features
+
+* **ThemeProvider** with injected CSS variables (`--kx-*`), light/dark palettes, **`data-kovax-theme`** on the document or a scoped **`target`**, optional **`palettes`** overrides and **`nonce`** for CSP
+* **`useColorMode`** / **`useTheme`** hooks for controlled toggles and palette inspection
+* **`themeToken`** / **`colorToken`** resolve to **`var(--kx-…, fallback)`** strings so components pick up theme changes when the provider is mounted (hex fallbacks preserve rendering without a provider)
+
+### Playground
+
+* Static prerender for routes (**SEO**: `sitemap.xml`, `robots.txt`, per-route meta); live **ThemeProvider** docs section under Components → Theme
+
+
+
 # [0.4.0](https://github.com/MrKamura/kovax/compare/v0.3.0...v0.4.0) (2026-05-12)
 
 

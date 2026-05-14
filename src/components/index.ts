@@ -1,4 +1,4 @@
-export * from "./theme/tokens";
+export * from "./theme";
 export * from "./Button";
 export * from "./Checkbox";
 export * from "./Input";

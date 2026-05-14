@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { ColorModeSwitcher } from "./components/ColorModeSwitcher";
 import { DocFooter } from "./components/DocFooter";
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 import { IntroSection } from "./sections/IntroSection";
@@ -19,6 +20,7 @@ import { ProgressSection } from "./sections/ProgressSection";
 import { DatePickerSection } from "./sections/DatePickerSection";
 import { TableSection } from "./sections/TableSection";
 import { TokensSection } from "./sections/TokensSection";
+import { ThemeSection } from "./sections/ThemeSection";
 import { SiteNavContext } from "./routing/SiteNavContext";
 import {
   pathnameForRoute,
@@ -42,6 +44,7 @@ export interface AppProps {
 
 const COMPONENT_NAV: { id: ComponentPage; labelKey: string }[] = [
   { id: "tokens", labelKey: "tokens.pageTitle" },
+  { id: "theme", labelKey: "theme.pageTitle" },
   { id: "layout", labelKey: "documentation.topics.layout" },
   { id: "typography", labelKey: "documentation.topics.typography" },
   { id: "button", labelKey: "documentation.topics.button" },
@@ -186,6 +189,7 @@ export default function App({
               </span>
             </div>
             <div className="doc-header-actions">
+              <ColorModeSwitcher />
               <LanguageSwitcher />
               <nav className="doc-header-nav" aria-label={t("nav.mainAria")}>
                 <a
@@ -282,6 +286,9 @@ export default function App({
               "doc-main",
               area === "home" ? "doc-main--home" : "",
               area === "docs" ? "doc-main--docs" : "",
+              area === "components" && component === "tokens"
+                ? "doc-main--tokens"
+                : "",
             ]
               .filter(Boolean)
               .join(" ")}
@@ -289,6 +296,7 @@ export default function App({
             {area === "home" && <IntroSection />}
             {area === "docs" && <DocumentationSection />}
             {area === "components" && component === "tokens" && <TokensSection />}
+            {area === "components" && component === "theme" && <ThemeSection />}
             {area === "components" && component === "layout" && <LayoutSection />}
             {area === "components" && component === "typography" && (
               <TypographySection />

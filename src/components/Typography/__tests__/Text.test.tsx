@@ -23,7 +23,8 @@ describe("Text", () => {
   it("applies size token as font-size", () => {
     const { container } = render(<Text size="sm">Small</Text>);
     const el = container.firstChild as HTMLElement;
-    expect(css(el, "font-size")).toBe(sizes.text.sm);
+    // themeToken returns `var(--…, <fallback>)` — assert the fallback is in there.
+    expect(css(el, "font-size")).toContain(sizes.text.sm);
   });
 
   it("applies fontWeight and lineHeight", () => {

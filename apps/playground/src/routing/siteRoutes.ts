@@ -4,6 +4,7 @@ export type Area = "home" | "components" | "docs";
 
 export type ComponentPage =
   | "tokens"
+  | "theme"
   | "layout"
   | "typography"
   | "button"
@@ -27,6 +28,7 @@ export interface SiteRoute {
 
 const COMPONENT_TO_SLUG: Record<ComponentPage, string> = {
   tokens: "tokens",
+  theme: "theme",
   layout: "layout",
   typography: "typography",
   button: "button",

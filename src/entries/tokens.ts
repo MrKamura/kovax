@@ -1,1 +1,1 @@
-export * from "../components/theme/tokens";
+export * from "../components/theme";
