@@ -33,6 +33,7 @@ import {
   type ComponentPage,
   type SiteRoute,
 } from "./routing/siteRoutes";
+import { KOVAX_LIBRARY_VERSION } from "./env/kovaxLibraryVersion";
 import {
   siteDescriptionForRoute,
   siteTitleForRoute,
@@ -193,9 +194,9 @@ export default function App({
               </a>
               <span
                 className="doc-header-version"
-                title={`kovax-react@${import.meta.env.VITE_KOVAX_VERSION}`}
+                title={`kovax-react@${KOVAX_LIBRARY_VERSION}`}
               >
-                v{import.meta.env.VITE_KOVAX_VERSION}
+                v{KOVAX_LIBRARY_VERSION}
               </span>
             </div>
             <div className="doc-header-actions">

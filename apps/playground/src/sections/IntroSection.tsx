@@ -4,6 +4,7 @@ import { SponsorsSection } from "../components/SponsorsSection";
 import { SupportDonateLinks } from "../components/SupportDonateLinks";
 import { useSiteNav } from "../routing/SiteNavContext";
 import { pathnameForRoute } from "../routing/siteRoutes";
+import { KOVAX_LIBRARY_VERSION } from "../env/kovaxLibraryVersion";
 
 function spaNavClick(
   event: MouseEvent<HTMLAnchorElement>,
@@ -32,7 +33,9 @@ export function IntroSection() {
   return (
     <div className="intro-page">
       <section className="intro-hero" aria-labelledby="intro-hero-title">
-        <div className="intro-hero-badge">{t("intro.heroBadge")}</div>
+        <div className="intro-hero-badge">
+          {t("intro.heroBadge", { version: KOVAX_LIBRARY_VERSION })}
+        </div>
         <h1 id="intro-hero-title" className="intro-hero-title">
           {t("intro.title")}
         </h1>

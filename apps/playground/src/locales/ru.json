@@ -77,7 +77,7 @@
   },
   "intro": {
     "title": "Песочница Kovax",
-    "heroBadge": "kovax-react · живая среда",
+    "heroBadge": "kovax-react v{{version}} · живая среда",
     "heroLead": "Компоненты с вкладками Превью / Код и те же тексты из репозитория в Markdown — адаптивная вёрстка и закреплённая шапка.",
     "ctaComponents": "К компонентам",
     "ctaDocs": "Открыть документацию",

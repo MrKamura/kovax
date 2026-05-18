@@ -1,4 +1,4 @@
-# Kovax UI
+# Kovax UI — kovax-react **0.6.0**
 
 ![Kovax React — typed UI library with CSS-variable theming](./docs/cover.webp)
 
@@ -8,6 +8,8 @@ React component library focused on layout primitives, typography, forms, data ta
 ![license](https://img.shields.io/npm/l/kovax-react?color=green)
 ![React](https://img.shields.io/badge/React-16%2B-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5%2B-3178c6)
+
+**Current release:** **`0.6.0`** · npm [`kovax-react`](https://www.npmjs.com/package/kovax-react) · [CHANGELOG](./CHANGELOG.md)
 
 ## Live documentation & demos
 
@@ -72,7 +74,7 @@ Smaller bundles when you only need a slice of the library:
 | `kovax-react/pagination` | **`Pagination`**, **`getPaginationItems`** |
 | `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, **`useMediaQuery`**, **`useBreakpointUp`**, breakpoint helpers, palettes |
 
-## What’s new (v0.6)
+## What’s new (v0.6.0)
 
 - **`Pagination`** — accessible pager with token-backed transitions and **`kovax-react/pagination`** entry point — see [Pagination](./docs/components/Pagination.md).
 - **Responsive hooks** — **`useMediaQuery`**, **`useBreakpointUp`**, and **`breakpointMinMediaQuery`** helpers aligned with **`breakpoint.*`** tokens — see [Tokens](./docs/components/Tokens.md).
