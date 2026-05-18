@@ -4,6 +4,7 @@ export {
   PopoverRoot,
   PopoverTrigger,
   PopoverContent,
+  usePopoverRootContext,
 } from "./Popover";
 export type {
   PopoverPlacement,

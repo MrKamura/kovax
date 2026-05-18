@@ -11,13 +11,16 @@ import {
   layoutDocumentationMarkdown,
   selectDocumentationMarkdown,
   overlaysDocumentationMarkdown,
+  menuDocumentationMarkdown,
   accordionDocumentationMarkdown,
   alertDocumentationMarkdown,
   avatarDocumentationMarkdown,
   badgeDocumentationMarkdown,
+  skeletonDocumentationMarkdown,
   progressDocumentationMarkdown,
   datePickerDocumentationMarkdown,
   tableDocumentationMarkdown,
+  paginationDocumentationMarkdown,
   tabsDocumentationMarkdown,
   typographyDocumentationMarkdown,
 } from "../docContent/bundles";
@@ -28,18 +31,21 @@ type DocTopicId =
   | "typography"
   | "avatar"
   | "badge"
+  | "skeleton"
   | "button"
   | "input"
   | "controls"
   | "select"
   | "overlays"
+  | "menu"
   | "form"
   | "tabs"
   | "accordion"
   | "alert"
   | "progress"
   | "datePicker"
-  | "table";
+  | "table"
+  | "pagination";
 
 const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
@@ -63,6 +69,10 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
     markdown: badgeDocumentationMarkdown,
   },
   {
+    id: "skeleton",
+    markdown: skeletonDocumentationMarkdown,
+  },
+  {
     id: "button",
     markdown: buttonDocumentationMarkdown,
   },
@@ -81,6 +91,10 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
     id: "overlays",
     markdown: overlaysDocumentationMarkdown,
+  },
+  {
+    id: "menu",
+    markdown: menuDocumentationMarkdown,
   },
   {
     id: "form",
@@ -109,6 +123,10 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
     id: "table",
     markdown: tableDocumentationMarkdown,
+  },
+  {
+    id: "pagination",
+    markdown: paginationDocumentationMarkdown,
   },
 ];
 

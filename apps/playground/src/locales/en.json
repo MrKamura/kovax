@@ -83,21 +83,21 @@
     "ctaDocs": "Open documentation",
     "cardsAria": "Quick overview",
     "cardDemosTitle": "Live demos",
-    "cardDemosBody": "Sidebar categories mirror real usage: layout, forms, overlays, tabs, accordion, alerts, progress, date picker, tables, and more.",
+    "cardDemosBody": "Sidebar categories mirror real usage: layout, forms, overlays, tabs, accordion, alerts, progress, pagination, date picker, tables, and more.",
     "cardDocsTitle": "Docs mirror",
     "cardDocsBody": "The <strong>Documentation</strong> tab renders bundled <code>docs/**/*.md</code> — props tables and prose stay in sync with the repo.",
     "cardLiveTitle": "Hot reload",
     "cardLiveBody": "The playground aliases kovax-react to library source — edits to components reflect here instantly.",
     "detailTitle": "Setup & tips",
     "import": "Components import from <code>src/</code> via the <code>kovax-react</code> alias — library changes show up here immediately.",
-    "docs": "Full copy from <code>docs/</code> (props tables, guides) lives under <strong>Documentation</strong> in the header. Live component demos: <strong>Components</strong>, then pick a sidebar item — e.g. <strong>Overlays</strong> for Tooltip, Popover, Modal, Toast, and Dialog, <strong>Tabs</strong> for the tablist primitives, <strong>Accordion</strong> for Collapsible / Accordion, <strong>Alert</strong> for inline banners, <strong>Progress</strong> for linear and circular bars, or <strong>Date picker</strong> for react-day-picker wrappers (Preview / Code tabs). The same material appears under <strong>Documentation</strong> as Markdown (Overlays, Tabs, Accordion, Alert, Progress, Date picker).",
+    "docs": "Full copy from <code>docs/</code> (props tables, guides) lives under <strong>Documentation</strong> in the header. Live component demos: <strong>Components</strong>, then pick a sidebar item — e.g. <strong>Menu</strong> for anchored menus, <strong>Overlays</strong> for Tooltip, Popover, Modal, Toast, and Dialog, <strong>Tabs</strong> for the tablist primitives, <strong>Accordion</strong> for Collapsible / Accordion, <strong>Alert</strong> for inline banners, <strong>Progress</strong> for linear and circular bars, or <strong>Date picker</strong> for react-day-picker wrappers (Preview / Code tabs). The same material appears under <strong>Documentation</strong> as Markdown (Overlays, Menu, Tabs, Accordion, Alert, Progress, Date picker).",
     "tabs": "Each example has Preview and Code tabs.",
     "runTitle": "Run locally",
     "runBody": "From the repo root: <code>npm install</code>, then <code>npm run dev:playground</code> (production build: <code>npm run build:playground</code>). Extra Vite flags: <code>npm run dev -w kovax-playground -- --host</code>."
   },
   "documentation": {
     "title": "Documentation",
-    "lead": "Markdown from the repo <code>docs/</code> folder: imports, props tables, and examples. For **Overlays**, pair **Documentation → Overlays** with **Components → Overlays**; for **Tabs**, pair **Documentation → Tabs** with **Components → Tabs**; for **Accordion / Collapsible**, pair **Documentation → Accordion** with **Components → Accordion**; for **Alert**, pair **Documentation → Alert** with **Components → Alert**; for **Progress**, pair **Documentation → Progress** with **Components → Progress**; for **Date picker**, pair **Documentation → Date picker** with **Components → Date picker**; for **Table**, pair **Documentation → Table** with **Components → Table**; for **Avatar**, pair **Documentation → Avatar** with **Components → Avatar**; for **Badge**, pair **Documentation → Badge** with **Components → Badge**.",
+    "lead": "Markdown from the repo <code>docs/</code> folder: imports, props tables, and examples. For **Overlays**, pair **Documentation → Overlays** with **Components → Overlays**; for **Menu**, pair **Documentation → Menu** with **Components → Menu**; for **Tabs**, pair **Documentation → Tabs** with **Components → Tabs**; for **Accordion / Collapsible**, pair **Documentation → Accordion** with **Components → Accordion**; for **Alert**, pair **Documentation → Alert** with **Components → Alert**; for **Progress**, pair **Documentation → Progress** with **Components → Progress**; for **Skeleton**, pair **Documentation → Skeleton** with **Components → Skeleton**; for **Date picker**, pair **Documentation → Date picker** with **Components → Date picker**; for **Table**, pair **Documentation → Table** with **Components → Table**; for **Pagination**, pair **Documentation → Pagination** with **Components → Pagination**; for **Avatar**, pair **Documentation → Avatar** with **Components → Avatar**; for **Badge**, pair **Documentation → Badge** with **Components → Badge**.",
     "topicBarAria": "Documentation topic",
     "topics": {
       "foundation": "Foundation",
@@ -105,18 +105,21 @@
       "typography": "Typography",
       "avatar": "Avatar",
       "badge": "Badge",
+      "skeleton": "Skeleton",
       "button": "Button",
       "input": "Input",
       "controls": "Controls",
       "select": "Select",
       "overlays": "Overlays",
+      "menu": "Menu",
       "form": "Form",
       "tabs": "Tabs",
       "accordion": "Accordion",
       "alert": "Alert",
       "progress": "Progress",
       "datePicker": "Date picker",
-      "table": "Table"
+      "table": "Table",
+      "pagination": "Pagination"
     },
     "hints": {
       "foundation": "README, Getting Started, Tokens, Design system",
@@ -124,18 +127,21 @@
       "typography": "docs/components/Typography/",
       "avatar": "Avatar.md — photo / initials / fallback; live: Components → Avatar; kovax-react/avatar",
       "badge": "Badge.md — labels / status chips; live: Components → Badge; kovax-react/badge",
+      "skeleton": "Skeleton.md — pulse/shimmer placeholders; live: Components → Skeleton; kovax-react/skeleton",
       "button": "docs/components/Button.md",
       "input": "docs/components/Input.md + Textarea.md",
       "controls": "docs/components/Controls.md",
       "select": "docs/components/Select.md",
       "overlays": "Overlays.md — Tooltip, Popover, Dialog, Modal, Toast; live: Components → Overlays",
+      "menu": "Menu.md — anchored menu + animation; live: Components → Menu; kovax-react/menu",
       "form": "docs/components/Form.md",
       "tabs": "Tabs.md — tablist / tab / tabpanel; live: Components → Tabs",
       "accordion": "Accordion.md — Collapsible.*, Accordion.*; live: Components → Accordion",
       "alert": "Alert.md — inline banner, tone, dismiss; live: Components → Alert",
       "progress": "Progress.md — LinearProgress, CircularProgress; live: Components → Progress",
       "datePicker": "DatePicker.md — react-day-picker wrappers; live: Components → Date picker",
-      "table": "Table.md — Table primitives + DataTable; live: Components → Table"
+      "table": "Table.md — Table primitives + DataTable; live: Components → Table",
+      "pagination": "Pagination.md — page navigation; live: Components → Pagination; kovax-react/pagination"
     }
   },
   "theme": {
@@ -207,6 +213,18 @@
     "examplesDot": "Dot indicator",
     "examplesInline": "Inline with text",
     "a11yNote": "<strong>Accessibility:</strong> Badge is a <code>&lt;span&gt;</code> — not interactive. For removable filters use <code>Button</code> with appropriate labeling; for live counts pair with visible nearby context or <code>aria-label</code> on a parent."
+  },
+  "skeleton": {
+    "pageTitle": "Skeleton",
+    "intro": "<strong>Skeleton</strong> reserves layout while content loads: <code>pulse</code> (opacity), <code>shimmer</code> (gradient sweep), or static <code>none</code>. Uses <code>secondary.*</code> surfaces and motion tokens. Deep import: <code>kovax-react/skeleton</code>.",
+    "examplesVariants": "Animation",
+    "variantsLead": "Keyframes are injected once on mount when <code>variant</code> is not <code>none</code>. Duration and easing come from <code>themeToken(\"duration.slow\")</code> and <code>themeToken(\"easing.standard\")</code>.",
+    "examplesShapes": "Shapes",
+    "examplesText": "Text lines",
+    "textLead": "With <code>text</code>, height follows <code>text.sm</code>; narrow the last line with <code>style={{ width: \"…\" }}</code> or <code>width</code>.",
+    "examplesCard": "Card preview",
+    "a11yNote": "<strong>Accessibility:</strong> default <code>role=\"presentation\"</code> and <code>aria-hidden</code> treat Skeleton as decorative — pair real loading semantics (<code>aria-busy</code>, visible labels) on the surrounding region.",
+    "motionNote": "Prefer <code>variant=\"none\"</code> when the user has requested reduced motion."
   },
   "tokens": {
     "pageTitle": "Design tokens",
@@ -299,7 +317,7 @@
   },
   "overlays": {
     "pageTitle": "Tooltip, Popover, Dialog, Modal & Toast",
-    "intro": "<strong>Tooltip</strong>, anchored <strong>Popover</strong> / <strong>Dropdown</strong>, compound <strong>Dialog</strong>, structured <strong>Modal</strong>, and imperative <strong>Toast</strong> (<code>ToastProvider</code>, <code>useToast</code>). Reference — header <strong>Documentation</strong> → Overlays.",
+    "intro": "<strong>Tooltip</strong>, anchored <strong>Popover</strong> / <strong>Dropdown</strong>, compound <strong>Dialog</strong>, structured <strong>Modal</strong>, and imperative <strong>Toast</strong> (<code>ToastProvider</code>, <code>useToast</code>). Anchored menus live under <strong>Components → Menu</strong>. Reference — header <strong>Documentation</strong> → Overlays.",
     "examplesTooltip": "Examples: Tooltip",
     "examplesTooltipPlacements": "Examples: Tooltip — placements",
     "examplesPopover": "Examples: Popover / Dropdown",
@@ -311,6 +329,15 @@
     "examplesModalFull": "Examples: Modal — full width",
     "examplesModalScroll": "Examples: Modal — scrollable body",
     "examplesDialog": "Examples: Dialog"
+  },
+  "menu": {
+    "pageTitle": "Menu",
+    "intro": "<strong>Menu</strong> / <strong>DropdownMenu</strong> — <code>role=\"menu\"</code> on top of <strong>Popover</strong>: keyboard (↑/↓, Home/End), optional enter animation (<code>motion</code>), <code>kovax-react/menu</code>. Full markdown: header <strong>Documentation → Menu</strong>.",
+    "examplesBasics": "Examples: basics & destructive row",
+    "examplesControlled": "Examples: controlled open",
+    "examplesSameWidth": "Examples: sameWidth",
+    "examplesNoMotion": "Examples: motion off",
+    "docsCrossLink": "<strong>Docs:</strong> props and advanced Popover wiring — <code>docs/components/Menu.md</code> under <strong>Documentation → Menu</strong>."
   },
   "input": {
     "intro": "Text fields and multi-line <strong>Textarea</strong>: sizes, color schemes, masks (Input), validation, and native HTML attributes. Reference — header <strong>Documentation</strong> → Input.",
@@ -460,5 +487,25 @@
     "demoColQty": "Qty",
     "dataHint": "Sorting is controlled: handle onSortChange and pass sorted rows as data.",
     "docsHint": "Markdown reference — header <strong>Documentation</strong> → Table."
+  },
+  "pagination": {
+    "pageTitle": "Pagination",
+    "intro": "<strong>Pagination</strong> exposes a compact <code>nav</code> with prev/next triggers, numbered pages, and ellipsis gaps. Motion follows theme duration/easing tokens and drops transform when <code>prefers-reduced-motion</code> is set.",
+    "examplesBasic": "Examples: default pager",
+    "examplesOutlineSm": "Examples: outline + small size",
+    "examplesSiblings": "Examples: wider sibling window",
+    "siblingsLead": "Increase siblingCount to show more numbers around the active page before collapsing with an ellipsis.",
+    "examplesDisabled": "Examples: disabled (loading)",
+    "examplesI18n": "Examples: custom aria labels",
+    "ariaDemo": "Demo results",
+    "ariaCompact": "Compact pager",
+    "ariaWide": "Wide window pager",
+    "ariaLoading": "Loading pages",
+    "ariaI18n": "Localized pager",
+    "stateCurrent": "Current page: {{page}}",
+    "i18nPrev": "Back",
+    "i18nNext": "Forward",
+    "i18nPage": "Go to page {{p}}",
+    "docsHint": "Markdown reference — header <strong>Documentation</strong> → Pagination."
   }
 }

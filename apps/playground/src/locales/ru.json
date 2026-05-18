@@ -83,21 +83,21 @@
     "ctaDocs": "Открыть документацию",
     "cardsAria": "Краткий обзор",
     "cardDemosTitle": "Живые демо",
-    "cardDemosBody": "Категории слева отражают типичные сценарии: layout, формы, overlays, вкладки, accordion, alert, progress, выбор даты, таблицы и др.",
+    "cardDemosBody": "Категории слева отражают типичные сценарии: layout, формы, overlays, вкладки, accordion, alert, progress, pagination, выбор даты, таблицы и др.",
     "cardDocsTitle": "Зеркало docs",
     "cardDocsBody": "Вкладка <strong>Документация</strong> показывает собранный Markdown из <code>docs/**/*.md</code> — таблицы пропсов и текст совпадают с репозиторием.",
     "cardLiveTitle": "Горячая перезагрузка",
     "cardLiveBody": "Площадка подменяет kovax-react на исходники библиотеки — правки компонентов сразу видны здесь.",
     "detailTitle": "Настройка и подсказки",
     "import": "Компоненты подключаются из <code>src/</code> через алиас <code>kovax-react</code> — изменения в библиотеке сразу видны здесь.",
-    "docs": "Полные тексты из <code>docs/</code> (пропсы, гайды) — в разделе шапки <strong>Документация</strong>. Живые демо: <strong>Компоненты</strong> и пункт слева — например <strong>Overlays</strong>, <strong>Tabs</strong>, <strong>Accordion</strong>, <strong>Alert</strong>, <strong>Progress</strong> или <strong>Date picker</strong> для выбора дат на базе react-day-picker (Превью / Код). Тот же материал есть в <strong>Документации</strong> как Markdown (Overlays, Tabs, Accordion, Alert, Progress, Date picker).",
+    "docs": "Полные тексты из <code>docs/</code> (пропсы, гайды) — в разделе шапки <strong>Документация</strong>. Живые демо: <strong>Компоненты</strong> и пункт слева — например <strong>Menu</strong> для якорных меню, <strong>Overlays</strong> (Tooltip, Popover, модалки, Toast), <strong>Tabs</strong>, <strong>Accordion</strong>, <strong>Alert</strong>, <strong>Progress</strong> или <strong>Date picker</strong> для выбора дат на базе react-day-picker (Превью / Код). Тот же материал есть в <strong>Документации</strong> как Markdown (Overlays, Menu, Tabs, Accordion, Alert, Progress, Date picker).",
     "tabs": "У каждого примера есть вкладки «Превью» и «Код».",
     "runTitle": "Запуск",
     "runBody": "Из корня репозитория: <code>npm install</code>, затем <code>npm run dev:playground</code> (прод-сборка: <code>npm run build:playground</code>). Дополнительные флаги Vite: <code>npm run dev -w kovax-playground -- --host</code>."
   },
   "documentation": {
     "title": "Документация",
-    "lead": "Markdown из каталога <code>docs/</code> репозитория: импорты, таблицы пропсов и примеры. Для **Overlays** сочетайте **Документация → Overlays** и **Компоненты → Overlays**; для **Tabs** — **Документация → Tabs** и **Компоненты → Tabs**; для **Accordion / Collapsible** — **Документация → Accordion** и **Компоненты → Accordion**; для **Alert** — **Документация → Alert** и **Компоненты → Alert**; для **Progress** — **Документация → Progress** и **Компоненты → Progress**; для **Date picker** — **Документация → Date picker** и **Компоненты → Date picker**; для **Table** — **Документация → Table** и **Компоненты → Table**; для **Avatar** — **Документация → Avatar** и **Компоненты → Avatar**; для **Badge** — **Документация → Badge** и **Компоненты → Badge**.",
+    "lead": "Markdown из каталога <code>docs/</code> репозитория: импорты, таблицы пропсов и примеры. Для **Overlays** сочетайте **Документация → Overlays** и **Компоненты → Overlays**; для **Menu** — **Документация → Menu** и **Компоненты → Menu**; для **Tabs** — **Документация → Tabs** и **Компоненты → Tabs**; для **Accordion / Collapsible** — **Документация → Accordion** и **Компоненты → Accordion**; для **Alert** — **Документация → Alert** и **Компоненты → Alert**; для **Progress** — **Документация → Progress** и **Компоненты → Progress**; для **Skeleton** — **Документация → Skeleton** и **Компоненты → Skeleton**; для **Date picker** — **Документация → Date picker** и **Компоненты → Date picker**; для **Table** — **Документация → Table** и **Компоненты → Table**; для **Pagination** — **Документация → Pagination** и **Компоненты → Pagination**; для **Avatar** — **Документация → Avatar** и **Компоненты → Avatar**; для **Badge** — **Документация → Badge** и **Компоненты → Badge**.",
     "topicBarAria": "Раздел документации",
     "topics": {
       "foundation": "Основы",
@@ -105,18 +105,21 @@
       "typography": "Typography",
       "avatar": "Avatar",
       "badge": "Badge",
+      "skeleton": "Skeleton",
       "button": "Button",
       "input": "Input",
       "controls": "Controls",
       "select": "Select",
       "overlays": "Overlays",
+      "menu": "Menu",
       "form": "Form",
       "tabs": "Tabs",
       "accordion": "Accordion",
       "alert": "Alert",
       "progress": "Progress",
       "datePicker": "Date picker",
-      "table": "Table"
+      "table": "Table",
+      "pagination": "Pagination"
     },
     "hints": {
       "foundation": "README, Getting Started, Tokens, Design system",
@@ -124,18 +127,21 @@
       "typography": "docs/components/Typography/",
       "avatar": "Avatar.md — фото / инициалы / fallback; живые демо: Компоненты → Avatar; kovax-react/avatar",
       "badge": "Badge.md — статусы и метки; живые демо: Компоненты → Badge; kovax-react/badge",
+      "skeleton": "Skeleton.md — pulse/shimmer заглушки; живые демо: Компоненты → Skeleton; kovax-react/skeleton",
       "button": "docs/components/Button.md",
       "input": "docs/components/Input.md + Textarea.md",
       "controls": "docs/components/Controls.md",
       "select": "docs/components/Select.md",
       "overlays": "Overlays.md — Tooltip, Popover, Dialog, Modal, Toast; живые демо: Компоненты → Overlays",
+      "menu": "Menu.md — якорное меню и анимация; живые демо: Компоненты → Menu; kovax-react/menu",
       "form": "docs/components/Form.md",
       "tabs": "Tabs.md — tablist / tab / tabpanel; живые демо: Компоненты → Tabs",
       "accordion": "Accordion.md — Collapsible.*, Accordion.*; живые демо: Компоненты → Accordion",
       "alert": "Alert.md — баннер, tone, dismiss; живые демо: Компоненты → Alert",
       "progress": "Progress.md — LinearProgress, CircularProgress; живые демо: Компоненты → Progress",
       "datePicker": "DatePicker.md — обёртки react-day-picker; живые демо: Компоненты → Date picker",
-      "table": "Table.md — примитивы Table и DataTable; живые демо: Компоненты → Table"
+      "table": "Table.md — примитивы Table и DataTable; живые демо: Компоненты → Table",
+      "pagination": "Pagination.md — постраничная навигация; живые демо: Компоненты → Pagination; kovax-react/pagination"
     }
   },
   "theme": {
@@ -207,6 +213,18 @@
     "examplesDot": "Точка-индикатор",
     "examplesInline": "В строке с текстом",
     "a11yNote": "<strong>Доступность:</strong> Badge — это <code>&lt;span&gt;</code>, не интерактивный элемент. Для снимаемых фильтров используйте <code>Button</code> с явной подписью; для живых счётчиков дайте контекст рядом или <code>aria-label</code> на родителе."
+  },
+  "skeleton": {
+    "pageTitle": "Skeleton",
+    "intro": "<strong>Skeleton</strong> держит место под контент при загрузке: <code>pulse</code> (прозрачность), <code>shimmer</code> (градиент), статика <code>none</code>. Поверхности <code>secondary.*</code> и motion-токены. Глубокий импорт: <code>kovax-react/skeleton</code>.",
+    "examplesVariants": "Анимация",
+    "variantsLead": "Keyframes вставляются один раз при монтировании, если <code>variant</code> не равен <code>none</code>. Длительность и easing из <code>themeToken(\"duration.slow\")</code> и <code>themeToken(\"easing.standard\")</code>.",
+    "examplesShapes": "Формы",
+    "examplesText": "Строки текста",
+    "textLead": "С <code>text</code> высота совпадает с <code>text.sm</code>; последнюю строку можно сузить через <code>style={{ width: \"…\" }}</code> или <code>width</code>.",
+    "examplesCard": "Карточка-превью",
+    "a11yNote": "<strong>Доступность:</strong> по умолчанию <code>role=\"presentation\"</code> и <code>aria-hidden</code> — Skeleton декоративный; семантику загрузки (<code>aria-busy</code>, подписи) давайте обёртке.",
+    "motionNote": "При запросе reduced motion выбирайте <code>variant=\"none\"</code>."
   },
   "tokens": {
     "pageTitle": "Дизайн-токены",
@@ -299,7 +317,7 @@
   },
   "overlays": {
     "pageTitle": "Tooltip, Popover, Dialog, Modal и Toast",
-    "intro": "<strong>Tooltip</strong>, якорный <strong>Popover</strong> / <strong>Dropdown</strong>, составной <strong>Dialog</strong>, структурированный <strong>Modal</strong> и <strong>Toast</strong> (<code>ToastProvider</code>, <code>useToast</code>). Справка — в шапке <strong>Документация</strong> → Overlays.",
+    "intro": "<strong>Tooltip</strong>, якорный <strong>Popover</strong> / <strong>Dropdown</strong>, составной <strong>Dialog</strong>, структурированный <strong>Modal</strong> и <strong>Toast</strong> (<code>ToastProvider</code>, <code>useToast</code>). Меню — отдельно в <strong>Компоненты → Menu</strong>. Справка — в шапке <strong>Документация</strong> → Overlays.",
     "examplesTooltip": "Примеры: Tooltip",
     "examplesTooltipPlacements": "Примеры: Tooltip — позиции",
     "examplesPopover": "Примеры: Popover / Dropdown",
@@ -311,6 +329,15 @@
     "examplesModalFull": "Примеры: Modal — на всю ширину",
     "examplesModalScroll": "Примеры: Modal — прокрутка тела",
     "examplesDialog": "Примеры: Dialog"
+  },
+  "menu": {
+    "pageTitle": "Menu",
+    "intro": "<strong>Menu</strong> / <strong>DropdownMenu</strong> — <code>role=\"menu\"</code> поверх <strong>Popover</strong>: клавиатура (↑/↓, Home/End), анимация появления (<code>motion</code>), <code>kovax-react/menu</code>. Полный текст — шапка <strong>Документация</strong> → Menu.",
+    "examplesBasics": "Примеры: базово и опасное действие",
+    "examplesControlled": "Примеры: controlled open",
+    "examplesSameWidth": "Примеры: sameWidth",
+    "examplesNoMotion": "Примеры: без анимации",
+    "docsCrossLink": "<strong>Документация:</strong> пропсы и связка с Popover — файл <code>docs/components/Menu.md</code>, вкладка <strong>Документация → Menu</strong>."
   },
   "input": {
     "intro": "Текстовые поля и многострочный <strong>Textarea</strong>: размеры, цветовые схемы, маски (Input), валидация и нативные атрибуты HTML. Справка — в шапке <strong>Документация</strong> → Input.",
@@ -460,5 +487,25 @@
     "demoColQty": "Кол-во",
     "dataHint": "Сортировка управляемая: обрабатывайте onSortChange и передавайте отсортированные строки в data.",
     "docsHint": "Markdown-справка — шапка <strong>Документация</strong> → Table."
+  },
+  "pagination": {
+    "pageTitle": "Pagination",
+    "intro": "<strong>Pagination</strong> — компактный <code>nav</code> с назад/вперёд, номерами страниц и многоточием. Анимации используют токены длительности и easing; при <code>prefers-reduced-motion</code> отключается масштабирование.",
+    "examplesBasic": "Примеры: пейджер по умолчанию",
+    "examplesOutlineSm": "Примеры: контурный вариант и размер sm",
+    "examplesSiblings": "Примеры: шире окно соседних страниц",
+    "siblingsLead": "Увеличьте siblingCount, чтобы показывать больше номеров вокруг активной страницы до свёртки в многоточие.",
+    "examplesDisabled": "Примеры: отключено (загрузка)",
+    "examplesI18n": "Примеры: свои aria-подписи",
+    "ariaDemo": "Демо результатов",
+    "ariaCompact": "Компактный пейджер",
+    "ariaWide": "Пейджер с широким окном",
+    "ariaLoading": "Загрузка страниц",
+    "ariaI18n": "Локализованный пейджер",
+    "stateCurrent": "Текущая страница: {{page}}",
+    "i18nPrev": "Назад",
+    "i18nNext": "Вперёд",
+    "i18nPage": "Перейти на страницу {{p}}",
+    "docsHint": "Markdown-справка — шапка <strong>Документация</strong> → Pagination."
   }
 }

@@ -25,11 +25,13 @@ The playground loads components from source via the `kovax-react` workspace alia
 | **Typography** | `Text`, `Heading`, `Link`, `Code`, `Kbd`, `Blockquote`, `List`, `ListItem` |
 | **Forms** | `FormControl`, `FormLabel`, `FormError`, `FormHelperText`, `FormGroup`, `FormControlContext`, `useFormControlContext`, `Input`, **`Textarea`**, `InputGroup`, `InputGroupContext`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`, `Select`, `useCombobox`, `VirtualizedListbox`, **`DatePicker`**, **`DateRangePicker`** ( **`variant="date"`** · **`"datetime"`** ) |
 | **Tables** | **`Table`** (`Table.Root`, caption, `Thead` / `Tbody` / `Tfoot`, `Tr`, `Th`, `Td`), **`DataTable`**, **`cycleSort`**, **`resolveDataCell`** |
+| **Pagination** | **`Pagination`**, **`getPaginationItems`** (`kovax-react/pagination`) |
 | **Overlays** | `Tooltip`, **`Popover`** / **`Dropdown`**, compound `Dialog`, structured `Modal`, `ToastProvider`, `useToast` |
+| **Menu** | **`Menu`** / **`DropdownMenu`** — keyboard menu on **`Popover`** (`kovax-react/menu`) |
 | **Navigation / disclosure** | **`Tabs`** (`Tabs.Root`, `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`), **`Collapsible`** / **`Accordion`** (`Collapsible.Root` … `Accordion.Content`) |
 | **Feedback / inline status** | **`Alert`** (`tone`, optional dismiss, live region), **`LinearProgress`** / **`CircularProgress`** (determinate & indeterminate) |
 | **Actions** | `Button`, `IconButton`, `ButtonGroup` |
-| **Theming** | **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, CSS variables (`--kx-*`), light/dark palettes, `colors`, `sizes`, `shadows`, `transitions`, `baseColors`, **`themeToken`**, **`colorToken`** — see [Design system](./docs/DESIGN_SYSTEM.md) · [Tokens](./docs/components/Tokens.md) |
+| **Theming & responsive** | **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, CSS variables (`--kx-*`), light/dark palettes, **`themeToken`**, **`colorToken`**, **`useMediaQuery`**, **`useBreakpointUp`**, breakpoint helpers — see [Design system](./docs/DESIGN_SYSTEM.md) · [Tokens](./docs/components/Tokens.md) |
 
 Everything above is exported from the package root:
 
@@ -60,21 +62,31 @@ Smaller bundles when you only need a slice of the library:
 | `kovax-react/input` | `Input`, `InputGroup`, **`Textarea`** |
 | `kovax-react/form` | Form primitives, `Checkbox` / `Radio` / `RadioGroup` / `Switch`, `Select`, `useCombobox`, `VirtualizedListbox`, + `FormControlContext` / `useFormControlContext` |
 | `kovax-react/overlays` | `Tooltip`, **`Popover`** / **`Dropdown`**, compound `Dialog`, structured `Modal`, `ToastProvider`, `useToast` |
+| `kovax-react/menu` | **`Menu`**, **`DropdownMenu`**, animation helpers (`ensureMenuKeyframes`, …) |
 | `kovax-react/tabs` | **`Tabs`** compound primitives (`Root`, `List`, `Trigger`, `Content`) |
 | `kovax-react/accordion` | **`Collapsible`** + **`Accordion`** compound primitives |
 | `kovax-react/alert` | **`Alert`** inline banner / live region |
 | `kovax-react/progress` | **`LinearProgress`**, **`CircularProgress`** |
 | `kovax-react/date-picker` | **`DatePicker`**, **`DateRangePicker`** (+ types); peer **`react-day-picker`** |
 | `kovax-react/table` | **`Table`** compound primitives, **`DataTable`**, helpers (**`cycleSort`**, **`resolveDataCell`**) |
-| `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, palettes |
+| `kovax-react/pagination` | **`Pagination`**, **`getPaginationItems`** |
+| `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, **`useMediaQuery`**, **`useBreakpointUp`**, breakpoint helpers, palettes |
 
-## What’s new (v0.5)
+## What’s new (v0.6)
+
+- **`Pagination`** — accessible pager with token-backed transitions and **`kovax-react/pagination`** entry point — see [Pagination](./docs/components/Pagination.md).
+- **Responsive hooks** — **`useMediaQuery`**, **`useBreakpointUp`**, and **`breakpointMinMediaQuery`** helpers aligned with **`breakpoint.*`** tokens — see [Tokens](./docs/components/Tokens.md).
+- **Playground & docs** — **Components → Pagination**, Documentation topic **Pagination**, EN/RU playground strings.
+
+**Кратко по-русски:** в релизе **`Pagination`** (отдельный импорт **`kovax-react/pagination`**), хуки **`useMediaQuery` / `useBreakpointUp`** и хелперы для брейкпоинтов из тех же токенов, что и **`themeToken("breakpoint.md")`**; обновлены Markdown-доки и живые примеры на площадке (интерфейс EN/RU).
+
+Full history: [CHANGELOG.md](./CHANGELOG.md).
+
+### Highlights from v0.5
 
 - **ThemeProvider & dark mode** — mount **`ThemeProvider`** once (or scope with **`target`**); light/dark **`colorMode`**, optional **`palettes`** overrides, **`localStorage`** persistence (**`storageKey`**), CSP **`nonce`** on injected styles. **`themeToken`** / **`colorToken`** resolve to **`var(--kx-…, hex-fallback)`** so components follow CSS variables when the provider is active; without it, fallbacks keep previous hex appearance.
 - **Hooks** — **`useColorMode()`** (`setColorMode`, `toggleColorMode`, resolved vs stored mode) and **`useTheme()`** (active palette + scope selector).
 - **Playground** — static **prerender** for better SEO (**`sitemap.xml`**, **`robots.txt`**, per-route meta); **Components → ThemeProvider** live docs with examples.
-
-Full history: [CHANGELOG.md](./CHANGELOG.md).
 
 ### Highlights from v0.4
 
@@ -95,7 +107,7 @@ Full history: [CHANGELOG.md](./CHANGELOG.md).
 
 ## Requirements
 
-- `react` and `react-dom` **≥16 &lt;20** (peer dependencies)
+- `react` and `react-dom` **^18 || ^19** (peer dependencies)
 - **`react-day-picker` ^9** (peer dependency) when using **`DatePicker`** / **`DateRangePicker`** — install alongside `kovax-react` and import **`react-day-picker/style.css`** once in your app (see [DatePicker](./docs/components/DatePicker.md)).
 
 ## Installation
@@ -196,7 +208,7 @@ export function SignInExample() {
 
 ## Tech stack
 
-- React 18 in development; library targets React 16+ via peers
+- React 18 in development; peers declare **React ^18 || ^19**
 - TypeScript 5, **tsup** for library builds
 - **Vite** + **react-markdown** for the optional playground app (`apps/playground`); production builds run a **prerender** step for static HTML per route; **react-hook-form** is used only in playground demos, not shipped with the library.
 
@@ -220,6 +232,7 @@ export function SignInExample() {
 | Progress | [docs/components/Progress.md](./docs/components/Progress.md) |
 | Date picker | [docs/components/DatePicker.md](./docs/components/DatePicker.md) |
 | Table & DataTable | [docs/components/Table.md](./docs/components/Table.md) |
+| Pagination | [docs/components/Pagination.md](./docs/components/Pagination.md) |
 | Overlays (Tooltip, Popover, Dialog, …) | [docs/components/Overlays.md](./docs/components/Overlays.md) |
 | Form | [docs/components/Form.md](./docs/components/Form.md) |
 

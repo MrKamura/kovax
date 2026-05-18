@@ -42,6 +42,7 @@ Component and foundation docs live next to this file. Links are relative to the 
 - [Select & Combobox](./components/Select.md)
 - [Date picker](./components/DatePicker.md) — `DatePicker`, `DateRangePicker` (react-day-picker + Kovax Popover)
 - [Tooltip, Dialog, Modal, Toast & Popover](./components/Overlays.md)
+- [Menu / DropdownMenu](./components/Menu.md) — anchored `role="menu"` on Popover, enter animation (`kovax-react/menu`)
 
 ### Other
 
@@ -49,7 +50,9 @@ Component and foundation docs live next to this file. Links are relative to the 
 - [Accordion & Collapsible](./components/Accordion.md) — `Collapsible.*`, `Accordion.*`
 - [Alert](./components/Alert.md) — inline banner / live region (`tone`, optional dismiss)
 - [Progress](./components/Progress.md) — `LinearProgress`, `CircularProgress` (`indeterminate`, palettes)
+- [Skeleton](./components/Skeleton.md) — loading placeholders (`pulse`, `shimmer`, `none`; `kovax-react/skeleton`)
 - [Table](./components/Table.md) — `Table` primitives + `DataTable` (columns/rows, optional sort)
+- [Pagination](./components/Pagination.md) — `Pagination`, `getPaginationItems` (token-backed motion; `kovax-react/pagination`)
 - [Button](./components/Button.md)
 
 ## Guides

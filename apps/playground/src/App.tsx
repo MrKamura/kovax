@@ -11,6 +11,7 @@ import { InputSection } from "./sections/InputSection";
 import { ControlsSection } from "./sections/ControlsSection";
 import { SelectSection } from "./sections/SelectSection";
 import { OverlaysSection } from "./sections/OverlaysSection";
+import { MenuSection } from "./sections/MenuSection";
 import { FormSection } from "./sections/FormSection";
 import { TypographySection } from "./sections/TypographySection";
 import { AvatarSection } from "./sections/AvatarSection";
@@ -19,8 +20,10 @@ import { TabsSection } from "./sections/TabsSection";
 import { AccordionSection } from "./sections/AccordionSection";
 import { AlertSection } from "./sections/AlertSection";
 import { ProgressSection } from "./sections/ProgressSection";
+import { SkeletonSection } from "./sections/SkeletonSection";
 import { DatePickerSection } from "./sections/DatePickerSection";
 import { TableSection } from "./sections/TableSection";
+import { PaginationSection } from "./sections/PaginationSection";
 import { TokensSection } from "./sections/TokensSection";
 import { ThemeSection } from "./sections/ThemeSection";
 import { SiteNavContext } from "./routing/SiteNavContext";
@@ -56,13 +59,16 @@ const COMPONENT_NAV: { id: ComponentPage; labelKey: string }[] = [
   { id: "controls", labelKey: "documentation.topics.controls" },
   { id: "select", labelKey: "documentation.topics.select" },
   { id: "overlays", labelKey: "documentation.topics.overlays" },
+  { id: "menu", labelKey: "documentation.topics.menu" },
   { id: "form", labelKey: "documentation.topics.form" },
   { id: "tabs", labelKey: "documentation.topics.tabs" },
   { id: "accordion", labelKey: "documentation.topics.accordion" },
   { id: "alert", labelKey: "documentation.topics.alert" },
   { id: "progress", labelKey: "documentation.topics.progress" },
+  { id: "skeleton", labelKey: "documentation.topics.skeleton" },
   { id: "datePicker", labelKey: "documentation.topics.datePicker" },
   { id: "table", labelKey: "documentation.topics.table" },
+  { id: "pagination", labelKey: "documentation.topics.pagination" },
 ];
 
 function spaNavClick(
@@ -316,6 +322,7 @@ export default function App({
             {area === "components" && component === "overlays" && (
               <OverlaysSection />
             )}
+            {area === "components" && component === "menu" && <MenuSection />}
             {area === "components" && component === "form" && <FormSection />}
             {area === "components" && component === "tabs" && <TabsSection />}
             {area === "components" && component === "accordion" && (
@@ -325,10 +332,16 @@ export default function App({
             {area === "components" && component === "progress" && (
               <ProgressSection />
             )}
+            {area === "components" && component === "skeleton" && (
+              <SkeletonSection />
+            )}
             {area === "components" && component === "datePicker" && (
               <DatePickerSection />
             )}
             {area === "components" && component === "table" && <TableSection />}
+            {area === "components" && component === "pagination" && (
+              <PaginationSection />
+            )}
           </main>
         </div>
 

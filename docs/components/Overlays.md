@@ -9,12 +9,19 @@
 
 ### Popover / Dropdown
 
-Compound **`Popover`** (**`Popover.Root`**, **`Popover.Trigger`**, **`Popover.Content`**): clicking the trigger toggles a non-modal **`role="dialog"`** (**`aria-modal="false"`**) panel rendered in a **`fixed`** **portal**, anchored to the trigger via **`placement`** (**`bottom-start`**, **`top-end`**, **`left`**, … — side + **`start` \| `center` \| `end`**). **`Dropdown`** is the **same exported object** as **`Popover`** (pick either name for menus).
+Compound **`Popover`** (**`Popover.Root`**, **`Popover.Trigger`**, **`Popover.Content`**): clicking the trigger toggles a non-modal floating panel in a **`fixed`** **portal**, anchored to the trigger via **`placement`**. Default **`contentRole="dialog"`** sets **`role="dialog"`** (**`aria-modal="false"`**); set **`contentRole="menu"`** (or use **`Menu`**) for **`role="menu"`** with arrow-key focus among **`menuitem`** children. **`Dropdown`** is the **same exported object** as **`Popover`** (pick either name for generic anchored panels).
 
 - **Dismiss:** outside pointer down and **Escape** (configurable).
 - **Position:** recomputed on scroll (capture) and resize; viewport clamping with padding.
 - **`sameWidth`:** panel **`min-width`** matches trigger width.
 - **Layer:** **`z-index`** ~**10850** — above typical sticky headers and modal shells are lower concern than **`Tooltip`** (~11000); does **not** trap focus or lock scroll (unlike **`Dialog`**).
+
+### Menu
+
+Compound **`Menu`** / **`DropdownMenu`** — anchored **`role="menu"`** with keyboard support and optional enter animation. Full reference, props tables, and **`motion`** flag: **[Menu.md](./Menu.md)** · bundle **`kovax-react/menu`**.
+
+- **Keyboard:** **↑** / **↓**, **Home** / **End**, **Enter** / **Space**; **Escape** closes (Popover).
+- **Animation:** default **`kv-menu-enter`** on **`Menu.Content`** (disable with **`motion={false}`** or **`style`**).
 
 ### Dialog
 
@@ -53,7 +60,7 @@ import {
 } from "kovax-react";
 ```
 
-> **Playground:** interactive **Preview** / **Code** examples for Tooltip, Popover, Modal, Toast, and Dialog are under **Components → Overlays**. This topic is the same `docs/components/Overlays.md` source, with copy-paste snippets below.
+> **Playground:** **Preview** / **Code** for Tooltip, Popover, Modal, Toast, and Dialog — **Components → Overlays**. **Menu** — **Components → Menu**; markdown topic **Documentation → Menu**. This file covers Tooltip, Popover, Dialog, Modal, and Toast.
 
 ## Tooltip — usage
 
@@ -160,15 +167,18 @@ Extends **`HTMLAttributes<HTMLDivElement>`** for the floating panel.
 | **`sameWidth`** | `boolean` | **`false`** | **`min-width`** matches trigger width. |
 | **`closeOnInteractOutside`** | `boolean` | **`true`** | Pointer down outside closes. |
 | **`closeOnEscape`** | `boolean` | **`true`** | **Escape** closes. |
+| **`contentRole`** | **`dialog` \| `menu`** | **`dialog`** | **`menu`** → **`role="menu"`** on the panel and arrow / Home / End focus among **`role="menuitem"`** descendants (see **`Menu`**). |
 
 ### Popover primitives
 
 | Export | Role |
 | ------ | ---- |
 | **`Popover.Root`** | Provider + controlled / uncontrolled **`open`**. |
-| **`Popover.Trigger`** | **`cloneElement`**: toggles open (merges **`onClick`**, **`aria-expanded`**). |
+| **`Popover.Trigger`** | **`cloneElement`**: toggles open (merges **`onClick`**, **`aria-expanded`**). Optional **`ariaHasPopup`** (**`dialog`** \| **`menu`**) → **`aria-haspopup`**. |
 | **`Popover.Content`** | Portal + **`fixed`** positioning vs viewport. |
 | **`Dropdown`** | Alias of **`Popover`**. |
+
+Full **`Menu`** / **`DropdownMenu`** documentation lives in **[Menu.md](./Menu.md)** (`kovax-react/menu`).
 
 ## Dialog — usage
 

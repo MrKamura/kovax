@@ -84,6 +84,13 @@ function computePopoverPosition(
   return { top, left };
 }
 
+function getEnabledMenuItems(root: HTMLElement): HTMLElement[] {
+  const nodes = root.querySelectorAll('[role="menuitem"]');
+  return Array.from(nodes).filter(
+    (node) => node.getAttribute("aria-disabled") !== "true",
+  ) as HTMLElement[];
+}
+
 interface PopoverContextValue {
   open: boolean;
   setOpen: (next: boolean) => void;
@@ -97,6 +104,11 @@ function usePopoverCtx(component: string): PopoverContextValue {
   const ctx = useContext(PopoverContext);
   if (!ctx) throw new Error(`${component} must be used within Popover.Root`);
   return ctx;
+}
+
+/** For primitives such as **`Menu.Item`** that close the anchored layer on activate. */
+export function usePopoverRootContext(component: string): PopoverContextValue {
+  return usePopoverCtx(component);
 }
 
 export function PopoverRoot({
@@ -134,7 +146,7 @@ export function PopoverRoot({
   return <PopoverContext.Provider value={value}>{children}</PopoverContext.Provider>;
 }
 
-export function PopoverTrigger({ children }: PopoverTriggerProps) {
+export function PopoverTrigger({ children, ariaHasPopup = "dialog" }: PopoverTriggerProps) {
   const ctx = usePopoverCtx("Popover.Trigger");
   const childProps = children.props as {
     ref?: React.Ref<HTMLElement>;
@@ -144,7 +156,7 @@ export function PopoverTrigger({ children }: PopoverTriggerProps) {
   return cloneElement(children, {
     ref: mergeRefs(childProps.ref, ctx.triggerRef),
     "aria-expanded": ctx.open,
-    "aria-haspopup": "dialog",
+    "aria-haspopup": ariaHasPopup,
     "aria-controls": ctx.open ? ctx.contentId : undefined,
     onClick: (e: React.MouseEvent<HTMLElement>) => {
       childProps.onClick?.(e);
@@ -159,15 +171,61 @@ export function PopoverContent({
   sameWidth = false,
   closeOnInteractOutside = true,
   closeOnEscape = true,
+  contentRole = "dialog",
   style,
   className,
   children,
+  onKeyDown,
   ...rest
 }: PopoverContentProps) {
   const ctx = usePopoverCtx("Popover.Content");
   const floatingRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0 });
+
+  const handleMenuKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      onKeyDown?.(e);
+      if (e.defaultPrevented) return;
+      if (contentRole !== "menu") return;
+      const menu = floatingRef.current;
+      if (!menu) return;
+      const items = getEnabledMenuItems(menu);
+      if (items.length === 0) return;
+
+      const idx = items.indexOf(document.activeElement as HTMLElement);
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          if (idx < 0) {
+            items[0]?.focus();
+            return;
+          }
+          items[(idx + 1) % items.length]?.focus();
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          if (idx < 0) {
+            items[items.length - 1]?.focus();
+            return;
+          }
+          items[(idx - 1 + items.length) % items.length]?.focus();
+          break;
+        case "Home":
+          e.preventDefault();
+          items[0]?.focus();
+          break;
+        case "End":
+          e.preventDefault();
+          items[items.length - 1]?.focus();
+          break;
+        default:
+          break;
+      }
+    },
+    [contentRole, onKeyDown],
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -186,6 +244,17 @@ export function PopoverContent({
     if (!ctx.open || !mounted) return;
     updatePosition();
   }, [ctx.open, mounted, placement, sideOffset, children, updatePosition]);
+
+  useLayoutEffect(() => {
+    if (!ctx.open || !mounted || contentRole !== "menu") return;
+    const root = floatingRef.current;
+    if (!root) return;
+    const id = requestAnimationFrame(() => {
+      const items = getEnabledMenuItems(root);
+      items[0]?.focus();
+    });
+    return () => cancelAnimationFrame(id);
+  }, [ctx.open, mounted, contentRole, children]);
 
   useEffect(() => {
     if (!ctx.open) return;
@@ -248,12 +317,13 @@ export function PopoverContent({
     <div
       ref={floatingRef}
       id={ctx.contentId}
-      role="dialog"
-      aria-modal="false"
+      role={contentRole === "menu" ? "menu" : "dialog"}
+      aria-modal={contentRole === "menu" ? undefined : false}
       className={className}
       {...rest}
       style={mergedStyle}
       tabIndex={-1}
+      onKeyDown={contentRole === "menu" ? handleMenuKeyDown : onKeyDown}
     >
       {children}
     </div>,

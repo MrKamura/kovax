@@ -3,7 +3,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.5.0",
+  "version": "0.6.0",
+  "description": "React UI primitives with CSS-variable theming (ThemeProvider), forms, tables, overlays, Pagination, and responsive hooks (useMediaQuery / breakpoints from design tokens).",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/index.cjs",
@@ -50,6 +51,11 @@
       "import": "./dist/overlays.js",
       "require": "./dist/overlays.cjs"
     },
+    "./menu": {
+      "types": "./dist/menu.d.ts",
+      "import": "./dist/menu.js",
+      "require": "./dist/menu.cjs"
+    },
     "./tabs": {
       "types": "./dist/tabs.d.ts",
       "import": "./dist/tabs.js",
@@ -89,6 +95,16 @@
       "types": "./dist/badge.d.ts",
       "import": "./dist/badge.js",
       "require": "./dist/badge.cjs"
+    },
+    "./skeleton": {
+      "types": "./dist/skeleton.d.ts",
+      "import": "./dist/skeleton.js",
+      "require": "./dist/skeleton.cjs"
+    },
+    "./pagination": {
+      "types": "./dist/pagination.d.ts",
+      "import": "./dist/pagination.js",
+      "require": "./dist/pagination.cjs"
     }
   },
   "files": [
@@ -122,7 +138,10 @@
     "react-library",
     "kovax",
     "frontend",
-    "typescript"
+    "typescript",
+    "pagination",
+    "responsive",
+    "breakpoints"
   ],
   "author": "Aleksei Alekseev",
   "license": "MIT",
@@ -141,9 +160,9 @@
     }
   ],
   "peerDependencies": {
-    "react": ">=16.0.0 <20.0.0",
-    "react-dom": ">=16.0.0 <20.0.0",
-    "react-day-picker": "^9.14.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-day-picker": "^9.14.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "react-day-picker": {

@@ -14,13 +14,16 @@ export type ComponentPage =
   | "controls"
   | "select"
   | "overlays"
+  | "menu"
   | "form"
   | "tabs"
   | "accordion"
   | "alert"
   | "progress"
+  | "skeleton"
   | "datePicker"
-  | "table";
+  | "table"
+  | "pagination";
 
 export interface SiteRoute {
   lang: Lang;
@@ -40,13 +43,16 @@ const COMPONENT_TO_SLUG: Record<ComponentPage, string> = {
   controls: "controls",
   select: "select",
   overlays: "overlays",
+  menu: "menu",
   form: "form",
   tabs: "tabs",
   accordion: "accordion",
   alert: "alert",
   progress: "progress",
+  skeleton: "skeleton",
   datePicker: "date-picker",
   table: "table",
+  pagination: "pagination",
 };
 
 const SLUG_TO_COMPONENT = Object.fromEntries(

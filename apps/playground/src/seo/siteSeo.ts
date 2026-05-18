@@ -13,13 +13,16 @@ const COMPONENT_KEYS: Record<ComponentPage, string> = {
   controls: "documentation.topics.controls",
   select: "documentation.topics.select",
   overlays: "documentation.topics.overlays",
+  menu: "documentation.topics.menu",
   form: "documentation.topics.form",
   tabs: "documentation.topics.tabs",
   accordion: "documentation.topics.accordion",
   alert: "documentation.topics.alert",
   progress: "documentation.topics.progress",
+  skeleton: "documentation.topics.skeleton",
   datePicker: "documentation.topics.datePicker",
   table: "documentation.topics.table",
+  pagination: "documentation.topics.pagination",
 };
 
 export function siteTitleForRoute(route: SiteRoute, t: TFunction): string {

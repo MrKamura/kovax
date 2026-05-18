@@ -12,7 +12,7 @@ Install peers if they are not already in your app:
 npm install react react-dom
 ```
 
-Supported range: **React and React DOM >= 16 and \< 20** (see `peerDependencies` in `package.json`).
+Supported range: **React and React DOM ^18 || ^19** (see `peerDependencies` in `package.json`).
 
 ## Import
 

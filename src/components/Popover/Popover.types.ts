@@ -34,6 +34,8 @@ export interface PopoverTriggerProps {
     { ref?: Ref<HTMLElement>; onClick?: MouseEventHandler<HTMLElement> },
     string | JSXElementConstructor<unknown>
   >;
+  /** Maps to `aria-haspopup`. Use **`"menu"`** with **`Popover.Content contentRole="menu"`** or **`Menu`**. @default `"dialog"` */
+  ariaHasPopup?: "dialog" | "menu";
 }
 
 export interface PopoverContentProps extends HTMLAttributes<HTMLDivElement> {
@@ -47,4 +49,10 @@ export interface PopoverContentProps extends HTMLAttributes<HTMLDivElement> {
   closeOnInteractOutside?: boolean;
   /** @default true */
   closeOnEscape?: boolean;
+  /**
+   * **`menu`** → `role="menu"`, arrow / Home / End keyboard focus among **`role="menuitem"`** descendants.
+   * Pair **`Popover.Trigger`** with **`ariaHasPopup="menu"`** (default for **`Menu.Trigger`**).
+   * @default `"dialog"`
+   */
+  contentRole?: "dialog" | "menu";
 }

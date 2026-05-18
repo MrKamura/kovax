@@ -159,6 +159,21 @@ breakpoints.md; // "48em" ≈ 768px
 const css = `@media (min-width: ${themeToken("breakpoint.lg")}) { … }`;
 ```
 
+Responsive checks in JS reuse the same widths via `useMediaQuery` / `useBreakpointUp`:
+
+```tsx
+import {
+  breakpointMinMediaQuery,
+  themeToken,
+  useBreakpointUp,
+  useMediaQuery,
+} from "kovax-react";
+
+const wide = useMediaQuery(`(min-width: ${themeToken("breakpoint.lg")})`);
+const isMdUp = useBreakpointUp("md"); // same as breakpointMinMediaQuery("md")
+const mq = breakpointMinMediaQuery("lg"); // "(min-width: 62em)"
+```
+
 ## 🧪 String tokens (`themeToken`)
 
 One helper for every namespace.
