@@ -49,4 +49,5 @@ return (
 ## Next steps
 
 - [Design system / tokens](./DESIGN_SYSTEM.md)
+- [Next.js App Router](./NEXTJS_APP_ROUTER.md)
 - [Component index](./README.md)

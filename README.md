@@ -1,4 +1,4 @@
-# Kovax UI — kovax-react **0.6.0**
+# Kovax UI — kovax-react **0.7.0**
 
 ![Kovax React — typed UI library with CSS-variable theming](./docs/cover.webp)
 
@@ -9,7 +9,7 @@ React component library focused on layout primitives, typography, forms, data ta
 ![React](https://img.shields.io/badge/React-16%2B-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5%2B-3178c6)
 
-**Current release:** **`0.6.0`** · npm [`kovax-react`](https://www.npmjs.com/package/kovax-react) · [CHANGELOG](./CHANGELOG.md)
+**Current release:** **`0.7.0`** · npm [`kovax-react`](https://www.npmjs.com/package/kovax-react) · [CHANGELOG](./CHANGELOG.md)
 
 ## Live documentation & demos
 
@@ -53,36 +53,50 @@ import {
 
 ### Optional entry points (deep imports)
 
-Smaller bundles when you only need a slice of the library:
+Smaller bundles when you only need a slice of the library. **gzip ESM** sizes below (`dist/*.js`); peers **`react`**, **`react-dom`**, **`react/jsx-runtime`**, and optional **`react-day-picker`** are treated as externals. Limits are enforced by [`size-limit`](https://github.com/ai/size-limit) (`npm run size`); live npm analysis via [bundlejs.com](https://bundlejs.com).
 
-| Import path | Contents |
-| ----------- | -------- |
-| `kovax-react` | Full public API |
-| `kovax-react/layout` | Layout primitives |
-| `kovax-react/typography` | Typography primitives |
-| `kovax-react/button` | `Button`, `IconButton`, `ButtonGroup` |
-| `kovax-react/input` | `Input`, `InputGroup`, **`Textarea`** |
-| `kovax-react/form` | Form primitives, `Checkbox` / `Radio` / `RadioGroup` / `Switch`, `Select`, `useCombobox`, `VirtualizedListbox`, + `FormControlContext` / `useFormControlContext` |
-| `kovax-react/overlays` | `Tooltip`, **`Popover`** / **`Dropdown`**, compound `Dialog`, structured `Modal`, `ToastProvider`, `useToast` |
-| `kovax-react/menu` | **`Menu`**, **`DropdownMenu`**, animation helpers (`ensureMenuKeyframes`, …) |
-| `kovax-react/tabs` | **`Tabs`** compound primitives (`Root`, `List`, `Trigger`, `Content`) |
-| `kovax-react/accordion` | **`Collapsible`** + **`Accordion`** compound primitives |
-| `kovax-react/alert` | **`Alert`** inline banner / live region |
-| `kovax-react/progress` | **`LinearProgress`**, **`CircularProgress`** |
-| `kovax-react/date-picker` | **`DatePicker`**, **`DateRangePicker`** (+ types); peer **`react-day-picker`** |
-| `kovax-react/table` | **`Table`** compound primitives, **`DataTable`**, helpers (**`cycleSort`**, **`resolveDataCell`**) |
-| `kovax-react/pagination` | **`Pagination`**, **`getPaginationItems`** |
-| `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, **`useMediaQuery`**, **`useBreakpointUp`**, breakpoint helpers, palettes |
+<!-- bundlejs-config: %7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D -->
 
-## What’s new (v0.6.0)
+| Import path | Contents | size-limit | bundlejs |
+| ----------- | -------- | ---------- | -------- |
+| `kovax-react` | Full public API | [![size-limit](https://img.shields.io/badge/size--limit-≤55%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/server` | RSC-safe **`Box`**, **`Stack`**, **`Container`**, **`Text`**, **`Heading`** (no `"use client"`) | [![size-limit](https://img.shields.io/badge/size--limit-≤6%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fserver&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fserver&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/layout` | Layout primitives | [![size-limit](https://img.shields.io/badge/size--limit-≤6%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Flayout&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Flayout&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/typography` | Typography primitives | [![size-limit](https://img.shields.io/badge/size--limit-≤7%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Ftypography&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Ftypography&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/button` | `Button`, `IconButton`, `ButtonGroup` | [![size-limit](https://img.shields.io/badge/size--limit-≤7%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fbutton&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fbutton&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/input` | `Input`, `InputGroup`, **`Textarea`** | [![size-limit](https://img.shields.io/badge/size--limit-≤10%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Finput&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Finput&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/form` | Form primitives, `Checkbox` / `Radio` / `RadioGroup` / `Switch`, `Select`, `useCombobox`, `VirtualizedListbox`, + `FormControlContext` / `useFormControlContext` | [![size-limit](https://img.shields.io/badge/size--limit-≤14%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fform&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fform&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/overlays` | `Tooltip`, **`Popover`** / **`Dropdown`**, compound `Dialog`, structured `Modal`, `ToastProvider`, `useToast` | [![size-limit](https://img.shields.io/badge/size--limit-≤12%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Foverlays&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Foverlays&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/menu` | **`Menu`**, **`DropdownMenu`**, animation helpers (`ensureMenuKeyframes`, …) | [![size-limit](https://img.shields.io/badge/size--limit-≤7%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fmenu&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fmenu&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/tabs` | **`Tabs`** compound primitives (`Root`, `List`, `Trigger`, `Content`) | [![size-limit](https://img.shields.io/badge/size--limit-≤7%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Ftabs&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Ftabs&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/accordion` | **`Collapsible`** + **`Accordion`** compound primitives | [![size-limit](https://img.shields.io/badge/size--limit-≤8%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Faccordion&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Faccordion&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/alert` | **`Alert`** inline banner / live region | [![size-limit](https://img.shields.io/badge/size--limit-≤7%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Falert&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Falert&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/progress` | **`LinearProgress`**, **`CircularProgress`** | [![size-limit](https://img.shields.io/badge/size--limit-≤3%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fprogress&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fprogress&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/date-picker` | **`DatePicker`**, **`DateRangePicker`** (+ types); peer **`react-day-picker`** | [![size-limit](https://img.shields.io/badge/size--limit-≤17%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fdate-picker&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fdate-picker&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/table` | **`Table`** compound primitives, **`DataTable`**, helpers (**`cycleSort`**, **`resolveDataCell`**) | [![size-limit](https://img.shields.io/badge/size--limit-≤6%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Ftable&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Ftable&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/pagination` | **`Pagination`**, **`getPaginationItems`** | [![size-limit](https://img.shields.io/badge/size--limit-≤6%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fpagination&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fpagination&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/tokens` | Tokens + **`themeToken`** / **`colorToken`**, **`ThemeProvider`**, **`useColorMode`**, **`useTheme`**, **`useMediaQuery`**, **`useBreakpointUp`**, breakpoint helpers, palettes | [![size-limit](https://img.shields.io/badge/size--limit-≤6%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Ftokens&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Ftokens&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/avatar` | **`Avatar`** — photo, initials, fallback | [![size-limit](https://img.shields.io/badge/size--limit-≤5%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Favatar&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Favatar&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/badge` | **`Badge`** status / count pill | [![size-limit](https://img.shields.io/badge/size--limit-≤4%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fbadge&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fbadge&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
+| `kovax-react/skeleton` | **`Skeleton`** loading placeholders | [![size-limit](https://img.shields.io/badge/size--limit-≤4%20kB-007ec6?style=flat-square)](https://github.com/MrKamura/kovax/blob/master/.size-limit.json) | [![bundlejs](https://deno.bundlejs.com/?q=kovax-react%2Fskeleton&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D&badge=gzip)](https://bundlejs.com/?q=kovax-react%2Fskeleton&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22react-dom%22%2C%22react%2Fjsx-runtime%22%2C%22react-day-picker%22%5D%7D%7D) |
 
-- **`Pagination`** — accessible pager with token-backed transitions and **`kovax-react/pagination`** entry point — see [Pagination](./docs/components/Pagination.md).
-- **Responsive hooks** — **`useMediaQuery`**, **`useBreakpointUp`**, and **`breakpointMinMediaQuery`** helpers aligned with **`breakpoint.*`** tokens — see [Tokens](./docs/components/Tokens.md).
-- **Playground & docs** — **Components → Pagination**, Documentation topic **Pagination**, EN/RU playground strings.
+## What’s new (v0.7.0)
 
-**Кратко по-русски:** в релизе **`Pagination`** (отдельный импорт **`kovax-react/pagination`**), хуки **`useMediaQuery` / `useBreakpointUp`** и хелперы для брейкпоинтов из тех же токенов, что и **`themeToken("breakpoint.md")`**; обновлены Markdown-доки и живые примеры на площадке (интерфейс EN/RU).
+- **`kovax-react/server`** — RSC-safe **`Box`**, **`Stack`**, **`Container`**, **`Text`**, **`Heading`** (no `"use client"`) — see [Next.js App Router](./docs/NEXTJS_APP_ROUTER.md).
+- **Next.js App Router guide** — where to mount **`ThemeProvider`**, FOUC prevention via inline **`data-kovax-theme`** script — [docs/NEXTJS_APP_ROUTER.md](./docs/NEXTJS_APP_ROUTER.md).
+- **Client bundles** — `"use client"` added automatically to hook/context entry points after build; **`typography`**, **`badge`**, **`progress`**, **`server`** stay RSC-importable.
+- **Bundle size** — **size-limit** limits + **bundlejs** / **size-limit** badges per entry in this README; run **`npm run size`** locally.
+- **Testing** — **`jest-axe`** + **`expectNoAxeViolations()`** in **`src/test-utils`**; component tests run axe after each render.
+
+**Кратко по-русски:** **`kovax-react/server`**, **`"use client"`** в client-бандлах, гайд **Next.js App Router**, **size-limit** / **bundlejs**, **jest-axe** в тестах.
 
 Full history: [CHANGELOG.md](./CHANGELOG.md).
+
+### Highlights from v0.6
+
+- **`Pagination`** — accessible pager and **`kovax-react/pagination`** entry — [Pagination](./docs/components/Pagination.md).
+- **Responsive hooks** — **`useMediaQuery`**, **`useBreakpointUp`**, **`breakpointMinMediaQuery`** — [Tokens](./docs/components/Tokens.md).
+- **`Avatar`**, **`Badge`**, **`Menu`**, **`Skeleton`** — new components with dedicated **`kovax-react/*`** entries.
 
 ### Highlights from v0.5
 
@@ -221,6 +235,7 @@ export function SignInExample() {
 | **Live docs & demos** | **[https://mrkamura.github.io/kovax/](https://mrkamura.github.io/kovax/)** (includes **Components → ThemeProvider**) |
 | Component index | [docs/README.md](./docs/README.md) |
 | Getting started | [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md) |
+| Next.js App Router | [docs/NEXTJS_APP_ROUTER.md](./docs/NEXTJS_APP_ROUTER.md) |
 | Design system / tokens | [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) |
 | Tokens reference | [docs/components/Tokens.md](./docs/components/Tokens.md) |
 | Button | [docs/components/Button.md](./docs/components/Button.md) |
@@ -277,6 +292,7 @@ Paid engagements around **kovax-react** and related React / UI work:
 ```bash
 npm install
 npm run build              # library bundle → dist/
+npm run size               # gzip size limits (size-limit)
 npm test                   # Jest
 npm run type-check         # tsc --noEmit
 npm run dev:playground     # Vite dev server for apps/playground

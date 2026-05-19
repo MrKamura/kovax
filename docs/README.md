@@ -59,3 +59,4 @@ Component and foundation docs live next to this file. Links are relative to the 
 
 - [Getting started](./GETTING_STARTED.md)
 - [Design system overview](./DESIGN_SYSTEM.md)
+- [Next.js App Router](./NEXTJS_APP_ROUTER.md) — `ThemeProvider`, RSC entry points, FOUC / `data-kovax-theme` script

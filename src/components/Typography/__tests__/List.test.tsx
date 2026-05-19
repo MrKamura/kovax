@@ -40,10 +40,12 @@ describe("List", () => {
 
   it("leaves non-ListItem children untouched", () => {
     render(
-      <List>
-        <ListItem>ok</ListItem>
-        <span data-testid="raw">skip</span>
-      </List>
+      <div data-axe-skip>
+        <List>
+          <ListItem>ok</ListItem>
+          <span data-testid="raw">skip</span>
+        </List>
+      </div>,
     );
     expect(screen.getByTestId("raw").tagName).toBe("SPAN");
   });

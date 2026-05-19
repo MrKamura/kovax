@@ -6,8 +6,8 @@ describe('FormGroup', () => {
   it('renders children correctly', () => {
     render(
       <FormGroup>
-        <input type="text" placeholder="First" />
-        <input type="text" placeholder="Second" />
+        <input type="text" aria-label="First" placeholder="First" />
+        <input type="text" aria-label="Second" placeholder="Second" />
       </FormGroup>
     );
     
@@ -18,8 +18,8 @@ describe('FormGroup', () => {
   it('applies vertical direction by default', () => {
     render(
       <FormGroup>
-        <input type="text" />
-        <input type="text" />
+        <input type="text" aria-label="Field" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -30,8 +30,8 @@ describe('FormGroup', () => {
   it('applies horizontal direction when specified', () => {
     render(
       <FormGroup direction="horizontal">
-        <input type="text" />
-        <input type="text" />
+        <input type="text" aria-label="Field" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -42,8 +42,8 @@ describe('FormGroup', () => {
   it('applies different spacing sizes', () => {
     const { rerender } = render(
       <FormGroup spacing="sm">
-        <input type="text" />
-        <input type="text" />
+        <input type="text" aria-label="Field" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -52,8 +52,8 @@ describe('FormGroup', () => {
 
     rerender(
       <FormGroup spacing="md">
-        <input type="text" />
-        <input type="text" />
+        <input type="text" aria-label="Field" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -62,8 +62,8 @@ describe('FormGroup', () => {
 
     rerender(
       <FormGroup spacing="lg">
-        <input type="text" />
-        <input type="text" />
+        <input type="text" aria-label="Field" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -74,7 +74,7 @@ describe('FormGroup', () => {
   it('applies spacing props', () => {
     render(
       <FormGroup m={16} p={8}>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -86,7 +86,7 @@ describe('FormGroup', () => {
   it('applies custom className', () => {
     render(
       <FormGroup className="custom-group">
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -97,7 +97,7 @@ describe('FormGroup', () => {
   it('has full width', () => {
     render(
       <FormGroup>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     
@@ -108,7 +108,7 @@ describe('FormGroup', () => {
   it('has flex display', () => {
     render(
       <FormGroup>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormGroup>
     );
     

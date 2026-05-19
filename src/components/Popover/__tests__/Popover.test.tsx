@@ -13,7 +13,7 @@ describe("Popover", () => {
         <PopoverTrigger>
           <button type="button">Menu</button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent aria-label="Panel">
           <div>Item A</div>
         </PopoverContent>
       </PopoverRoot>,
@@ -31,7 +31,7 @@ describe("Popover", () => {
         <PopoverTrigger>
           <button type="button">Menu</button>
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent aria-label="Panel">
           <div>Inside</div>
         </PopoverContent>
       </PopoverRoot>,
@@ -48,7 +48,7 @@ describe("Popover", () => {
           <PopoverTrigger>
             <button type="button">Menu</button>
           </PopoverTrigger>
-          <PopoverContent>
+          <PopoverContent aria-label="Panel">
             <div>Inside</div>
           </PopoverContent>
         </PopoverRoot>

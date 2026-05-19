@@ -5,14 +5,14 @@ import { Input } from '../Input';
 
 describe('Input', () => {
   it('renders input element', () => {
-    render(<Input placeholder="Test input" />);
+    render(<Input aria-label="Test input" placeholder="Test input" />);
     const input = screen.getByPlaceholderText('Test input');
     expect(input).toBeTruthy();
   });
 
   it('handles value change', () => {
     const handleChange = jest.fn();
-    render(<Input onChange={handleChange} placeholder="Test" />);
+    render(<Input onChange={handleChange} aria-label="Test" placeholder="Test" />);
     
     const input = screen.getByPlaceholderText('Test');
     fireEvent.change(input, { target: { value: 'hello' } });
@@ -21,56 +21,56 @@ describe('Input', () => {
   });
 
   it('is disabled when isDisabled is true', () => {
-    render(<Input isDisabled placeholder="Disabled" />);
+    render(<Input isDisabled aria-label="Disabled" placeholder="Disabled" />);
     const input = screen.getByPlaceholderText('Disabled') as HTMLInputElement;
     expect(input.disabled).toBe(true);
   });
 
   it('is not disabled by default', () => {
-    render(<Input placeholder="Enabled" />);
+    render(<Input aria-label="Enabled" placeholder="Enabled" />);
     const input = screen.getByPlaceholderText('Enabled') as HTMLInputElement;
     expect(input.disabled).toBe(false);
   });
 
   it('shows error message', () => {
-    render(<Input isInvalid errorMessage="Error text" placeholder="Test" />);
+    render(<Input isInvalid errorMessage="Error text" aria-label="Test" placeholder="Test" />);
     const errorElement = screen.getByText('Error text');
     expect(errorElement).toBeTruthy();
   });
 
   it('has readonly attribute when isReadOnly is true', () => {
-    render(<Input isReadOnly placeholder="Readonly" />);
+    render(<Input isReadOnly aria-label="Readonly" placeholder="Readonly" />);
     const input = screen.getByPlaceholderText('Readonly') as HTMLInputElement;
     expect(input.readOnly).toBe(true);
   });
 
   it('has required attribute when isRequired is true', () => {
-    render(<Input isRequired placeholder="Required" />);
+    render(<Input isRequired aria-label="Required" placeholder="Required" />);
     const input = screen.getByPlaceholderText('Required') as HTMLInputElement;
     expect(input.required).toBe(true);
   });
 
   it('applies custom className', () => {
-    render(<Input className="custom-class" placeholder="Test" />);
+    render(<Input className="custom-class" aria-label="Test" placeholder="Test" />);
     const input = screen.getByPlaceholderText('Test');
     expect(input.className).toContain('custom-class');
   });
 
   it('applies data-testid', () => {
-    render(<Input data-testid="test-input" placeholder="Test" />);
+    render(<Input data-testid="test-input" aria-label="Test" placeholder="Test" />);
     const input = screen.getByTestId('test-input');
     expect(input).toBeTruthy();
   });
 
   it('applies variant filled background', () => {
-    render(<Input variant="filled" placeholder="Filled" />);
+    render(<Input variant="filled" aria-label="Filled" placeholder="Filled" />);
     expect(screen.getByPlaceholderText('Filled')).toHaveStyle({
       backgroundColor: colors.secondary[50],
     });
   });
 
   it('drops shadow for outline variant', () => {
-    render(<Input variant="outline" placeholder="Outline" />);
+    render(<Input variant="outline" aria-label="Outline" placeholder="Outline" />);
     expect(screen.getByPlaceholderText('Outline')).toHaveStyle({ boxShadow: 'none' });
   });
 
@@ -86,6 +86,7 @@ describe('Input', () => {
             onChangeSpy(e);
             setV(e.target.value);
           }}
+          aria-label="Search"
           placeholder="Search"
         />
       );
@@ -106,6 +107,7 @@ describe('Input', () => {
           maxLength={10}
           value={v}
           onChange={(e) => setV(e.target.value)}
+          aria-label="Bio"
           placeholder="Bio"
         />
       );
@@ -116,14 +118,14 @@ describe('Input', () => {
 
   describe('floatingLabel', () => {
     it('renders animated caption from placeholder and hides native placeholder', () => {
-      render(<Input floatingLabel placeholder="Email address" />);
+      render(<Input floatingLabel aria-label="Email address" placeholder="Email address" />);
       expect(screen.queryByPlaceholderText("Email address")).toBeNull();
       expect(screen.getByTestId("kv-input-floating-label")).toHaveTextContent("Email address");
       expect(screen.getByRole("textbox", { name: "Email address" })).toBeInTheDocument();
     });
 
     it('marks caption floated while focused or non-empty', () => {
-      render(<Input floatingLabel placeholder="Name" />);
+      render(<Input floatingLabel aria-label="Name" placeholder="Name" />);
       const input = screen.getByRole("textbox", { name: "Name" });
       const caption = screen.getByTestId("kv-input-floating-label");
 

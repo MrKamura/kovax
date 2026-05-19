@@ -40,6 +40,7 @@ import typographyList from "../../../../docs/components/Typography/List.md?raw";
 
 import designSystem from "../../../../docs/DESIGN_SYSTEM.md?raw";
 import gettingStarted from "../../../../docs/GETTING_STARTED.md?raw";
+import nextjsAppRouter from "../../../../docs/NEXTJS_APP_ROUTER.md?raw";
 import docsReadme from "../../../../docs/README.md?raw";
 import tokens from "../../../../docs/components/Tokens.md?raw";
 
@@ -90,6 +91,7 @@ export const typographyDocumentationMarkdown = [
 export const introDocumentationMarkdown = [
   docsReadme,
   gettingStarted,
+  nextjsAppRouter,
   tokens,
   designSystem,
 ].join(mdSep);

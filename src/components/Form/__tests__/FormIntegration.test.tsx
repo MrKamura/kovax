@@ -16,7 +16,7 @@ describe('Form integration', () => {
         <FormLabel htmlFor="email" isRequired isInvalid>
           Email Address
         </FormLabel>
-        <Input id="email" type="email" placeholder="Enter your email" />
+        <Input id="email" type="email" aria-label="Enter your email" placeholder="Enter your email" />
         <FormHelperText isInvalid>
           We'll never share your email with anyone else.
         </FormHelperText>
@@ -36,11 +36,11 @@ describe('Form integration', () => {
       <FormGroup direction="horizontal" spacing="md">
         <FormControl>
           <FormLabel htmlFor="firstName">First Name</FormLabel>
-          <Input id="firstName" type="text" />
+          <Input id="firstName" type="text"  aria-label="Test field" />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="lastName">Last Name</FormLabel>
-          <Input id="lastName" type="text" />
+          <Input id="lastName" type="text"  aria-label="Test field" />
         </FormControl>
       </FormGroup>
     );
@@ -53,10 +53,10 @@ describe('Form integration', () => {
   it('form control state propagation', () => {
     render(
       <FormControl isInvalid isRequired isDisabled>
-        <FormLabel isInvalid isRequired>
+        <FormLabel htmlFor="test-input" isInvalid isRequired>
           Test Field
         </FormLabel>
-        <Input data-testid="test-input" />
+        <Input id="test-input" aria-label="Test field" data-testid="test-input" />
         <FormHelperText isInvalid>Invalid input</FormHelperText>
         <FormError>Field is required</FormError>
       </FormControl>
@@ -78,7 +78,7 @@ describe('Form integration', () => {
     render(
       <FormControl>
         <FormLabel htmlFor="username">Username</FormLabel>
-        <Input id="username" type="text" />
+        <Input id="username" type="text"  aria-label="Test field" />
         <FormError>Username is taken</FormError>
       </FormControl>
     );

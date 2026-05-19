@@ -238,6 +238,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
       </Popover.Trigger>
       <Popover.Content
         placement={popoverPlacement}
+        aria-label={label}
         style={{
           maxWidth: panelMaxW,
           ...panelStyle,
@@ -267,6 +268,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
                 <Input
                   type="time"
                   size="sm"
+                  aria-label="Start time"
                   value={startTime}
                   onChange={(e) => onStartTimeChange(e.target.value)}
                   disabled={disabled || !value?.from}
@@ -274,6 +276,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
                 <Input
                   type="time"
                   size="sm"
+                  aria-label="End time"
                   value={endTime}
                   onChange={(e) => onEndTimeChange(e.target.value)}
                   disabled={disabled || !value?.to}

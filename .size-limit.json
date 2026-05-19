@@ -1,0 +1,22 @@
+[
+  { "name": "kovax-react", "path": "dist/index.js", "limit": "55 KB", "gzip": true },
+  { "name": "kovax-react/layout", "path": "dist/layout.js", "limit": "6 KB", "gzip": true },
+  { "name": "kovax-react/button", "path": "dist/button.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/input", "path": "dist/input.js", "limit": "10 KB", "gzip": true },
+  { "name": "kovax-react/form", "path": "dist/form.js", "limit": "14 KB", "gzip": true },
+  { "name": "kovax-react/tokens", "path": "dist/tokens.js", "limit": "6 KB", "gzip": true },
+  { "name": "kovax-react/typography", "path": "dist/typography.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/overlays", "path": "dist/overlays.js", "limit": "12 KB", "gzip": true },
+  { "name": "kovax-react/menu", "path": "dist/menu.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/tabs", "path": "dist/tabs.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/accordion", "path": "dist/accordion.js", "limit": "8 KB", "gzip": true },
+  { "name": "kovax-react/alert", "path": "dist/alert.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/progress", "path": "dist/progress.js", "limit": "3 KB", "gzip": true },
+  { "name": "kovax-react/date-picker", "path": "dist/date-picker.js", "limit": "17 KB", "gzip": true },
+  { "name": "kovax-react/table", "path": "dist/table.js", "limit": "6 KB", "gzip": true },
+  { "name": "kovax-react/avatar", "path": "dist/avatar.js", "limit": "5 KB", "gzip": true },
+  { "name": "kovax-react/badge", "path": "dist/badge.js", "limit": "4 KB", "gzip": true },
+  { "name": "kovax-react/skeleton", "path": "dist/skeleton.js", "limit": "4 KB", "gzip": true },
+  { "name": "kovax-react/pagination", "path": "dist/pagination.js", "limit": "6 KB", "gzip": true },
+  { "name": "kovax-react/server", "path": "dist/server.js", "limit": "6 KB", "gzip": true }
+]

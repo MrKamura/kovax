@@ -1,12 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { expectNoAxeViolations } from "../../../test-utils";
 import { Alert } from "../Alert";
 
 describe("Alert", () => {
-  it("renders body with neutral tone by default", () => {
-    render(<Alert>Saved locally.</Alert>);
+  it("renders body with neutral tone by default", async () => {
+    const { container } = render(<Alert>Saved locally.</Alert>);
     expect(screen.getByText("Saved locally.")).toBeTruthy();
     expect(screen.getByRole("status")).toHaveAttribute("data-alert-tone", "neutral");
+    await expectNoAxeViolations(container);
   });
 
   it("uses status + polite live region when not assertive", () => {

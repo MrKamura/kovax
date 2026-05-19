@@ -19,7 +19,7 @@ describe('FormControl', () => {
   it('applies spacing props', () => {
     render(
       <FormControl m={16} p={8}>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormControl>
     );
     
@@ -31,7 +31,7 @@ describe('FormControl', () => {
   it('applies disabled styles when isDisabled is true', () => {
     render(
       <FormControl isDisabled>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormControl>
     );
     
@@ -42,7 +42,7 @@ describe('FormControl', () => {
   it('does not apply disabled styles when isDisabled is false', () => {
     render(
       <FormControl isDisabled={false}>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormControl>
     );
     
@@ -53,7 +53,7 @@ describe('FormControl', () => {
   it('passes form state props to children', () => {
     const { rerender } = render(
       <FormControl isInvalid isRequired isDisabled>
-        <Input data-testid="test-input" />
+        <Input aria-label="Test field" data-testid="test-input" />
       </FormControl>
     );
     
@@ -65,7 +65,7 @@ describe('FormControl', () => {
     // Test with different props
     rerender(
       <FormControl isInvalid={false} isRequired={false} isDisabled={false}>
-        <Input data-testid="test-input" />
+        <Input aria-label="Test field" data-testid="test-input" />
       </FormControl>
     );
     
@@ -80,7 +80,7 @@ describe('FormControl', () => {
   it('applies custom className', () => {
     render(
       <FormControl className="custom-form-control">
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormControl>
     );
     
@@ -95,7 +95,7 @@ describe('FormControl', () => {
   it('maintains flex column layout', () => {
     render(
       <FormControl>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
       </FormControl>
     );
     
@@ -109,7 +109,7 @@ describe('FormControl', () => {
     render(
       <FormControl>
         <label>Label</label>
-        <input type="text" />
+        <input type="text" aria-label="Field" />
         <span>Helper text</span>
       </FormControl>
     );

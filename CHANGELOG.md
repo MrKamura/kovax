@@ -1,25 +1,81 @@
+# [0.7.0](https://github.com/MrKamura/kovax/compare/v0.6.0...v0.7.0) (2026-05-19)
+
+
+### Features
+
+#### Next.js App Router & RSC
+
+* **`"use client"`** — prepended to client-only bundle outputs after **`tsup`** build (`scripts/add-use-client.mjs`); RSC-safe entries stay without the directive
+* **`kovax-react/server`** — new entry: RSC-safe **`Box`**, **`Stack`**, **`Container`**, **`Text`**, **`Heading`** (no hooks / context)
+* RSC-safe deep imports unchanged: **`kovax-react/typography`**, **`/badge`**, **`/progress`**
+
+#### Accessibility & quality
+
+* **`jest-axe`** — **`expectNoAxeViolations()`** in **`src/test-utils`**; automatic axe pass after every component test via **`setupTests.ts`**
+* **`DatePicker`** / **`DateRangePicker`** — **`aria-label`** on popover panel and datetime **`type="time"`** fields
+
+#### Tooling & metadata
+
+* **`.size-limit.json`** — gzip limits per entry bundle; **`npm run size`** / **`npm run size:why`**
+* **README** — **size-limit** + **bundlejs.com** badges per entry point
+* **npm keywords** — expanded (`design-system`, `nextjs`, `rsc`, `a11y`, `server-components`, …)
+* **`@types/react`** / **`@types/react-dom`** — **`^18.0.0 || ^19.0.0`**
+
+### Documentation & playground
+
+* **`docs/NEXTJS_APP_ROUTER.md`** — **`ThemeProvider`** placement, FOUC / **`data-kovax-theme`** inline script, RSC vs client imports
+* **Foundation** topic on the playground includes the Next.js guide; **README** / **Getting started** cross-links
+
+### Release notes (Russian) · Заметки о выпуске
+
+* **`"use client"`** в client-бандлах; новый entry **`kovax-react/server`** для Server Components.
+* **`jest-axe`** и **`expectNoAxeViolations`** — a11y-проверки во всех component-тестах.
+* **size-limit** + бейджи **bundlejs** в README; расширены **keywords** на npm.
+* Док **`NEXTJS_APP_ROUTER.md`**: **ThemeProvider**, FOUC, **`data-kovax-theme`**.
+* **DatePicker** — **`aria-label`** на панели и полях времени.
+
+
 # [0.6.0](https://github.com/MrKamura/kovax/compare/v0.5.0...v0.6.0) (2026-05-18)
 
 
 ### Features
 
-* **`Pagination`** — accessible numeric pager (prev/next, ellipsis gaps, `aria-current`), motion via **`duration.*`** / **`easing.*`** tokens, respects **`prefers-reduced-motion`**; optional bundle **`kovax-react/pagination`**
+#### New components
+
+* **`Avatar`** — photo, initials from **`name`**, or custom **`fallback`**; sizes **`xs`–`xl`**, shapes **`circle` / `rounded`**, semantic **`colorScheme`**; broken **`src`** falls back via **`onError`** — bundle **`kovax-react/avatar`**
+* **`Badge`** — status / count pill; variants **`solid` / `outline` / `subtle`**, semantic colors, optional leading **dot**, sizes **`sm` / `md`** — bundle **`kovax-react/badge`**
+* **`Menu`** / **`DropdownMenu`** — compound menu on **`Popover`** (`Menu.Root`, **`Menu.Trigger`**, **`Menu.Content`**, **`Menu.Item`**, **`Menu.Separator`**); **`role="menu"`**, arrow / Home / End / Enter / Space keyboard model; optional enter animation (**`motion`**, **`ensureMenuKeyframes`**) — bundle **`kovax-react/menu`**
+* **`Skeleton`** — loading placeholders; variants **`pulse` / `shimmer` / `none`**, shapes **`rectangle` / `rounded` / `circle`**, **`text`** line mode; motion from theme tokens — bundle **`kovax-react/skeleton`**
+* **`Pagination`** — accessible numeric pager (prev/next, ellipsis gaps, **`aria-current`**), motion via **`duration.*` / `easing.*`**, respects **`prefers-reduced-motion`** — bundle **`kovax-react/pagination`**
 * **`getPaginationItems`** — shared page/ellipsis algorithm for custom layouts
-* **`useMediaQuery`**, **`useBreakpointUp`**, **`breakpointMinMediaQuery`**, **`breakpointMinWidth`**, **`breakpointMinMediaQueryFromToken`** — breakpoints aligned with **`breakpoints` / `themeToken("breakpoint.*")`**
+
+#### Responsive & tokens
+
+* **`useMediaQuery`**, **`useBreakpointUp`**, **`breakpointMinMediaQuery`**, **`breakpointMinWidth`**, **`breakpointMinMediaQueryFromToken`** — breakpoints aligned with **`breakpoints` / `themeToken("breakpoint.*")`** (exported from main entry and **`kovax-react/tokens`**)
+
+#### Popover (foundation for Menu)
+
+* **`Popover.Content`** — **`contentRole`**: **`"dialog"`** (default) or **`"menu"`** (arrow / Home / End focus among **`menuitem`** children)
+* **`Popover.Trigger`** — **`ariaHasPopup`**: **`"dialog"`** | **`"menu"`**
+* **`usePopoverRootContext`** — for custom primitives (e.g. **`Menu.Item`** closing the layer on select)
+
+#### Maintenance
+
 * **`npm audit fix`** — dependency updates clearing reported transitive vulnerabilities in the install graph
 
 ### Documentation & playground
 
-* **`docs/components/Pagination.md`**, playground **Components → Pagination** (several live examples), Documentation topic **Pagination** with EN/RU UI copy in the playground
+* Component docs: **`Avatar.md`**, **`Badge.md`**, **`Menu.md`**, **`Skeleton.md`**, **`Pagination.md`**; **`Tokens.md`** (breakpoint hooks), **`Overlays.md`** (Menu / Popover menu role)
+* Playground sections: **Avatar**, **Badge**, **Menu**, **Skeleton**, **Pagination**; Documentation topics; **EN/RU** locale strings; route/SEO entries
+* **`docs/blog/`** — publication drafts (Habr, DEV.to); root **`.gitignore`** **`/blog/`** for local-only drafts
+* **README** — cover image, **What’s new (v0.6.0)**
 
 ### Release notes (Russian) · Заметки о выпуске
 
-Краткое описание для русскоязычной аудитории:
-
-* **`Pagination`** — компонент постраничной навигации с доступностью и плавными переходами по токенам темы; при необходимости подключайте отдельным пакетом **`kovax-react/pagination`**.
-* **`getPaginationItems`** — та же логика номеров страниц и многоточий, если нужна своя вёрстка.
-* **`useMediaQuery`** и **`useBreakpointUp`** (+ хелперы для **`min-width`**) опираются на те же **`breakpoint.*`**, что и остальная дизайн-система.
-* Обновлены **документация** и **площадка** (раздел Pagination, строки интерфейса EN/RU).
+* **`Avatar`**, **`Badge`**, **`Menu`**, **`Skeleton`**, **`Pagination`** — новые компоненты с отдельными entry **`kovax-react/*`**.
+* **`useMediaQuery` / `useBreakpointUp`** и хелперы **`breakpointMinMediaQuery`** — те же **`breakpoint.*`**, что в CSS и **`themeToken`**.
+* **`Popover`** — режим **`contentRole="menu"`** и клавиатурная навигация для меню.
+* Обновлены **Markdown-доки**, **playground** (живые примеры, EN/RU), **CHANGELOG**.
 
 
 # [0.5.0](https://github.com/MrKamura/kovax/compare/v0.4.0...v0.5.0) (2026-05-14)

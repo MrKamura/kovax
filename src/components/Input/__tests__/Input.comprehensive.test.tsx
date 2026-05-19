@@ -9,7 +9,7 @@ describe('Input', () => {
       render(
         <Input 
           mask="+7 (999) 999-99-99"
-          placeholder="Phone"
+          aria-label="Phone" placeholder="Phone"
           onChange={handleChange}
         />
       );
@@ -25,7 +25,7 @@ describe('Input', () => {
       render(
         <Input 
           mask="AAA-999"
-          placeholder="Serial"
+          aria-label="Serial" placeholder="Serial"
           onChange={handleChange}
         />
       );
@@ -41,7 +41,7 @@ describe('Input', () => {
       render(
         <Input 
           mask="aaa-999"
-          placeholder="Basic"
+          aria-label="Basic" placeholder="Basic"
           onChange={handleChange}
         />
       );
@@ -57,20 +57,20 @@ describe('Input', () => {
     it('handles controlled component behavior', () => {
       const handleChange = jest.fn();
       const { rerender } = render(
-        <Input value="initial" onChange={handleChange} />
+        <Input value="initial" onChange={handleChange}  aria-label="Test field" />
       );
       
       const input = screen.getByDisplayValue('initial') as HTMLInputElement;
       expect(input.value).toBe('initial');
       
-      rerender(<Input value="updated" onChange={handleChange} />);
+      rerender(<Input value="updated" onChange={handleChange}  aria-label="Test field" />);
       expect(input.value).toBe('updated');
     });
   });
 
   describe('accessibility', () => {
     it('has proper aria-invalid attribute when invalid', () => {
-      render(<Input isInvalid placeholder="Invalid" />);
+      render(<Input isInvalid aria-label="Invalid" placeholder="Invalid" />);
       const input = screen.getByPlaceholderText('Invalid') as HTMLInputElement;
       expect(input.hasAttribute('aria-invalid')).toBe(true);
     });
@@ -80,7 +80,7 @@ describe('Input', () => {
         <Input 
           isInvalid 
           errorMessage="Error description"
-          placeholder="With error"
+          aria-label="With error" placeholder="With error"
         />
       );
       const errorMessage = screen.getByText('Error description') as HTMLDivElement;
@@ -93,7 +93,7 @@ describe('Input', () => {
           isInvalid
           errorMessage="Bad value"
           aria-describedby="field-hint"
-          placeholder="Merged ids"
+          aria-label="Merged ids" placeholder="Merged ids"
         />,
       );
       const input = screen.getByPlaceholderText("Merged ids");
@@ -108,7 +108,7 @@ describe('Input', () => {
           showCharacterCount
           maxLength={8}
           aria-describedby="hint-prefix"
-          placeholder="Bio field"
+          aria-label="Bio field" placeholder="Bio field"
         />,
       );
       const input = screen.getByPlaceholderText("Bio field");
@@ -124,8 +124,8 @@ describe('Input', () => {
       
       render(
         <form onSubmit={handleSubmit}>
-          <Input name="username" placeholder="Username" required />
-          <Input name="email" type="email" placeholder="Email" required />
+          <Input name="username" aria-label="Username" placeholder="Username" required />
+          <Input name="email" type="email" aria-label="Email" placeholder="Email" required />
           <button type="submit">Submit</button>
         </form>
       );
@@ -148,7 +148,7 @@ describe('Input', () => {
       render(
         <Input 
           mask="99-aa"
-          placeholder="Mixed simple"
+          aria-label="Mixed simple" placeholder="Mixed simple"
           onChange={handleChange}
         />
       );

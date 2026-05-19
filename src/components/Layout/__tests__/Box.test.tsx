@@ -113,13 +113,13 @@ describe('Box', () => {
     });
 
     it('renders as input with placeholder', () => {
-      render(<Box as="input" placeholder="Enter text" />);
+      render(<Box as="input" aria-label="Enter text" placeholder="Enter text" />);
       const input = screen.getByPlaceholderText('Enter text') as HTMLInputElement;
       expect(input.tagName).toBe('INPUT');
     });
 
     it('renders as textarea', () => {
-      render(<Box as="textarea" rows={5} defaultValue="Textarea content" />);
+      render(<Box as="textarea" rows={5} defaultValue="Textarea content" aria-label="Notes" />);
       const textarea = screen.getByDisplayValue('Textarea content') as HTMLTextAreaElement;
       expect(textarea.tagName).toBe('TEXTAREA');
       expect(textarea.rows).toBe(5);
@@ -148,7 +148,7 @@ describe('Box', () => {
     });
 
     it('renders as select', () => {
-      render(<Box as="select" multiple><option>Option 1</option></Box>);
+      render(<Box as="select" aria-label="Options" multiple><option>Option 1</option></Box>);
       const select = screen.getByRole('listbox') as HTMLSelectElement;
       expect(select.tagName).toBe('SELECT');
       expect(select.multiple).toBe(true);

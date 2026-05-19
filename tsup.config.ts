@@ -1,4 +1,5 @@
 import { defineConfig } from "tsup";
+import { addUseClientBanner } from "./scripts/add-use-client.mjs";
 
 export default defineConfig({
   entry: {
@@ -21,6 +22,7 @@ export default defineConfig({
     badge: "src/entries/badge.ts",
     skeleton: "src/entries/skeleton.ts",
     pagination: "src/entries/pagination.ts",
+    server: "src/entries/server.ts",
   },
   format: ["esm", "cjs"],
   dts: true,
@@ -29,4 +31,8 @@ export default defineConfig({
   splitting: false,
   treeshake: true,
   external: ["react", "react-dom", "react/jsx-runtime", "react-day-picker"],
+  async onSuccess() {
+    const patched = addUseClientBanner();
+    console.log(`use client: patched ${patched} bundle file(s)`);
+  },
 });

@@ -1,4 +1,5 @@
 /// <reference types="@testing-library/jest-dom" />
+/// <reference types="jest-axe" />
 
 // Global types for tests
 declare namespace jest {
@@ -19,5 +20,6 @@ declare namespace jest {
     toBeRequired(): R;
     toBeInvalid(): R;
     toBeValid(): R;
+    toHaveNoViolations(): R;
   }
 }

@@ -4,14 +4,14 @@ import { Input } from '../Input';
 
 describe('Input', () => {
   it('input renders and can be found by placeholder', () => {
-    render(<Input placeholder="Enter text" />);
+    render(<Input aria-label="Enter text" placeholder="Enter text" />);
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInstanceOf(HTMLInputElement);
   });
 
   it('input calls onChange when value changes', () => {
     const mockOnChange = jest.fn();
-    render(<Input onChange={mockOnChange} placeholder="Test" />);
+    render(<Input onChange={mockOnChange} aria-label="Test" placeholder="Test" />);
     
     const input = screen.getByPlaceholderText('Test');
     fireEvent.change(input, { target: { value: 'test value' } });
@@ -28,7 +28,7 @@ describe('Input', () => {
         isDisabled 
         onChange={mockOnChange}
         onFocus={mockOnFocus}
-        placeholder="Disabled"
+        aria-label="Disabled" placeholder="Disabled"
       />
     );
     
@@ -48,7 +48,7 @@ describe('Input', () => {
       <Input 
         isInvalid 
         errorMessage="This field has an error" 
-        placeholder="With error"
+        aria-label="With error" placeholder="With error"
       />
     );
     
@@ -57,13 +57,13 @@ describe('Input', () => {
   });
 
   it('input has correct type attribute', () => {
-    render(<Input type="email" placeholder="Email" />);
+    render(<Input type="email" aria-label="Email" placeholder="Email" />);
     const input = screen.getByPlaceholderText('Email') as HTMLInputElement;
     expect(input.type).toBe('email');
   });
 
   it('input has correct default type', () => {
-    render(<Input placeholder="Default" />);
+    render(<Input aria-label="Default" placeholder="Default" />);
     const input = screen.getByPlaceholderText('Default') as HTMLInputElement;
     expect(input.type).toBe('text');
   });
@@ -74,7 +74,7 @@ describe('Input', () => {
       <Input 
         isReadOnly 
         onChange={mockOnChange}
-        placeholder="Readonly"
+        aria-label="Readonly" placeholder="Readonly"
       />
     );
     

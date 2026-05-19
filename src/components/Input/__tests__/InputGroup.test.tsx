@@ -7,7 +7,7 @@ import { InputGroup } from "../InputGroup";
 describe("InputGroup", () => {
   it("renders left addon and search input", () => {
     render(
-      <InputGroup leftAddon={<span data-testid="icon-left">🔎</span>}>
+      <InputGroup leftAddon={<span aria-label="Test field" data-testid="icon-left">🔎</span>}>
         <Input placeholder="Search" aria-label="Search field" />
       </InputGroup>,
     );
@@ -17,8 +17,8 @@ describe("InputGroup", () => {
 
   it("uses error border when isInvalid", () => {
     render(
-      <InputGroup isInvalid data-testid="group">
-        <Input placeholder="Bad" />
+      <InputGroup isInvalid aria-label="Test field" data-testid="group">
+        <Input aria-label="Bad" placeholder="Bad" />
       </InputGroup>,
     );
     expect(screen.getByTestId("group")).toHaveStyle({

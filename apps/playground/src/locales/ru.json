@@ -122,7 +122,7 @@
       "pagination": "Pagination"
     },
     "hints": {
-      "foundation": "README, Getting Started, Tokens, Design system",
+      "foundation": "README, Getting Started, Next.js App Router, Tokens, Design system",
       "layout": "docs/components/Layout/",
       "typography": "docs/components/Typography/",
       "avatar": "Avatar.md — фото / инициалы / fallback; живые демо: Компоненты → Avatar; kovax-react/avatar",

@@ -182,6 +182,7 @@ export function DatePicker(props: DatePickerProps) {
       </Popover.Trigger>
       <Popover.Content
         placement={popoverPlacement}
+        aria-label={label}
         style={{
           maxWidth: panelMaxW,
           ...panelStyle,
@@ -211,6 +212,7 @@ export function DatePicker(props: DatePickerProps) {
                 <Input
                   type="time"
                   size="sm"
+                  aria-label="Time"
                   value={startTime}
                   onChange={(e) => onTimeChange(e.target.value)}
                   disabled={disabled || !value}
