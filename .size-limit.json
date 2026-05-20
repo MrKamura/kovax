@@ -18,5 +18,7 @@
   { "name": "kovax-react/badge", "path": "dist/badge.js", "limit": "4 KB", "gzip": true },
   { "name": "kovax-react/skeleton", "path": "dist/skeleton.js", "limit": "4 KB", "gzip": true },
   { "name": "kovax-react/pagination", "path": "dist/pagination.js", "limit": "6 KB", "gzip": true },
-  { "name": "kovax-react/server", "path": "dist/server.js", "limit": "6 KB", "gzip": true }
+  { "name": "kovax-react/server", "path": "dist/server.js", "limit": "6 KB", "gzip": true },
+  { "name": "kovax-react/react-hook-form", "path": "dist/react-hook-form.js", "limit": "7 KB", "gzip": true },
+  { "name": "kovax-react/tanstack-form", "path": "dist/tanstack-form.js", "limit": "7 KB", "gzip": true }
 ]

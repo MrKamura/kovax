@@ -294,9 +294,78 @@ function RegistrationForm() {
 }
 ```
 
-### react-hook-form (and similar)
+### react-hook-form
 
-`kovax-react` does not ship a validation library. With **react-hook-form**, bind fields using **`Controller`** (or **`useController`**) and spread **`field`** onto **`Input`**, plus your own **`id`**. Drive **`FormControl isInvalid`** from **`formState.errors`** so labels and helpers stay in sync.
+Optional adapter: **`kovax-react/react-hook-form`** (peer **`react-hook-form`**).
+
+```tsx
+import { useForm } from "react-hook-form";
+import {
+  Box,
+  Button,
+  FormLabel,
+  FormHelperText,
+  Input,
+  VStack,
+} from "kovax-react";
+import { FormField, FormFieldError } from "kovax-react/react-hook-form";
+
+type Values = { email: string };
+
+function SignUp() {
+  const { control, handleSubmit } = useForm<Values>({
+    defaultValues: { email: "" },
+    mode: "onBlur",
+  });
+
+  return (
+    <Box as="form" onSubmit={handleSubmit(console.log)}>
+      <VStack align="stretch" gap={16}>
+        <FormField
+          control={control}
+          name="email"
+          rules={{ required: "Email is required" }}
+        >
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input id="email" type="email" />
+          <FormFieldError />
+        </FormField>
+        <Button type="submit">Submit</Button>
+      </VStack>
+    </Box>
+  );
+}
+```
+
+**`FormField`** wraps **`useController`**, mounts **`FormControl`** (`isInvalid` / `isRequired` / `isDisabled`), and injects **`ref`**, **`value`**, **`onChange`**, **`onBlur`** into the first Kovax field child (**`Input`**, **`Textarea`**, **`Select`**, …) or a **`FieldControl`** wrapper.
+
+For checkboxes: **`valuePropName="checked"`**. Custom layout: pass a render function as **`children`**.
+
+### TanStack Form
+
+Optional adapter: **`kovax-react/tanstack-form`** (peer **`@tanstack/react-form`**).
+
+```tsx
+import { useForm } from "@tanstack/react-form";
+import { FormField, FormFieldError } from "kovax-react/tanstack-form";
+
+const form = useForm({ defaultValues: { email: "" }, onSubmit: async () => {} });
+
+<form.Field name="email">
+  {(field) => (
+    <FormField field={field} validators={{ onChange: ({ value }) => (!value ? "Required" : undefined) }}>
+      <Input id="email" />
+      <FormFieldError />
+    </FormField>
+  )}
+</form.Field>
+```
+
+Or **`form`** + **`name`** directly on **`FormField`** (uses **`useField`** internally).
+
+### Manual binding (any library)
+
+`kovax-react` does not require either adapter. With **react-hook-form**, you can still bind fields using **`Controller`** and spread **`field`** onto **`Input`**, plus drive **`FormControl isInvalid`** from **`formState.errors`**.
 
 ## Props reference
 

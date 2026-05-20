@@ -41,6 +41,10 @@ import typographyList from "../../../../docs/components/Typography/List.md?raw";
 import designSystem from "../../../../docs/DESIGN_SYSTEM.md?raw";
 import gettingStarted from "../../../../docs/GETTING_STARTED.md?raw";
 import nextjsAppRouter from "../../../../docs/NEXTJS_APP_ROUTER.md?raw";
+import tailwindDoc from "../../../../docs/TAILWIND.md?raw";
+import quickStart from "../../../../docs/QUICK_START.md?raw";
+import releasesIntro from "../../../../docs/RELEASES.md?raw";
+import changelog from "../../../../CHANGELOG.md?raw";
 import docsReadme from "../../../../docs/README.md?raw";
 import tokens from "../../../../docs/components/Tokens.md?raw";
 
@@ -87,11 +91,22 @@ export const typographyDocumentationMarkdown = [
   typographyList,
 ].join(mdSep);
 
-/** Overview: index, getting started, tokens, design system */
-export const introDocumentationMarkdown = [
-  docsReadme,
+/** Quick start: React + Next.js minimal setup, then detailed guides */
+export const quickStartDocumentationMarkdown = [
+  quickStart,
   gettingStarted,
   nextjsAppRouter,
+  tailwindDoc,
+].join(mdSep);
+
+/** All releases — intro + root CHANGELOG.md */
+export const releasesDocumentationMarkdown = [releasesIntro, changelog].join(
+  mdSep,
+);
+
+/** Overview: index, tokens, design system */
+export const introDocumentationMarkdown = [
+  docsReadme,
   tokens,
   designSystem,
 ].join(mdSep);

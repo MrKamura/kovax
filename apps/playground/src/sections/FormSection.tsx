@@ -14,7 +14,8 @@ import {
   themeToken,
   VStack,
 } from "kovax-react";
-import { Controller, useForm } from "react-hook-form";
+import { FormField, FormFieldError } from "kovax-react/react-hook-form";
+import { useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { LiveExample } from "../components/LiveExample";
 
@@ -106,59 +107,49 @@ function ReactHookFormDemo() {
       w="100%"
     >
       <VStack align="stretch" gap={themeToken("spacing.md")}>
-        <FormControl isInvalid={Boolean(errors.email)}>
+        <FormField
+          control={control}
+          name="email"
+          rules={{
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Enter a valid email address",
+            },
+          }}
+        >
           <FormLabel htmlFor="pg-rhf-email">Email</FormLabel>
-          <Controller
-            name="email"
-            control={control}
-            rules={{
-              required: "Email is required",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Enter a valid email address",
-              },
-            }}
-            render={({ field }) => (
-              <Input
-                {...field}
-                id="pg-rhf-email"
-                type="email"
-                autoComplete="email"
-                placeholder="you@example.com"
-              />
-            )}
+          <Input
+            id="pg-rhf-email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
           />
           {errors.email ?
-            <FormError>{errors.email.message}</FormError>
+            <FormFieldError />
           : (
             <FormHelperText>Use any valid-looking email for the demo.</FormHelperText>
           )}
-        </FormControl>
+        </FormField>
 
-        <FormControl isInvalid={Boolean(errors.password)}>
+        <FormField
+          control={control}
+          name="password"
+          rules={{
+            required: "Password is required",
+            minLength: { value: 8, message: "Use at least 8 characters" },
+          }}
+        >
           <FormLabel htmlFor="pg-rhf-password">Password</FormLabel>
-          <Controller
-            name="password"
-            control={control}
-            rules={{
-              required: "Password is required",
-              minLength: { value: 8, message: "Use at least 8 characters" },
-            }}
-            render={({ field }) => (
-              <Input
-                {...field}
-                id="pg-rhf-password"
-                type="password"
-                autoComplete="new-password"
-                placeholder="••••••••"
-              />
-            )}
+          <Input
+            id="pg-rhf-password"
+            type="password"
+            autoComplete="new-password"
+            placeholder="••••••••"
           />
           <FormHelperText>Minimum 8 characters.</FormHelperText>
-          {errors.password ?
-            <FormError>{errors.password.message}</FormError>
-          : null}
-        </FormControl>
+          {errors.password ? <FormFieldError /> : null}
+        </FormField>
 
         <HStack gap={themeToken("spacing.sm")} wrap="wrap">
           <Button type="submit">Sign up (demo)</Button>
@@ -362,8 +353,6 @@ function Demo() {
 import {
   Box,
   Button,
-  FormControl,
-  FormError,
   FormHelperText,
   FormLabel,
   HStack,
@@ -372,7 +361,8 @@ import {
   themeToken,
   VStack,
 } from "kovax-react";
-import { Controller, useForm } from "react-hook-form";
+import { FormField, FormFieldError } from "kovax-react/react-hook-form";
+import { useForm } from "react-hook-form";
 
 type Values = { email: string; password: string };
 
@@ -387,30 +377,17 @@ function Demo() {
   return (
     <Box as="form" onSubmit={handleSubmit((data) => setPayload(JSON.stringify(data)))} maxW={440} w="100%">
       <VStack align="stretch" gap={themeToken("spacing.md")}>
-        <FormControl isInvalid={Boolean(errors.email)}>
+        <FormField control={control} name="email" rules={{ required: "Email is required", validate: (v: string) => v.includes("@") || "Enter a valid email address" }}>
           <FormLabel htmlFor="rhf-email">Email</FormLabel>
-          <Controller
-            name="email"
-            control={control}
-            rules={{
-              required: "Email is required",
-              validate: (v: string) => v.includes("@") || "Enter a valid email address",
-            }}
-            render={({ field }) => <Input {...field} id="rhf-email" type="email" placeholder="you@example.com" />}
-          />
-          {errors.email ? <FormError>{errors.email.message}</FormError> : <FormHelperText>Validated on blur.</FormHelperText>}
-        </FormControl>
-        <FormControl isInvalid={Boolean(errors.password)}>
+          <Input id="rhf-email" type="email" placeholder="you@example.com" />
+          {errors.email ? <FormFieldError /> : <FormHelperText>Validated on blur.</FormHelperText>}
+        </FormField>
+        <FormField control={control} name="password" rules={{ required: "Required", minLength: { value: 8, message: "Min 8 chars" } }}>
           <FormLabel htmlFor="rhf-password">Password</FormLabel>
-          <Controller
-            name="password"
-            control={control}
-            rules={{ required: "Required", minLength: { value: 8, message: "Min 8 chars" } }}
-            render={({ field }) => <Input {...field} id="rhf-password" type="password" />}
-          />
+          <Input id="rhf-password" type="password" />
           <FormHelperText>Min 8 characters.</FormHelperText>
-          {errors.password ? <FormError>{errors.password.message}</FormError> : null}
-        </FormControl>
+          {errors.password ? <FormFieldError /> : null}
+        </FormField>
         <HStack gap={themeToken("spacing.sm")} wrap="wrap">
           <Button type="submit">Sign up</Button>
           <Button type="button" variant="outline" color="secondary" onClick={() => { reset(); setPayload(null); }}>Clear</Button>
@@ -425,7 +402,7 @@ function Demo() {
       >
         <VStack align="stretch" gap={themeToken("spacing.sm")}>
           <Text size="sm" color={themeToken("secondary.600")}>
-            <code>react-hook-form</code> is only a playground dependency — wire fields with <code>Controller</code> so refs and controlled values match Kovax <code>Input</code>.
+            <code>kovax-react/react-hook-form</code> — <code>FormField</code> wraps <code>useController</code>, <code>FormControl</code> context, and ref/value injection into <code>Input</code>.
           </Text>
           <ReactHookFormDemo />
         </VStack>

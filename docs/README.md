@@ -57,6 +57,9 @@ Component and foundation docs live next to this file. Links are relative to the 
 
 ## Guides
 
+- [Tailwind CSS v4](./TAILWIND.md) — `@import "kovax-react/tailwind"`; `bg-kx-primary-500`, theme-reactive utilities
+- [Quick start](./QUICK_START.md) — minimal React & Next.js setup (install, imports, ThemeProvider)
 - [Getting started](./GETTING_STARTED.md)
+- [Release history](./RELEASES.md) — version changelog (mirrors root `CHANGELOG.md`)
 - [Design system overview](./DESIGN_SYSTEM.md)
 - [Next.js App Router](./NEXTJS_APP_ROUTER.md) — `ThemeProvider`, RSC entry points, FOUC / `data-kovax-theme` script

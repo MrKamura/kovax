@@ -1,0 +1,26 @@
+{
+  "name": "kovax-storybook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build -o storybook-static"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-day-picker": "^9.14.0",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.6.0"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-a11y": "^10.4.0",
+    "@storybook/addon-docs": "^10.4.0",
+    "@storybook/react-vite": "^10.4.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "storybook": "^10.4.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3"
+  }
+}

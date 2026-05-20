@@ -1,5 +1,7 @@
 # Getting started
 
+See also: [Quick start](./QUICK_START.md) — condensed React & Next.js setup on the playground.
+
 ## Install
 
 ```bash

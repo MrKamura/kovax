@@ -15,6 +15,16 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      // Subpath entries MUST precede the root alias — otherwise Vite resolves
+      // `kovax-react/react-hook-form` as `<index.ts>/react-hook-form`.
+      "kovax-react/react-hook-form": path.resolve(
+        libraryRoot,
+        "src/entries/react-hook-form.ts",
+      ),
+      "kovax-react/tanstack-form": path.resolve(
+        libraryRoot,
+        "src/entries/tanstack-form.ts",
+      ),
       // Library sources — no root `npm run build` required beforehand
       "kovax-react": path.resolve(libraryRoot, "src/index.ts"),
     },

@@ -1,5 +1,7 @@
+import { writeFileSync } from "node:fs";
 import { defineConfig } from "tsup";
 import { addUseClientBanner } from "./scripts/add-use-client.mjs";
+import { generateTailwindThemeCss } from "./src/tailwind/generateTailwindTheme";
 
 export default defineConfig({
   entry: {
@@ -23,6 +25,8 @@ export default defineConfig({
     skeleton: "src/entries/skeleton.ts",
     pagination: "src/entries/pagination.ts",
     server: "src/entries/server.ts",
+    "react-hook-form": "src/entries/react-hook-form.ts",
+    "tanstack-form": "src/entries/tanstack-form.ts",
   },
   format: ["esm", "cjs"],
   dts: true,
@@ -30,9 +34,18 @@ export default defineConfig({
   clean: true,
   splitting: false,
   treeshake: true,
-  external: ["react", "react-dom", "react/jsx-runtime", "react-day-picker"],
+  external: [
+    "react",
+    "react-dom",
+    "react/jsx-runtime",
+    "react-day-picker",
+    "react-hook-form",
+    "@tanstack/react-form",
+  ],
   async onSuccess() {
     const patched = addUseClientBanner();
     console.log(`use client: patched ${patched} bundle file(s)`);
+    writeFileSync("dist/tailwind.css", generateTailwindThemeCss(), "utf8");
+    console.log("tailwind: wrote dist/tailwind.css");
   },
 });

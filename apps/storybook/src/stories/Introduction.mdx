@@ -1,0 +1,27 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Kovax Storybook
+
+Component catalog with **auto-generated docs** (props tables from TypeScript), **Accessibility** checks (`@storybook/addon-a11y`), and **Visual Tests** (`@chromatic-com/storybook`).
+
+## Live sites
+
+| Site | URL |
+| --- | --- |
+| Playground (docs + demos) | [mrkamura.github.io/kovax](https://mrkamura.github.io/kovax/) |
+| Storybook | [mrkamura.github.io/kovax/storybook](https://mrkamura.github.io/kovax/storybook/) |
+
+## Local development
+
+```bash
+npm run dev:storybook   # http://localhost:6006
+npm run dev:playground  # Vite playground (parallel)
+```
+
+Stories import library **source** via the same Vite aliases as the playground — no `npm run build` required for local work.
+
+## Visual tests
+
+Connect a [Chromatic](https://www.chromatic.com/) project in the Visual Tests panel to capture baselines and review diffs from Storybook.

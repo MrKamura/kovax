@@ -1,3 +1,39 @@
+# [0.8.0](https://github.com/MrKamura/kovax/compare/v0.7.0...v0.8.0) (2026-05-19)
+
+
+### Features
+
+#### Tailwind CSS v4
+
+* **`kovax-react/tailwind`** — generated `@theme inline` CSS preset; maps every **`--kx-*`** token to Tailwind namespaces (`bg-kx-primary-500`, `p-kx-md`, `rounded-kx-md`, `shadow-kx-sm`, …)
+* **`@theme inline`** — utilities resolve **`var(--kx-…)`** at use-site so **ThemeProvider** light/dark palette swaps stay reactive
+* Generator: **`src/tailwind/generateTailwindTheme.ts`** → **`dist/tailwind.css`** on **`npm run build`**
+
+### Documentation
+
+* **`docs/TAILWIND.md`** — install, **`@import "kovax-react/tailwind"`**, utility namespace table, Next.js notes
+* **Storybook** — **`apps/storybook`**: autoDocs (`tags: ['autodocs']`), **`@storybook/addon-a11y`**, **`@chromatic-com/storybook`** (Visual Tests, ex-`@chromaui/addon-visual-tests`); deployed to **`/storybook`** on GitHub Pages alongside the playground
+
+#### Form library adapters
+
+* **`kovax-react/react-hook-form`** — **`FormField`**, **`FormFieldError`**, **`FieldControl`**; **`useController`** + **`FormControl`** context + ref/value injection (peer **`react-hook-form`**)
+* **`kovax-react/tanstack-form`** — same API for **`@tanstack/react-form`** (`form` + `name` or `field` render prop)
+
+#### Theme / FOUC
+
+* **`ColorModeScript`** — Chakra-style blocking inline script; sets **`data-kovax-theme`** before first paint (export from **`kovax-react/server`** and **`kovax-react/tokens`**)
+* **`buildColorModeInitScript`** / **`buildColorModeScriptTag`** — copy-paste snippet without React
+* **`KOVAX_COLOR_MODE_STORAGE_KEY`**, **`KOVAX_THEME_ATTRIBUTE`** — shared constants with **`ThemeProvider`**
+
+### Release notes (Russian) · Заметки о выпуске
+
+* **`ColorModeScript`** — готовый FOUC-snippet для **`data-kovax-theme`** (как **`ColorModeScript`** у Chakra).
+* **Storybook** — **`apps/storybook`**: autoDocs, **`@storybook/addon-a11y`**, **`@chromatic-com/storybook`** (визуальные тесты); деплой на **`/storybook`** рядом с playground.
+* **`kovax-react/react-hook-form`** и **`kovax-react/tanstack-form`** — тонкие адаптеры **`FormField`** с автопрокидыванием в **FormControlContext**.
+* **`kovax-react/tailwind`** — пресет **Tailwind v4** с **`@theme inline`**: **`bg-kx-primary-500`**, **`p-kx-md`** и др. следуют за **ThemeProvider**.
+* Док **Form.md**, **TAILWIND.md** и playground обновлены.
+
+
 # [0.7.0](https://github.com/MrKamura/kovax/compare/v0.6.0...v0.7.0) (2026-05-19)
 
 

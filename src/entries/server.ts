@@ -16,3 +16,14 @@ export type { TextProps, TextAsProp } from "../components/Typography/Text.types"
 
 export { Heading } from "../components/Typography/Heading";
 export type { HeadingProps, HeadingLevel } from "../components/Typography/Heading.types";
+
+export { ColorModeScript } from "../components/theme/ColorModeScript";
+export type { ColorModeScriptProps } from "../components/theme/ColorModeScript";
+export {
+  buildColorModeInitScript,
+  buildColorModeScriptTag,
+} from "../components/theme/colorModeScriptSnippet";
+export {
+  KOVAX_COLOR_MODE_STORAGE_KEY,
+  KOVAX_THEME_ATTRIBUTE,
+} from "../components/theme/themeConstants";

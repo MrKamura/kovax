@@ -1,10 +1,10 @@
-# Builds the playground SPA and publishes it to GitHub Pages.
+# Builds the playground SPA + Storybook and publishes both to GitHub Pages.
 # Enable Pages in the repo: Settings → Pages → Source: GitHub Actions.
 #
-# Site URL: https://<owner>.github.io/<repository>/
-# The workflow sets VITE_BASE_PATH to /<repository>/ so asset URLs resolve correctly.
+# Playground: https://<owner>.github.io/<repository>/
+# Storybook:  https://<owner>.github.io/<repository>/storybook/
 
-name: Deploy playground
+name: Deploy site
 
 on:
   push:
@@ -33,6 +33,19 @@ jobs:
 
       - run: npm ci
 
+      - name: Install Yarn (Storybook workspace)
+        run: npm install -g yarn@1.22.22
+
+      - name: Cache Storybook node_modules
+        uses: actions/cache@v4
+        with:
+          path: apps/storybook/node_modules
+          key: storybook-${{ runner.os }}-${{ hashFiles('apps/storybook/yarn.lock') }}
+          restore-keys: storybook-${{ runner.os }}-
+
+      - name: Install Storybook deps (yarn)
+        run: yarn --cwd apps/storybook install --frozen-lockfile --ignore-scripts --network-timeout 600000
+
       - name: Build playground
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
@@ -40,6 +53,16 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: npm run build:playground
+
+      - name: Build Storybook
+        env:
+          STORYBOOK_BASE_PATH: /${{ github.event.repository.name }}/storybook/
+        run: yarn --cwd apps/storybook build
+
+      - name: Merge Storybook into Pages artifact
+        run: |
+          mkdir -p apps/playground/dist/storybook
+          cp -r apps/storybook/storybook-static/. apps/playground/dist/storybook/
 
       - uses: actions/upload-pages-artifact@v3
         with:

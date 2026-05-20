@@ -65,6 +65,10 @@ export type BoxProps = BaseBoxProps & {
   action?: string;
   method?: string;
   encType?: string;
+  name?: string;
+  noValidate?: boolean;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  onReset?: React.FormEventHandler<HTMLFormElement>;
 } | BaseBoxProps & {
   as: 'label';
   htmlFor?: string;

@@ -101,6 +101,8 @@
     "topicBarAria": "Раздел документации",
     "topics": {
       "foundation": "Основы",
+      "quickStart": "Быстрый старт",
+      "releases": "Релизы",
       "layout": "Layout",
       "typography": "Typography",
       "avatar": "Avatar",
@@ -122,7 +124,9 @@
       "pagination": "Pagination"
     },
     "hints": {
-      "foundation": "README, Getting Started, Next.js App Router, Tokens, Design system",
+      "foundation": "README, Tokens, Design system",
+      "quickStart": "QUICK_START.md — установка React и Next.js; Getting started; App Router; Tailwind v4",
+      "releases": "CHANGELOG.md — все версии с 0.2.0 до текущей",
       "layout": "docs/components/Layout/",
       "typography": "docs/components/Typography/",
       "avatar": "Avatar.md — фото / инициалы / fallback; живые демо: Компоненты → Avatar; kovax-react/avatar",

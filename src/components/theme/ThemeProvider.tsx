@@ -9,14 +9,18 @@ import React, {
 import { darkPalette, lightPalette, type ThemePalette } from "./palettes";
 import { buildThemeCss } from "./themeCss";
 import {
+  KOVAX_COLOR_MODE_STORAGE_KEY,
+  KOVAX_THEME_ATTRIBUTE,
+} from "./themeConstants";
+import {
   ThemeContext,
   type ColorMode,
   type ResolvedColorMode,
   type ThemeContextValue,
 } from "./themeContext";
 
-const DATA_ATTR = "data-kovax-theme";
-const STORAGE_KEY = "kovax-color-mode";
+const DATA_ATTR = KOVAX_THEME_ATTRIBUTE;
+const STORAGE_KEY = KOVAX_COLOR_MODE_STORAGE_KEY;
 
 export interface ThemeProviderProps {
   /**

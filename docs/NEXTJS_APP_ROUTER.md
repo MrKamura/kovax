@@ -102,8 +102,8 @@ Wrap `{children}` once at the app root (or a route group layout if you scope the
 
 ```tsx
 // app/layout.tsx
+import { ColorModeScript } from "kovax-react/server";
 import { Providers } from "./providers";
-import { KovaxColorModeScript } from "./kovax-color-mode-script";
 
 export default function RootLayout({
   children,
@@ -113,7 +113,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <KovaxColorModeScript />
+        <ColorModeScript />
       </head>
       <body>
         <Providers>{children}</Providers>
@@ -138,25 +138,29 @@ Kovax resolves the active palette with:
 
 The inline script mirrors `ThemeProvider` storage and **`system`** resolution so the correct `data-kovax-theme` is applied **before** the first paint.
 
-### Inline script (blocking)
+### `ColorModeScript` (recommended)
+
+Built-in FOUC guard — same logic as the manual snippet below, exported from **`kovax-react/server`** (RSC-safe) and **`kovax-react/tokens`**:
 
 ```tsx
-// app/kovax-color-mode-script.tsx
-const STORAGE_KEY = "kovax-color-mode";
+import { ColorModeScript } from "kovax-react/server";
 
-const script = `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var m=localStorage.getItem(k);if(m!=="light"&&m!=="dark"&&m!=="system")m="system";var r=m;if(m==="system"){r=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-kovax-theme",r);}catch(e){}})();`;
-
-export function KovaxColorModeScript() {
-  return (
-    <script
-      dangerouslySetInnerHTML={{ __html: script }}
-      suppressHydrationWarning
-    />
-  );
-}
+// app/layout.tsx — inside <head>, before <body>
+<ColorModeScript />
+// optional: storageKey / defaultColorMode must match ThemeProvider
+<ColorModeScript storageKey="my-app-theme" defaultColorMode="system" nonce={cspNonce} />
 ```
 
-Place it in `<head>` of the root layout (as above). The script:
+Plain HTML (no React):
+
+```ts
+import { buildColorModeScriptTag } from "kovax-react/server";
+
+// returns `<script>…</script>` for _document or static HTML
+buildColorModeScriptTag({ defaultColorMode: "system" });
+```
+
+The script:
 
 1. Reads `localStorage` under **`kovax-color-mode`** (same default as `ThemeProvider` **`storageKey`**)
 2. Accepts `"light"`, `"dark"`, or `"system"`
@@ -167,9 +171,18 @@ If you customize storage:
 
 ```tsx
 <ThemeProvider storageKey="my-app-theme" … />
+<ColorModeScript storageKey="my-app-theme" />
 ```
 
-update **`STORAGE_KEY`** in the script to the same string.
+### Manual inline script (alternative)
+
+You can inline the same IIFE yourself via **`buildColorModeInitScript()`** from **`kovax-react/tokens`**:
+
+```tsx
+import { buildColorModeInitScript } from "kovax-react/tokens";
+
+<script dangerouslySetInnerHTML={{ __html: buildColorModeInitScript() }} suppressHydrationWarning />
+```
 
 ### What the script does and does not do
 
@@ -206,7 +219,7 @@ See [Date picker](./components/DatePicker.md).
 
 1. **`app/providers.tsx`** — `"use client"` + `<ThemeProvider>` at the root.
 2. **`app/layout.tsx`** — wrap `{children}` with `<Providers>`.
-3. **FOUC script** in `<head>` — sets `data-kovax-theme` from `localStorage` / `system`.
+3. **FOUC script** — `<ColorModeScript />` in `<head>` (from **`kovax-react/server`**).
 4. **`suppressHydrationWarning`** on `<html>`.
 5. **Server pages** — import layout/typography from **`kovax-react/server`** (or other RSC-safe entries); keep hooks, overlays, and forms in Client Components from **`kovax-react`**.
 

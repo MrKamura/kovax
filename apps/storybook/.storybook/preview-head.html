@@ -1,0 +1,11 @@
+<script>
+  (function () {
+    try {
+      var a = "data-kovax-theme";
+      var r = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      document.documentElement.setAttribute(a, r);
+    } catch (e) {}
+  })();
+</script>

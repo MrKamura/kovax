@@ -8,6 +8,8 @@ import {
   formDocumentationMarkdown,
   inputDocumentationMarkdown,
   introDocumentationMarkdown,
+  quickStartDocumentationMarkdown,
+  releasesDocumentationMarkdown,
   layoutDocumentationMarkdown,
   selectDocumentationMarkdown,
   overlaysDocumentationMarkdown,
@@ -27,6 +29,8 @@ import {
 
 type DocTopicId =
   | "foundation"
+  | "quickStart"
+  | "releases"
   | "layout"
   | "typography"
   | "avatar"
@@ -51,6 +55,14 @@ const TOPICS: { id: DocTopicId; markdown: string }[] = [
   {
     id: "foundation",
     markdown: introDocumentationMarkdown,
+  },
+  {
+    id: "quickStart",
+    markdown: quickStartDocumentationMarkdown,
+  },
+  {
+    id: "releases",
+    markdown: releasesDocumentationMarkdown,
   },
   {
     id: "layout",

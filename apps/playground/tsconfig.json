@@ -11,7 +11,9 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "kovax-react": ["../../src/index.ts"]
+      "kovax-react": ["../../src/index.ts"],
+      "kovax-react/react-hook-form": ["../../src/entries/react-hook-form.ts"],
+      "kovax-react/tanstack-form": ["../../src/entries/tanstack-form.ts"]
     }
   },
   "include": ["src", "scripts"]
